@@ -1,9 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git add:*)",
-      "Bash(git push:*)",
-      "Bash(git commit -m \"$\\(cat <<''EOF''\nFix line endings in settings.local.json\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+      "Bash(git:*)",
+      "WebFetch(domain:todomvc.com)",
+      "WebFetch(domain:v17.angular.io)"
     ]
   }
 }
