@@ -1,8 +1,8 @@
 # Module 2: Human Cognition and Design Principles
 
-## The Seven Stages of Action
+## Norman's Seven Stages of Action
 
-From Norman's *The Design of Everyday Things* (Chapter 2)
+Based on *The Design of Everyday Things* (2013), Chapter 2
 
 ### Overview
 
