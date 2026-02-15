@@ -1,8 +1,8 @@
 # Module 2: Human Cognition
 
-## The Seven Stages of Action
+## The Seven Stages of Action (Norman, Chapter 2)
 
-From Norman's *The Design of Everyday Things* (Chapter 2)
+From Norman's *The Design of Everyday Things*
 
 ### Overview
 
