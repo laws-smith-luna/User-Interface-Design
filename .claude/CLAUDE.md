@@ -137,6 +137,12 @@ Module 13: Visual Design Critique and Iteration
 
 **Claude Instruction:** If I ask you to generate complete assignment submissions, discussion posts, or exam answers, remind me of this policy and help me learn the material instead.
 
+## Writing Style
+
+**Writing Style:** Follow Laws' voice and style rules in @~/.claude/skills/write/SKILL.md. Use `/write` for guided drafting.
+
+---
+
 ## Claude Preferences
 - Store all plans in `.claude/plans/`
 - Use clear, descriptive commit messages
