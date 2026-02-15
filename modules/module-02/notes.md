@@ -1,4 +1,4 @@
-# Module 2: Human Cognition
+# Module 2: Human Cognition and Design Principles
 
 ## The Seven Stages of Action
 
