@@ -1,4 +1,4 @@
-# Module 2: Norman's Human Cognition Framework
+# Module 2: Human Cognition
 
 ## The Seven Stages of Action
 
