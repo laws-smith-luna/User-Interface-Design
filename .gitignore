@@ -10,6 +10,6 @@ Thumbs.db
 node_modules/
 
 # Claude Code
-.claude/temp/
+# .claude/temp/ — now tracked
 .claude/scratchpad/
 .claude/settings.local.json
