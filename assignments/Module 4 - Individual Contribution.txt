@@ -1,0 +1,1 @@
+For this project, we split the work by the web apps. I looked at GitHub, Kevin looked at booking.com, and Samana looked at Canva. Once we had each written up our sections, I went back over the whole document to make sure we addressed 8 or the 10 Heuristic violations, added some where needed and then submitted the document.
