@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BudgetBuddy Usability Study Protocol</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    line-height: 1.6;
+    color: #222;
+    font-size: 15px;
+  }
+  h1 { font-size: 28px; margin-bottom: 8px; }
+  h2 {
+    font-size: 20px;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #2563eb;
+    color: #2563eb;
+  }
+  h3 { font-size: 16px; margin-top: 20px; margin-bottom: 8px; }
+  p { margin-bottom: 12px; }
+  .subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
+
+  .script-box {
+    background: #f8f9fa;
+    border-left: 4px solid #2563eb;
+    padding: 16px 20px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .script-box .label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #2563eb;
+    margin-bottom: 6px;
+  }
+
+  .warn-box {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    padding: 16px 20px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .warn-box .label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #b45309;
+    margin-bottom: 6px;
+  }
+
+  .task-box {
+    background: white;
+    border: 2px solid #333;
+    padding: 24px;
+    margin: 16px 0;
+    border-radius: 8px;
+  }
+  .task-box h3 { margin-top: 0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 14px;
+  }
+  th { background: #f0f0f0; font-weight: 600; }
+
+  .screen-map {
+    background: #f0f4ff;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 12px 0;
+  }
+  .screen-map td { border-color: #c7d2fe; }
+  .screen-map th { background: #dbeafe; }
+
+  ol, ul { padding-left: 24px; margin-bottom: 12px; }
+  li { margin-bottom: 6px; }
+
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li { padding: 4px 0; }
+  .checklist li:before { content: "[ ] "; font-family: monospace; font-weight: 700; }
+
+  .page-break { page-break-before: always; }
+
+  .note-sheet {
+    border: 2px solid #333;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+  }
+  .note-header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .note-field {
+    flex: 1;
+    min-width: 200px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 4px;
+    font-size: 14px;
+  }
+  .note-field span { font-weight: 600; }
+  .incident-box {
+    border: 1px solid #ccc;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    min-height: 100px;
+  }
+  .incident-box .inc-header {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .incident-box .inc-field {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .incident-box .inc-field span { font-weight: 600; }
+  .lined { border-bottom: 1px dotted #ccc; min-height: 20px; display: block; margin-top: 2px; }
+
+  @media print {
+    body { padding: 20px; }
+    .no-print { display: none; }
+    .page-break { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<h1>BudgetBuddy Usability Study Protocol</h1>
+<div class="subtitle">Module 6 Group Assignment | SWE 632 | Spring 2026</div>
+
+<!-- ============================================ -->
+<h2>1. Study Overview</h2>
+
+<table>
+  <tr><th>Item</th><th>Detail</th></tr>
+  <tr><td>App</td><td>BudgetBuddy (personal finance / budget tracking app)</td></tr>
+  <tr><td>Prototype format</td><td>Static HTML wireframes, facilitator-operated (Wizard of Oz)</td></tr>
+  <tr><td>Number of participants</td><td>4 (labeled A, B, C, D)</td></tr>
+  <tr><td>Target session length</td><td>15-25 minutes (task) + 5-10 minutes (interview)</td></tr>
+  <tr><td>Use cases tested</td><td>3 (see task description below)</td></tr>
+  <tr><td>Data collected</td><td>Think-aloud audio, screen recording, facilitator notes, post-task interview</td></tr>
+</table>
+
+<!-- ============================================ -->
+<h2>2. Pre-Session Checklist</h2>
+
+<ul class="checklist">
+  <li>Screen recorder tested and working (audio + screen)</li>
+  <li>Wireframes HTML file open in browser on test device</li>
+  <li>Wireframes set to Screen 1 (Dashboard)</li>
+  <li>Printed copy of task description for participant</li>
+  <li>Note-taking sheets printed (one per participant)</li>
+  <li>Pen/pencil ready</li>
+  <li>Timer/stopwatch ready</li>
+  <li>Quiet environment with minimal interruptions</li>
+  <li>Participant has been told it will take about 30 minutes total</li>
+</ul>
+
+<!-- ============================================ -->
+<h2>3. Facilitator Script</h2>
+
+<h3>3a. Introduction (2-3 minutes)</h3>
+
+<div class="script-box">
+  <div class="label">Say to participant</div>
+  <p>"Hi [name], thanks for helping us out today. My name is [your name] and I'm working on a class project for a UI design course.</p>
+  <p>We're designing a personal finance app called BudgetBuddy, and today I'd like to get your feedback on our design. I'm going to show you some screens from the app and ask you to walk through a few tasks.</p>
+  <p><strong>The most important thing to know is that we're testing the design, not you.</strong> There are no wrong answers and no way to mess up. If something is confusing or doesn't make sense, that's useful information for us because it means the design needs work.</p>
+  <p>Since this is a prototype, the screens aren't interactive. I'll be showing you the screens and navigating based on what you tell me you'd do. Just tell me what you'd tap or where you'd look, and I'll show you what would happen.</p>
+  <p>Do you have any questions before we start?"</p>
+</div>
+
+<h3>3b. Think-Aloud Instructions</h3>
+
+<div class="script-box">
+  <div class="label">Say to participant</div>
+  <p>"One more thing. As you work through the tasks, I'd like you to <strong>think out loud</strong>. That means saying whatever comes to mind as you look at each screen. Things like:</p>
+  <ul>
+    <li>'I'm looking for a way to...'</li>
+    <li>'I'd expect this button to...'</li>
+    <li>'I'm not sure what this means...'</li>
+    <li>'Oh, I think I need to tap here...'</li>
+  </ul>
+  <p>It might feel a little unnatural at first, but it really helps us understand what's working and what's not. I may occasionally remind you to keep talking, and that's totally normal.</p>
+  <p>Ready to start?"</p>
+</div>
+
+<h3>3c. Start the Task</h3>
+
+<div class="script-box">
+  <div class="label">Do</div>
+  <ol>
+    <li>Start the screen recorder</li>
+    <li>Start your timer</li>
+    <li>Hand the participant the printed task description (Section 4 below)</li>
+    <li>Give them a moment to read it</li>
+    <li>Say: "Go ahead whenever you're ready. Remember to think out loud."</li>
+  </ol>
+</div>
+
+<h3>3d. During the Task</h3>
+
+<div class="warn-box">
+  <div class="label">Facilitator reminders</div>
+  <ul>
+    <li><strong>Don't lead.</strong> If they ask "Should I tap here?" say "What would you do?" or "Where do you think that would take you?"</li>
+    <li><strong>Prompt think-aloud.</strong> If they go silent for more than 10-15 seconds, say "What are you thinking right now?" or "Tell me what you're looking at."</li>
+    <li><strong>Note critical incidents.</strong> When something goes wrong or they express confusion, jot down the timestamp and what happened. Don't try to fix it in the moment.</li>
+    <li><strong>Navigate screens.</strong> When the participant says what they'd tap, show them the appropriate screen (see Wizard of Oz guide in Section 5).</li>
+    <li><strong>Stay neutral.</strong> Avoid saying "good" or "right." Use neutral phrases like "okay" or "mm-hmm."</li>
+    <li><strong>Time limit:</strong> If a participant is stuck on one part for more than 5 minutes, say "Let's move on to the next part of the task."</li>
+  </ul>
+</div>
+
+<h3>3e. End of Task</h3>
+
+<div class="script-box">
+  <div class="label">Say to participant</div>
+  <p>"Great, that's the end of the task. Thank you. Before we wrap up, I have a few quick questions about your experience."</p>
+</div>
+
+<!-- ============================================ -->
+<h2>4. Task Description (Participant Handout)</h2>
+
+<div class="task-box">
+  <h3>BudgetBuddy: Task Scenario</h3>
+
+  <p>Imagine you are <strong>Sarah</strong>, a 28-year-old who recently started using BudgetBuddy to manage her finances. It's late February, and you set up several budgets at the beginning of the month to save for a vacation this summer. You're out running errands and want to use the app to make some financial decisions and do some housekeeping.</p>
+
+  <p>Please complete the following three tasks using the app. For each task, tell the facilitator what you would tap or where you would look, and they will show you the resulting screen.</p>
+
+  <p><strong>Task 1: Check your budget before a purchase</strong><br>
+  You see a shirt you like for $36.00. Use the app to check whether you can afford it within your clothing budget this month. Then check your food budget to see if you have room to grab lunch.</p>
+
+  <p><strong>Task 2: Create a new budget</strong><br>
+  You want to start saving $500 per month for your vacation, with a total goal of $3,000. Create a new budget for this in the app and set up an alert so you know when you're getting close to your limit.</p>
+
+  <p><strong>Task 3: Review and fix your transactions</strong><br>
+  You recently noticed that an Amazon purchase was not categorized correctly. Find that transaction in the app and assign it to the right category.</p>
+
+  <p><em>Think out loud as you go. There are no wrong answers.</em></p>
+</div>
+
+<!-- ============================================ -->
+<h2>5. Wizard of Oz Navigation Guide</h2>
+
+<p>Since the wireframes are static, the facilitator manually navigates between screens based on what the participant says. Use this guide to know which screen to show.</p>
+
+<h3>Task 1: Check budget before purchase</h3>
+
+<div class="screen-map">
+<table>
+  <tr><th>Participant says / does</th><th>Show screen</th></tr>
+  <tr><td>Opens the app / starts</td><td>Screen 1: Dashboard</td></tr>
+  <tr><td>Taps on Clothing budget or "View Budgets"</td><td>Screen 2: Clothing Budget</td></tr>
+  <tr><td>Goes back, taps on Food budget</td><td>Screen 3: Food Budget</td></tr>
+  <tr><td>If they want to see all budgets</td><td>Screen 6: All Budgets</td></tr>
+  <tr><td><em>Later, after "buying lunch":</em> Phone buzzes</td><td>Screen 4: Push Notification</td></tr>
+  <tr><td>Opens the notification / checks food budget again</td><td>Screen 5: Updated Food Budget</td></tr>
+</table>
+</div>
+
+<div class="warn-box">
+  <div class="label">Transition note for Task 1</div>
+  <p>After they've checked both budgets, tell them: "Okay, you decided not to buy the shirt. Later, you grab lunch for $21.63. Your phone buzzes with this notification." Then show Screen 4 (lock screen notification). After they look at it, if they say they'd open the app, show Screen 5 (updated food budget).</p>
+</div>
+
+<h3>Task 2: Create a new budget</h3>
+
+<div class="screen-map">
+<table>
+  <tr><th>Participant says / does</th><th>Show screen</th></tr>
+  <tr><td>Looks for a way to create a budget / taps "+ New Budget" or navigates to budgets</td><td>Screen 6: All Budgets (if not already there)</td></tr>
+  <tr><td>Taps "+ New Budget" button</td><td>Screen 7: New Budget Form</td></tr>
+  <tr><td>Fills out form, taps "Create Budget"</td><td>Screen 8: Budget Created (confirmation)</td></tr>
+  <tr><td>Taps "View All Budgets" or "Back to Home"</td><td>Screen 6 or Screen 1</td></tr>
+</table>
+</div>
+
+<div class="warn-box">
+  <div class="label">Transition note for Task 2</div>
+  <p>If the participant is on the Dashboard (Screen 1) and doesn't know where to go, wait and see what they try. If they tap "View Budgets" in Quick Actions, show Screen 6. Note any confusion about how to find the "create budget" feature.</p>
+</div>
+
+<h3>Task 3: Review and fix transactions</h3>
+
+<div class="screen-map">
+<table>
+  <tr><th>Participant says / does</th><th>Show screen</th></tr>
+  <tr><td>Taps "Transactions" in bottom nav or Quick Actions</td><td>Screen 9: All Transactions</td></tr>
+  <tr><td>Taps on the Amazon transaction (yellow "Uncategorized" label)</td><td>Screen 10: Transaction Detail</td></tr>
+  <tr><td>Taps "Categorize Transaction" or taps the category dropdown</td><td>Screen 11: Re-categorize</td></tr>
+  <tr><td>Selects a category, taps "Save Category"</td><td>Screen 9: All Transactions (back to list)</td></tr>
+</table>
+</div>
+
+<div class="warn-box">
+  <div class="label">Transition note for Task 3</div>
+  <p>If the participant doesn't notice the "Uncategorized" label on the Amazon transaction, don't point it out. Let them scroll and explore. Note how long it takes them to find it, and whether the yellow label is noticeable enough.</p>
+</div>
+
+<!-- ============================================ -->
+<h2>6. Post-Task Interview Questions</h2>
+
+<p>Ask these after the participant finishes all three tasks. Follow up on anything interesting that came up during the session.</p>
+
+<ol>
+  <li><strong>"Overall, what was your first impression of the app?"</strong></li>
+  <li><strong>"What did you find most difficult or confusing?"</strong></li>
+  <li><strong>"What did you like best about the design?"</strong></li>
+  <li><strong>"Was there anything you expected to find but couldn't?"</strong></li>
+  <li><strong>"If you could change one thing about the app, what would it be?"</strong></li>
+  <li><strong>"How would you compare this to any budgeting tools you've used before?"</strong> (if applicable)</li>
+  <li><strong>"Is there anything else you'd like to share?"</strong></li>
+</ol>
+
+<div class="warn-box">
+  <div class="label">Interview tips</div>
+  <ul>
+    <li>If a participant gives a short answer, follow up with "Can you tell me more about that?" or "What made you feel that way?"</li>
+    <li>If they mentioned something confusing during the task, reference it: "Earlier you seemed unsure about [X]. Can you walk me through what you were thinking?"</li>
+    <li>Keep it conversational. Don't read questions like a survey.</li>
+  </ul>
+</div>
+
+<!-- ============================================ -->
+<h2>7. Wrap-Up Script</h2>
+
+<div class="script-box">
+  <div class="label">Say to participant</div>
+  <p>"That's everything. Thank you so much for your time. Your feedback is really helpful and will directly shape how we improve the design. Do you have any final questions for me?"</p>
+</div>
+
+<div class="script-box">
+  <div class="label">Do</div>
+  <ol>
+    <li>Stop the screen recorder</li>
+    <li>Stop your timer, note the total session duration</li>
+    <li>Save the recording with the participant letter (e.g., "Participant_A.mp4")</li>
+    <li>Reset wireframes to Screen 1 for the next participant</li>
+    <li>Review your notes while they're fresh and fill in any gaps</li>
+  </ol>
+</div>
+
+<!-- ============================================ -->
+<div class="page-break"></div>
+<h2>8. Note-Taking Sheet (Print one per participant)</h2>
+
+<div class="note-sheet">
+  <h3 style="text-align:center; margin-bottom:16px;">Critical Incident Notes</h3>
+  <div class="note-header">
+    <div class="note-field"><span>Participant:</span> ____</div>
+    <div class="note-field"><span>Date:</span> _______________</div>
+    <div class="note-field"><span>Facilitator:</span> _______________</div>
+  </div>
+  <div class="note-header">
+    <div class="note-field"><span>Start Time:</span> ________</div>
+    <div class="note-field"><span>End Time:</span> ________</div>
+    <div class="note-field"><span>Total Duration:</span> ________</div>
+  </div>
+
+  <hr style="margin: 20px 0;">
+
+  <div class="incident-box">
+    <div class="inc-header">
+      <div><strong>Incident #:</strong> ____</div>
+      <div><strong>Timestamp:</strong> ________</div>
+      <div><strong>Task:</strong>  1  /  2  /  3</div>
+      <div><strong>Screen:</strong> ________</div>
+    </div>
+    <div class="inc-field"><span>What happened:</span> <span class="lined">&nbsp;</span></div>
+    <div class="inc-field"><span>What user said:</span> <span class="lined">&nbsp;</span></div>
+    <div class="inc-field"><span>Severity (circle):</span> &nbsp; Minor &nbsp;&nbsp; Moderate &nbsp;&nbsp; Major</div>
+  </div>
+
+  <div class="incident-box">
+    <div class="inc-header">
+      <div><strong>Incident #:</strong> ____</div>
+      <div><strong>Timestamp:</strong> ________</div>
+      <div><strong>Task:</strong>  1  /  2  /  3</div>
+      <div><strong>Screen:</strong> ________</div>
+    </div>
+    <div class="inc-field"><span>What happened:</span> <span class="lined">&nbsp;</span></div>
+    <div class="inc-field"><span>What user said:</span> <span class="lined">&nbsp;</span></div>
+    <div class="inc-field"><span>Severity (circle):</span> &nbsp; Minor &nbsp;&nbsp; Moderate &nbsp;&nbsp; Major</div>
+  </div>
+
+  <div class="incident-box">
+    <div class="inc-header">
+      <div><strong>Incident #:</strong> ____</div>
+      <div><strong>Timestamp:</strong> ________</div>
+      <div><strong>Task:</strong>  1  /  2  /  3</div>
+      <div><strong>Screen:</strong> ________</div>
+    </div>
+    <div class="inc-field"><span>What happened:</span> <span class="lined">&nbsp;</span></div>
+    <div class="inc-field"><span>What user said:</span> <span class="lined">&nbsp;</span></div>
+    <div class="inc-field"><span>Severity (circle):</span> &nbsp; Minor &nbsp;&nbsp; Moderate &nbsp;&nbsp; Major</div>
+  </div>
+
+  <div class="incident-box">
+    <div class="inc-header">
+      <div><strong>Incident #:</strong> ____</div>
+      <div><strong>Timestamp:</strong> ________</div>
+      <div><strong>Task:</strong>  1  /  2  /  3</div>
+      <div><strong>Screen:</strong> ________</div>
+    </div>
+    <div class="inc-field"><span>What happened:</span> <span class="lined">&nbsp;</span></div>
+    <div class="inc-field"><span>What user said:</span> <span class="lined">&nbsp;</span></div>
+    <div class="inc-field"><span>Severity (circle):</span> &nbsp; Minor &nbsp;&nbsp; Moderate &nbsp;&nbsp; Major</div>
+  </div>
+
+  <div class="incident-box">
+    <div class="inc-header">
+      <div><strong>Incident #:</strong> ____</div>
+      <div><strong>Timestamp:</strong> ________</div>
+      <div><strong>Task:</strong>  1  /  2  /  3</div>
+      <div><strong>Screen:</strong> ________</div>
+    </div>
+    <div class="inc-field"><span>What happened:</span> <span class="lined">&nbsp;</span></div>
+    <div class="inc-field"><span>What user said:</span> <span class="lined">&nbsp;</span></div>
+    <div class="inc-field"><span>Severity (circle):</span> &nbsp; Minor &nbsp;&nbsp; Moderate &nbsp;&nbsp; Major</div>
+  </div>
+
+  <hr style="margin: 20px 0;">
+  <h3>Post-Task Interview Notes</h3>
+  <div class="inc-field" style="margin-top:12px;"><span>First impression:</span> <span class="lined">&nbsp;</span><span class="lined">&nbsp;</span></div>
+  <div class="inc-field" style="margin-top:12px;"><span>Most difficult/confusing:</span> <span class="lined">&nbsp;</span><span class="lined">&nbsp;</span></div>
+  <div class="inc-field" style="margin-top:12px;"><span>Liked best:</span> <span class="lined">&nbsp;</span><span class="lined">&nbsp;</span></div>
+  <div class="inc-field" style="margin-top:12px;"><span>Expected but couldn't find:</span> <span class="lined">&nbsp;</span><span class="lined">&nbsp;</span></div>
+  <div class="inc-field" style="margin-top:12px;"><span>One thing to change:</span> <span class="lined">&nbsp;</span><span class="lined">&nbsp;</span></div>
+  <div class="inc-field" style="margin-top:12px;"><span>Comparison to other tools:</span> <span class="lined">&nbsp;</span><span class="lined">&nbsp;</span></div>
+  <div class="inc-field" style="margin-top:12px;"><span>Other notes:</span> <span class="lined">&nbsp;</span><span class="lined">&nbsp;</span></div>
+</div>
+
+</body>
+</html>

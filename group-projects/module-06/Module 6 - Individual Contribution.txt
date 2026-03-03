@@ -1,0 +1,8 @@
+Module 6 - Usability Study
+Group Members: Laws Smith, Kevin Le, Samana Hussain
+
+Laws provided the wireframes that the group used for the usability study, which were based on his personal finance app design from the Module 5 individual assignment. He worked with Kevin to develop the task description and the four tasks that participants would complete during the study. Laws conducted Interviews B and C, took notes on critical incidents during both sessions, and wrote the post-task interview summaries for each participant. He also worked with the rest of the group to analyze the critical incidents across all four interviews and write up the five usability issues.
+
+Kevin co-developed the task description with Laws, helping shape the scenario and objectives for participants. He conducted Interview A, facilitated the think-aloud session, documented the critical incidents, and wrote the post-task interview summary for that participant. Kevin also contributed to the group discussion around identifying and writing up the five usability issues.
+
+Samana conducted Interview D, facilitated the think-aloud session, and documented the critical incidents that occurred during the participant's walkthrough. She wrote the post-task interview summary for her participant and contributed to the group's collaborative effort in analyzing all four interviews and writing the five usability issues.
