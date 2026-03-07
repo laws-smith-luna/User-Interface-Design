@@ -33,6 +33,7 @@
     overflow: hidden;
     max-width: 960px;
     background: #fafafa;
+    position: relative;
   }
 
   /* Simple top bar */
@@ -284,10 +285,56 @@
     margin: 4px 0;
   }
 
-  hr.divider {
-    border: none;
-    border-top: 1px dashed #ccc;
-    margin: 60px 0 30px;
+  /* ===== ANNOTATION STYLES ===== */
+  .annotations {
+    margin-top: 16px;
+    max-width: 960px;
+  }
+  .annotations h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .annotation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .annotation .num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background: #c44;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .annotation .text { flex: 1; }
+  .annotation .principle {
+    color: #555;
+    font-weight: 600;
+  }
+
+  /* Circled numbers inside wireframes */
+  .callout {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: #c44;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    vertical-align: middle;
+    margin: 0 2px;
   }
 </style>
 </head>
@@ -320,12 +367,13 @@
       <div class="panel expanded">
         <div class="panel-header">
           Course Catalog
-          <span class="toggle">&#9664; collapse</span>
+          <span class="toggle">&#9664; collapse <span class="callout">1</span></span>
         </div>
 
-        <div class="search">[Search] course name, number, or professor...</div>
+        <div class="search"><span class="callout">2</span> [Search] course name, number, or professor...</div>
 
         <div class="filters">
+          <span class="callout">3</span>
           <span class="filter on">Spring 2026</span>
           <span class="filter">Department</span>
           <span class="filter on">CS</span>
@@ -334,11 +382,11 @@
           <span class="filter">Time of Day</span>
           <span class="filter">Days</span>
           <span class="filter">Open Seats</span>
-          <span class="filter">Fulfills Requirement</span>
+          <span class="filter">Fulfills Requirement <span class="callout">7</span></span>
         </div>
 
         <div class="card">
-          <div class="title">SWE 632 - User Interface Design <span class="badge">Core Req</span></div>
+          <div class="title">SWE 632 - User Interface Design <span class="badge">Core Req <span class="callout">4</span></span></div>
           <div class="meta">Prof. Lu &bull; TR 4:30-5:45pm &bull; Online Sync</div>
           <div class="bottom">
             <span class="seats">18 / 30 seats</span>
@@ -373,12 +421,12 @@
             </div>
           </div>
           <div class="detail">
+            <span class="callout">5</span>
             <strong>Description:</strong> Advanced topics in artificial intelligence...<br>
             <strong>Prerequisites:</strong> CS 583<br>
             <strong>Key Assignments:</strong> Research project, paper presentations<br>
             <a href="#">View Syllabus</a>
           </div>
-          <p class="section-note">&#8593; Card expanded (click to reveal details)</p>
         </div>
 
         <div class="card">
@@ -397,7 +445,7 @@
       <!-- RIGHT: Degree Plan collapsed -->
       <div class="panel collapsed">
         <div class="panel-header">
-          Degree Plan
+          Degree Plan <span class="callout">6</span>
           <span class="toggle">expand &#9654;</span>
         </div>
 
@@ -433,6 +481,38 @@
       </div>
     </div>
   </div>
+
+  <div class="annotations">
+    <h3>Annotations</h3>
+    <div class="annotation">
+      <span class="num">1</span>
+      <span class="text"><span class="principle">Progressive Disclosure:</span> Split-panel layout with expand/collapse. Clicking one panel expands it while the other shrinks, keeping both tasks connected without overwhelming the user. The collapsed panel still shows key info at a glance.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">2</span>
+      <span class="text"><span class="principle">Effective Site Design (Q6: "How can I search?"):</span> Search bar is always visible at the top of the catalog. Users can search by course name, number, or professor. Results replace the list, but active filters still apply on top of search.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">3</span>
+      <span class="text"><span class="principle">Hierarchy &amp; Information Foraging:</span> Filter chips organize courses by semester, department, level, modality, time, and days. Semester is the most important filter, placed first. Users can narrow results progressively to reduce foraging cost.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">4</span>
+      <span class="text"><span class="principle">Information Scent:</span> Requirement badges on each class card ("Core Req", "Elective") give users strong cues about how each course fits their degree, without needing to check a separate requirements list.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">5</span>
+      <span class="text"><span class="principle">Progressive Disclosure (Detail View):</span> Class cards show essential info at a glance (name, professor, time, seats). Clicking a card reveals additional details (description, prerequisites, syllabus). Overview first, details on demand.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">6</span>
+      <span class="text"><span class="principle">Progressive Disclosure (Collapsed Panel):</span> The degree plan panel stays visible even when collapsed, showing requirement status and semester chips. Users can see their progress without switching views.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">7</span>
+      <span class="text"><span class="principle">Bridging Panels / Reducing Foraging Cost:</span> The "Fulfills Requirement" filter connects the catalog to the degree plan. Users can filter to show only courses that satisfy a specific unfulfilled requirement, bridging the two panels.</span>
+    </div>
+  </div>
 </div>
 
 <!-- ======================== -->
@@ -458,7 +538,7 @@
     </div>
 
     <div style="padding:14px;max-width:680px;">
-      <div class="banner green">&#10003; Added SWE 632 to Spring 2026 schedule</div>
+      <div class="banner green"><span class="callout">1</span> &#10003; Added SWE 632 to Spring 2026 schedule</div>
 
       <!-- Green = registered -->
       <div class="card green">
@@ -468,17 +548,19 @@
           <span class="seats">17 / 30 seats</span>
           <div class="actions"><button class="btn">Drop</button></div>
         </div>
+        <p class="section-note"><span class="callout">2</span> Green = registered, no conflicts</p>
       </div>
 
       <!-- Yellow = conflict -->
       <div class="card yellow">
         <div class="title">CS 695 - Topics in AI <span class="badge">Conflict</span></div>
         <div class="meta">Prof. Rangwala &bull; W 7:20-10:00pm &bull; Online Sync</div>
-        <div class="banner yellow" style="margin-top:4px;">&#9888; Time conflict with CS 550 on Wednesdays</div>
+        <div class="banner yellow" style="margin-top:4px;"><span class="callout">3</span> &#9888; Time conflict with CS 550 on Wednesdays</div>
         <div class="bottom">
           <span class="seats">1 / 25 seats</span>
           <div class="actions"><button class="btn">Drop</button></div>
         </div>
+        <p class="section-note">Yellow = conflict (still added, but flagged with warning)</p>
       </div>
 
       <!-- Red = waitlisted -->
@@ -489,7 +571,8 @@
           <span class="seats low">FULL (0 / 35)</span>
           <div class="actions"><button class="btn">Leave Waitlist</button></div>
         </div>
-        <div class="waitlist-box">Waitlist Position: #3 &bull; You'll be notified when a spot opens. 24 hours to confirm.</div>
+        <div class="waitlist-box"><span class="callout">4</span> Waitlist Position: #3 &bull; You'll be notified when a spot opens. 24 hours to confirm.</div>
+        <p class="section-note">Red = full, automatically added to waitlist</p>
       </div>
 
       <!-- Drop confirmation inline -->
@@ -497,14 +580,37 @@
         <div class="title">CS 583 - Algorithms <span class="badge">Registered</span></div>
         <div class="meta">Prof. Richards &bull; MW 3:00-4:15pm &bull; In-Person</div>
         <div class="drop-box">
-          <strong>Drop CS 583?</strong> This will remove you from the class.<br>
+          <span class="callout">5</span> <strong>Drop CS 583?</strong> This will remove you from the class.<br>
           <div style="margin-top:6px;">
             <button class="btn danger">Confirm Drop</button>
             <button class="btn">Cancel</button>
           </div>
         </div>
-        <p class="section-note">&#8593; Registered classes require confirmation to drop. Waitlisted/planned classes remove immediately.</p>
       </div>
+    </div>
+  </div>
+
+  <div class="annotations">
+    <h3>Annotations</h3>
+    <div class="annotation">
+      <span class="num">1</span>
+      <span class="text"><span class="principle">Interaction Flow Guidelines:</span> Inline confirmation banner appears after registering ("Added to Spring 2026 schedule"). No modal dialog or popup interrupts the user's flow. The user can continue browsing immediately.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">2</span>
+      <span class="text"><span class="principle">Idiom (Traffic Light Pattern):</span> Green/yellow/red color coding on the left border uses a universally understood pattern. Users learn the system once and can instantly read card status at a glance across the entire interface.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">3</span>
+      <span class="text"><span class="principle">Interaction Flow Guidelines:</span> Conflict warnings appear inline on the card rather than blocking the action. The class is still added but flagged, letting the user decide whether to keep it. Specific details ("Time conflict with CS 550 on Wednesdays") help the user resolve the issue.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">4</span>
+      <span class="text"><span class="principle">Anticipating Likely Next Actions:</span> When a class is full, the system automatically places the user on the waitlist instead of just saying "class full." Waitlist position and the 24-hour confirmation window are shown upfront so the user knows what to expect.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">5</span>
+      <span class="text"><span class="principle">Interaction Flow Guidelines (Proportional Confirmation):</span> Dropping a registered class requires confirmation because it's hard to reverse. Waitlisted and planned classes are removed immediately with no confirmation, since re-adding them is easy. The level of friction matches the cost of the action.</span>
     </div>
   </div>
 </div>
@@ -526,7 +632,7 @@
         <span>Degree Plan</span>
       </div>
       <div class="user-area">
-        <span class="bell" style="position:relative;">&#9854;<span style="position:absolute;top:-6px;right:-8px;background:#c44;color:#fff;font-size:9px;border-radius:50%;width:12px;height:12px;display:flex;align-items:center;justify-content:center;">1</span></span>
+        <span class="bell" style="position:relative;">&#9854;<span style="position:absolute;top:-6px;right:-8px;background:#c44;color:#fff;font-size:9px;border-radius:50%;width:12px;height:12px;display:flex;align-items:center;justify-content:center;">1</span></span> <span class="callout">1</span>
         <div class="avatar"></div>
       </div>
     </div>
@@ -534,7 +640,7 @@
     <div style="padding:14px;max-width:680px;">
       <!-- Notification dropdown -->
       <div class="notif-popup">
-        <div style="font-weight:700;margin-bottom:6px;">Notifications</div>
+        <div style="font-weight:700;margin-bottom:6px;">Notifications <span class="callout">2</span></div>
         <div style="padding:6px 0;border-bottom:1px solid #ddd;">
           <strong>Spot available!</strong> CS 550 - Database Systems<br>
           <span style="color:#888;">2 hours ago &bull; 22 hours to confirm</span><br>
@@ -550,12 +656,12 @@
         <div class="meta">Prof. Lu &bull; TR 4:30-5:45pm &bull; Online Sync</div>
       </div>
 
-      <!-- Waitlisted class - visually distinct (dimmed / red border) -->
+      <!-- Waitlisted class - visually distinct -->
       <div class="card red">
         <div class="title">CS 550 - Database Systems <span class="badge">Spot Available!</span></div>
         <div class="meta">Prof. Brodsky &bull; TR 1:30-2:45pm &bull; In-Person</div>
         <div class="banner yellow" style="margin-top:4px;">
-          A spot has opened! Confirm within 22 hours to register.<br>
+          <span class="callout">3</span> A spot has opened! Confirm within 22 hours to register.<br>
           <button class="btn primary" style="margin-top:4px;">Confirm Registration</button>
           <button class="btn" style="margin-top:4px;">Decline</button>
         </div>
@@ -565,6 +671,22 @@
         <div class="title">CS 695 - Topics in AI <span class="badge">Registered</span></div>
         <div class="meta">Prof. Rangwala &bull; W 7:20-10:00pm &bull; Online Sync</div>
       </div>
+    </div>
+  </div>
+
+  <div class="annotations">
+    <h3>Annotations</h3>
+    <div class="annotation">
+      <span class="num">1</span>
+      <span class="text"><span class="principle">Effective Site Design:</span> Bell icon with a red badge signals new notifications. The count indicator is visible from any screen, so the user doesn't have to navigate to a specific page to know something needs attention.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">2</span>
+      <span class="text"><span class="principle">Anticipating Likely Next Actions:</span> The notification dropdown shows the available action (Confirm/Decline) directly inside the notification. The user can act immediately without navigating to another screen. The time remaining (22 hours) creates urgency without being unclear.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">3</span>
+      <span class="text"><span class="principle">Interaction Flow Guidelines:</span> The same Confirm/Decline action is available both in the notification popup and inline on the class card itself. The user can act from wherever they are. The waitlisted card (red border) remains visually distinct from registered cards (green border) on the schedule so it's clear which classes are confirmed.</span>
     </div>
   </div>
 </div>
@@ -599,7 +721,7 @@
           <span class="toggle">expand &#9654;</span>
         </div>
         <div class="search">[Search]...</div>
-        <p style="font-size:11px;color:#666;background:#e0eef8;padding:4px;border-radius:3px;text-align:center;margin-bottom:8px;">Filtered: CS Electives</p>
+        <p style="font-size:11px;color:#666;background:#e0eef8;padding:4px;border-radius:3px;text-align:center;margin-bottom:8px;"><span class="callout">4</span> Filtered: CS Electives</p>
         <div class="card" style="padding:8px;">
           <div class="title" style="font-size:12px;">CS 695 - Topics in AI</div>
           <div class="meta">W 7:20-10:00pm</div>
@@ -612,7 +734,6 @@
           <div class="title" style="font-size:12px;">CS 688 - Machine Learning</div>
           <div class="meta">MW 1:30-2:45pm</div>
         </div>
-        <p class="section-note">&#8593; Catalog filtered by clicking "Elective" requirement</p>
       </div>
 
       <!-- RIGHT: Degree Plan expanded -->
@@ -624,11 +745,11 @@
 
         <!-- Requirements tracker -->
         <div style="background:#f0f0f0;padding:12px;border-radius:4px;margin-bottom:16px;">
-          <div style="font-weight:700;font-size:13px;margin-bottom:8px;">Degree Requirements <span style="font-weight:400;color:#888;font-size:11px;">(click to filter catalog)</span></div>
+          <div style="font-weight:700;font-size:13px;margin-bottom:8px;">Degree Requirements <span class="callout">1</span> <span style="font-weight:400;color:#888;font-size:11px;">(click to filter catalog)</span></div>
           <div style="display:flex;gap:30px;flex-wrap:wrap;">
             <div>
               <div style="font-size:10px;color:#888;text-transform:uppercase;margin-bottom:4px;">Core (3 req)</div>
-              <div class="req-item"><span class="req-icon filled"></span> CS 531 - Completed</div>
+              <div class="req-item"><span class="req-icon filled"></span> CS 531 - Completed <span class="callout">2</span></div>
               <div class="req-item"><span class="req-icon filled"></span> CS 583 - Completed</div>
               <div class="req-item"><span class="req-icon half"></span> CS 550 - Planned</div>
             </div>
@@ -643,7 +764,7 @@
         </div>
 
         <!-- Semester timeline -->
-        <div style="font-weight:700;font-size:13px;margin-bottom:10px;">Semester Timeline</div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:10px;">Semester Timeline <span class="callout">3</span></div>
 
         <div class="sem">
           <div class="sem-label">Fall 2025 (Completed)</div>
@@ -679,9 +800,33 @@
 
         <!-- Prerequisite warning -->
         <div class="banner yellow" style="margin-top:12px;">
-          &#9888; CS 695 requires CS 583. Prerequisite satisfied (completed Fall 2025).
+          <span class="callout">5</span> &#9888; CS 695 requires CS 583. Prerequisite satisfied (completed Fall 2025).
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="annotations">
+    <h3>Annotations</h3>
+    <div class="annotation">
+      <span class="num">1</span>
+      <span class="text"><span class="principle">Anticipating Likely Next Actions:</span> The requirements tracker is interactive. Clicking an unfulfilled requirement (like "Elective 2") automatically filters the catalog panel to show only qualifying courses. This bridges the two panels and saves the user from manually searching.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">2</span>
+      <span class="text"><span class="principle">Information Scent (Shape-Based Icons):</span> Requirements use filled/half-filled/empty circles instead of colors to show status. This avoids confusion with the green/yellow/red registration color system and works for users with color vision deficiencies. Filled = completed, half-filled = planned, empty = not yet planned.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">3</span>
+      <span class="text"><span class="principle">Task Structure &amp; Sequencing:</span> Semesters are stacked vertically with earliest at top, latest at bottom. This mirrors the natural timeline of a degree. Class chips within each semester are laid out horizontally, and the X button lets users remove courses from their plan.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">4</span>
+      <span class="text"><span class="principle">Bridging Panels / Reducing Foraging Cost:</span> When the user clicks an unfulfilled requirement in the degree plan, the collapsed catalog panel updates to show only matching courses. The "Filtered: CS Electives" label confirms the filter is active. Both panels stay visible and connected.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">5</span>
+      <span class="text"><span class="principle">Preventing Error (Prerequisite Visualization):</span> If a course is placed in a semester, the system checks prerequisites and shows a warning. Here it confirms CS 695's prerequisite (CS 583) was completed. If a prerequisite were missing, the warning would flag the issue before the user tries to register.</span>
     </div>
   </div>
 </div>
@@ -713,7 +858,7 @@
         <div style="font-weight:700;font-size:14px;">Spring 2026 Schedule</div>
         <div class="toggle-bar">
           <span class="toggle-opt">Timeline</span>
-          <span class="toggle-opt active">Calendar</span>
+          <span class="toggle-opt active">Calendar <span class="callout">1</span></span>
         </div>
       </div>
 
@@ -732,7 +877,7 @@
           <tr>
             <td style="color:#888;">1:30</td>
             <td></td>
-            <td><div class="cal-block waitlisted">CS 550<br>Waitlisted</div></td>
+            <td><div class="cal-block waitlisted"><span class="callout">3</span> CS 550<br>Waitlisted</div></td>
             <td></td>
             <td><div class="cal-block waitlisted">CS 550<br>Waitlisted</div></td>
             <td></td>
@@ -748,7 +893,7 @@
           <tr>
             <td style="color:#888;">4:30</td>
             <td></td>
-            <td><div class="cal-block registered">SWE 632<br>4:30-5:45</div></td>
+            <td><div class="cal-block registered"><span class="callout">2</span> SWE 632<br>4:30-5:45</div></td>
             <td></td>
             <td><div class="cal-block registered">SWE 632<br>4:30-5:45</div></td>
             <td></td>
@@ -775,8 +920,28 @@
       <div style="margin-top:12px;display:flex;gap:16px;font-size:11px;color:#888;">
         <span><span class="cal-block registered" style="display:inline-block;width:12px;height:12px;padding:0;margin:0;vertical-align:middle;"></span> Registered</span>
         <span><span class="cal-block waitlisted" style="display:inline-block;width:12px;height:12px;padding:0;margin:0;vertical-align:middle;"></span> Waitlisted</span>
-        <span><span class="cal-block conflict" style="display:inline-block;width:12px;height:12px;padding:0;margin:0;vertical-align:middle;"></span> Conflict</span>
+        <span><span class="cal-block conflict" style="display:inline-block;width:12px;height:12px;padding:0;margin:0;vertical-align:middle;"></span> Conflict <span class="callout">4</span></span>
       </div>
+    </div>
+  </div>
+
+  <div class="annotations">
+    <h3>Annotations</h3>
+    <div class="annotation">
+      <span class="num">1</span>
+      <span class="text"><span class="principle">Flexibility &amp; Efficiency:</span> Toggle button lets users switch between the semester timeline view (all semesters, vertical stack) and a weekly calendar view for a selected semester. Different users prefer different representations of the same data, and both views serve different tasks (long-term planning vs. weekly scheduling).</span>
+    </div>
+    <div class="annotation">
+      <span class="num">2</span>
+      <span class="text"><span class="principle">Task Structure &amp; Sequencing:</span> Time blocks are laid out on a standard weekly calendar grid with days across the top and times down the left. This helps users see their actual week before committing to registration, making time conflicts spatially obvious.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">3</span>
+      <span class="text"><span class="principle">Idiom (Visual Distinction):</span> Waitlisted classes appear on the calendar with a dashed border and different background color, visually distinct from registered classes. Users can see where the class would fit in their week even though they're not yet confirmed.</span>
+    </div>
+    <div class="annotation">
+      <span class="num">4</span>
+      <span class="text"><span class="principle">Preventing Error (Conflict Visibility):</span> If two classes overlap in time, the overlapping blocks are highlighted in yellow with a solid border. The conflict is spatially obvious on the calendar grid, making it hard to miss before the user finalizes their schedule. A legend at the bottom clarifies the color coding.</span>
     </div>
   </div>
 </div>
