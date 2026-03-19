@@ -1,6 +1,6 @@
 # Module 9 Group Assignment: Interaction Design Critique and Iteration
 
-**Due:** Sunday, March 23, 2026 at 11:59 PM
+**Due:** Wednesday, March 25, 2026 at 11:59 PM
 **Points:** 100
 **Submit:** Document via Canvas (one per group)
 
