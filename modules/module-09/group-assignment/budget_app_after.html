@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BudgetApp - Wireframes (Module 9 Updated)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  h1 { font-size: 18px; color: #666; margin-bottom: 4px; }
+  .task-label { font-size: 13px; color: #999; margin-bottom: 10px; }
+
+  .nav-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 800px;
+  }
+  .nav-bar button {
+    padding: 6px 12px;
+    border: 2px solid #333;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .nav-bar button.active { background: #333; color: white; }
+  .nav-bar button:hover { background: #555; color: white; }
+  .nav-bar button.t1 { border-color: #7c3aed; }
+  .nav-bar button.t1.active { background: #7c3aed; }
+  .nav-bar button.t2 { border-color: #2563eb; }
+  .nav-bar button.t2.active { background: #2563eb; }
+  .nav-bar button.t3 { border-color: #0891b2; }
+  .nav-bar button.t3.active { background: #0891b2; }
+  .nav-bar button.t4 { border-color: #16a34a; }
+  .nav-bar button.t4.active { background: #16a34a; }
+
+  /* Phone frame */
+  .phone {
+    width: 375px;
+    height: 812px;
+    background: white;
+    border-radius: 40px;
+    border: 3px solid #222;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  }
+
+  .status-bar {
+    height: 50px;
+    padding: 14px 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .status-bar .time { font-size: 16px; }
+  .status-icons { display: flex; gap: 6px; font-size: 12px; }
+
+  .screen {
+    display: none;
+    height: 692px;
+    overflow-y: auto;
+    padding: 0 20px 20px;
+  }
+  .screen.active { display: block; }
+
+  .bottom-nav {
+    height: 70px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+    background: white;
+  }
+  .bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  /* FIX 1: Active state styling for bottom nav */
+  .bottom-nav .nav-item.active { color: #2563eb; font-weight: 700; }
+  .bottom-nav .nav-item.active .nav-icon { background: #eff6ff; }
+  .bottom-nav .nav-icon {
+    width: 24px; height: 24px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+    transition: background 0.2s;
+  }
+
+  /* Shared */
+  .greeting { font-size: 26px; font-weight: 700; margin: 16px 0 4px; }
+  .greeting-sub { font-size: 15px; color: #888; margin-bottom: 20px; }
+
+  .card {
+    background: #f8f8f8;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-size: 12px; font-weight: 600; color: #999;
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;
+  }
+
+  .bill-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid #eee;
+  }
+  .bill-row:last-child { border-bottom: none; }
+  .bill-name { font-weight: 600; font-size: 15px; }
+  .bill-detail { font-size: 12px; color: #888; margin-top: 2px; }
+  .bill-amount { font-weight: 700; font-size: 15px; }
+
+  .budget-mini {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid #eee;
+  }
+  .budget-mini:last-child { border-bottom: none; }
+  .budget-label { font-weight: 600; font-size: 14px; }
+  .budget-bar-wrap {
+    width: 120px; height: 8px; background: #e5e5e5; border-radius: 4px; overflow: hidden;
+  }
+  .budget-bar { height: 100%; border-radius: 4px; }
+  .budget-remaining { font-size: 12px; color: #888; text-align: right; min-width: 60px; }
+
+  .over { color: #ef4444; }
+  .under { color: #22c55e; }
+  .warn { color: #f59e0b; }
+
+  .budget-header { text-align: center; padding: 10px 0 0; }
+  .budget-category { font-size: 14px; color: #888; margin-bottom: 4px; }
+  .budget-title { font-size: 24px; font-weight: 700; }
+
+  .donut-container { display: flex; justify-content: center; padding: 24px 0; }
+  .donut-wrapper { position: relative; width: 200px; height: 200px; }
+  .donut-wrapper svg { transform: rotate(-90deg); }
+  .donut-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); text-align: center;
+  }
+  .donut-amount { font-size: 28px; font-weight: 700; }
+  .donut-label { font-size: 12px; color: #888; }
+
+  .budget-stats {
+    display: flex; justify-content: space-around; margin-bottom: 20px; text-align: center;
+  }
+  .stat-value { font-size: 20px; font-weight: 700; }
+  .stat-label {
+    font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  .section-title {
+    font-size: 12px; font-weight: 600; color: #999;
+    text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 8px;
+  }
+
+  .transaction-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0; border-bottom: 1px solid #f0f0f0;
+  }
+  .transaction-row:last-child { border-bottom: none; }
+  .tx-name { font-weight: 600; font-size: 14px; }
+  .tx-date { font-size: 11px; color: #999; margin-top: 2px; }
+  .tx-amount { font-weight: 700; font-size: 14px; }
+
+  /* Lock screen */
+  .lock-screen {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white; height: 100%;
+    display: flex; flex-direction: column; align-items: center; padding-top: 60px;
+  }
+  .lock-time { font-size: 72px; font-weight: 200; letter-spacing: -2px; }
+  .lock-date { font-size: 18px; font-weight: 400; opacity: 0.8; margin-top: 4px; }
+  .notification {
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(20px);
+    border-radius: 16px; padding: 14px 16px; margin: 40px 20px 0;
+    width: calc(100% - 40px); display: flex; align-items: flex-start; gap: 12px;
+  }
+  .notif-icon {
+    width: 36px; height: 36px; background: #22c55e; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .notif-app { font-size: 12px; opacity: 0.7; margin-bottom: 2px; }
+  .notif-title { font-size: 14px; font-weight: 600; }
+  .notif-body { font-size: 13px; opacity: 0.85; margin-top: 2px; line-height: 1.4; }
+  .notif-time { font-size: 11px; opacity: 0.5; margin-left: auto; flex-shrink: 0; }
+
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 14px; color: #2563eb; cursor: pointer; padding: 12px 0; font-weight: 500;
+  }
+
+  .screen-label {
+    text-align: center; margin-top: 12px; font-size: 13px; color: #888; font-style: italic;
+  }
+
+  /* Form elements */
+  .form-group { margin-bottom: 16px; }
+  .form-label {
+    font-size: 12px; font-weight: 600; color: #666;
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+  }
+  .form-input {
+    width: 100%; padding: 12px; border: 1.5px solid #ddd;
+    border-radius: 10px; font-size: 15px; font-family: inherit; background: #fafafa;
+  }
+  .form-select {
+    width: 100%; padding: 12px; border: 1.5px solid #ddd;
+    border-radius: 10px; font-size: 15px; font-family: inherit; background: #fafafa;
+  }
+  .btn-primary {
+    width: 100%; padding: 14px; background: #2563eb; color: white;
+    border: none; border-radius: 12px; font-size: 16px; font-weight: 600;
+    cursor: pointer; font-family: inherit;
+  }
+  .btn-secondary {
+    width: 100%; padding: 14px; background: white; color: #333;
+    border: 1.5px solid #ddd; border-radius: 12px; font-size: 16px; font-weight: 600;
+    cursor: pointer; font-family: inherit; margin-top: 8px;
+  }
+
+  .success-icon {
+    width: 80px; height: 80px; background: #dcfce7; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; margin: 40px auto 20px;
+  }
+  .success-title { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 8px; }
+  .success-sub {
+    font-size: 14px; color: #888; text-align: center; line-height: 1.5; margin-bottom: 30px;
+  }
+
+  .detail-row {
+    display: flex; justify-content: space-between; padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .detail-row:last-child { border-bottom: none; }
+  .detail-key { font-size: 14px; color: #888; }
+  .detail-value { font-size: 14px; font-weight: 600; }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center; padding: 60px 20px;
+  }
+  .empty-icon {
+    font-size: 48px; margin-bottom: 16px; opacity: 0.4;
+  }
+  .empty-title { font-size: 18px; font-weight: 700; color: #555; margin-bottom: 8px; }
+  .empty-sub { font-size: 14px; color: #999; margin-bottom: 24px; line-height: 1.5; }
+
+  /* Alert threshold helper text (from M8 fixes) */
+  .alert-helper {
+    font-size: 11px; color: #888; text-align: center; margin-top: 8px; line-height: 1.4;
+  }
+  .alert-dollar {
+    font-size: 11px; color: #888; margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<h1>BudgetApp Wireframes (Module 9 Updated)</h1>
+<div class="task-label">Fixes applied: <span style="color:#7c3aed; font-weight:600;">Fix 1: Active Nav</span> &middot; <span style="color:#2563eb; font-weight:600;">Fix 2: Confirm Step</span> &middot; <span style="color:#0891b2; font-weight:600;">Fix 3: Spending Pace</span></div>
+<div class="nav-bar">
+  <button class="t1 active" onclick="showScreen(0)">1. Home (New)</button>
+  <button class="t1" onclick="showScreen(1)">2. Budgets (Empty)</button>
+  <button class="t1" onclick="showScreen(2)">3. New Budget</button>
+  <button class="t2" onclick="showScreen(3)">4. Review Budget</button>
+  <button class="t1" onclick="showScreen(4)">5. Budget Created</button>
+  <button class="t1" onclick="showScreen(5)">6. Budgets (Set Up)</button>
+  <button class="t3" onclick="showScreen(6)">7. Dashboard</button>
+  <button class="t3" onclick="showScreen(7)">8. Clothing Budget</button>
+  <button class="t3" onclick="showScreen(8)">9. Food Budget</button>
+  <button class="t4" onclick="showScreen(9)">10. Notification</button>
+  <button class="t4" onclick="showScreen(10)">11. Updated Budget</button>
+  <button class="t4" onclick="showScreen(11)">12. Transactions</button>
+</div>
+
+<div class="phone">
+  <div class="status-bar" id="statusBar">
+    <span class="time">1:03</span>
+    <div class="status-icons">
+      <span>&#9679;&#9679;&#9679;&#9679;&#9675;</span>
+      <span>&#128267;</span>
+    </div>
+  </div>
+
+  <!-- Screen 1: Home (New User) -->
+  <div class="screen active" id="screen0">
+    <div class="greeting">Welcome to</div>
+    <div class="greeting" style="margin-top:0; color:#2563eb;">BudgetApp</div>
+    <div class="greeting-sub">Let's get your finances organized</div>
+
+    <div class="card">
+      <div class="card-title">Get Started</div>
+      <div style="font-size:14px; color:#555; margin-bottom:12px;">Set up your first budget to start tracking your spending.</div>
+      <button class="btn-primary" onclick="showScreen(1)">Set Up Budgets</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Quick Actions</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:100px; background:white; border:1px solid #e0e0e0; border-radius:10px; padding:12px; text-align:center; font-size:13px; font-weight:600; cursor:pointer;" onclick="showScreen(1)">View Budgets</div>
+        <div style="flex:1; min-width:100px; background:white; border:1px solid #e0e0e0; border-radius:10px; padding:12px; text-align:center; font-size:13px; font-weight:600; cursor:pointer;">Transactions</div>
+        <div style="flex:1; min-width:100px; background:white; border:1px solid #e0e0e0; border-radius:10px; padding:12px; text-align:center; font-size:13px; font-weight:600; cursor:pointer;">Settings</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2: Budgets (Empty) -->
+  <div class="screen" id="screen1">
+    <div class="back-btn" onclick="showScreen(0)">&larr; Home</div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <div style="font-size:22px; font-weight:700;">Your Budgets</div>
+      <div style="background:#2563eb; color:white; padding:8px 16px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer;" onclick="showScreen(2)">+ New Budget</div>
+    </div>
+
+    <div class="empty-state">
+      <div class="empty-icon">&#128176;</div>
+      <div class="empty-title">No budgets yet</div>
+      <div class="empty-sub">Create your first budget to start tracking your spending by category.</div>
+      <button class="btn-primary" style="width:auto; padding:12px 32px; display:inline-block;" onclick="showScreen(2)">Create a Budget</button>
+    </div>
+  </div>
+
+  <!-- Screen 3: New Budget Form (matches M8 after version with alert fixes already applied) -->
+  <div class="screen" id="screen2">
+    <div class="back-btn" onclick="showScreen(1)">&larr; Budgets</div>
+    <div style="font-size:22px; font-weight:700; margin-bottom:20px;">Create New Budget</div>
+
+    <div class="form-group">
+      <div class="form-label">Category</div>
+      <div class="form-select">
+        Clothing &nbsp; &#9662;
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-label">Monthly Budget Amount</div>
+      <div class="form-input" style="font-size:24px; font-weight:700;">$300.00</div>
+      <div style="font-size:11px; color:#888; margin-top:4px;">Enter the amount you want to spend per month in this category.</div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-label">Start Date</div>
+      <div class="form-input">February 1, 2026</div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-label">Alert me when I've <span style="text-decoration:underline;">spent</span></div>
+      <div style="display:flex; gap:8px;">
+        <div style="flex:1; padding:10px 10px 6px; border:1.5px solid #e5e5e5; border-radius:10px; text-align:center; cursor:pointer;">
+          <div style="font-size:14px; font-weight:600;">50%</div>
+          <div class="alert-dollar">$150.00</div>
+        </div>
+        <div style="flex:1; padding:10px 10px 6px; border:1.5px solid #2563eb; background:#eff6ff; border-radius:10px; text-align:center; cursor:pointer;">
+          <div style="font-size:14px; font-weight:600; color:#2563eb;">75%</div>
+          <div class="alert-dollar" style="color:#2563eb;">$225.00</div>
+        </div>
+        <div style="flex:1; padding:10px 10px 6px; border:1.5px solid #e5e5e5; border-radius:10px; text-align:center; cursor:pointer;">
+          <div style="font-size:14px; font-weight:600;">90%</div>
+          <div class="alert-dollar">$270.00</div>
+        </div>
+      </div>
+      <div class="alert-helper">You'll get a notification when you've spent <strong>$225.00</strong> of your $300.00 budget, with <strong>$75.00</strong> remaining.</div>
+    </div>
+
+    <!-- FIX 2: Button now says "Review" instead of creating immediately -->
+    <button class="btn-primary" onclick="showScreen(3)">Review Budget</button>
+  </div>
+
+  <!-- Screen 4: NEW - Review/Confirm Budget (FIX 2) -->
+  <div class="screen" id="screen3">
+    <div class="back-btn" onclick="showScreen(2)">&larr; Edit</div>
+    <div style="font-size:22px; font-weight:700; margin-bottom:6px;">Review Your Budget</div>
+    <div style="font-size:14px; color:#888; margin-bottom:20px;">Please confirm the details below are correct.</div>
+
+    <div class="card">
+      <div class="card-title">Budget Summary</div>
+      <div class="detail-row">
+        <div class="detail-key">Category</div>
+        <div class="detail-value">Clothing</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-key">Monthly Amount</div>
+        <div class="detail-value">$300.00</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-key">Start Date</div>
+        <div class="detail-value">February 1, 2026</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-key">Alert Threshold</div>
+        <div class="detail-value">75% ($225.00)</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-key">Alert Type</div>
+        <div class="detail-value">Push notification</div>
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="showScreen(4)">Confirm &amp; Create Budget</button>
+    <button class="btn-secondary" onclick="showScreen(2)">Go Back &amp; Edit</button>
+  </div>
+
+  <!-- Screen 5: Budget Created (now with Edit option) -->
+  <div class="screen" id="screen4">
+    <div class="success-icon">&#10003;</div>
+    <div class="success-title">Budget Created!</div>
+    <div class="success-sub">
+      Your "Clothing" budget is set up.<br>
+      $300.00 per month starting February 1.<br>
+      You'll be alerted at 75% usage ($225.00).
+    </div>
+
+    <div class="card">
+      <div class="card-title">Budget Summary</div>
+      <div class="detail-row">
+        <div class="detail-key">Category</div>
+        <div class="detail-value">Clothing</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-key">Monthly Amount</div>
+        <div class="detail-value">$300.00</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-key">Alert Threshold</div>
+        <div class="detail-value">75% ($225.00)</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-key">Starts</div>
+        <div class="detail-value">February 1, 2026</div>
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="showScreen(2)">Create Another Budget</button>
+    <!-- FIX 2: Added Edit option on success screen -->
+    <button class="btn-secondary" onclick="showScreen(2)">Edit This Budget</button>
+    <button class="btn-secondary" onclick="showScreen(5)" style="margin-top:4px;">View All Budgets</button>
+  </div>
+
+  <!-- Screen 6: Budgets (Both Set Up) -->
+  <div class="screen" id="screen5">
+    <div class="back-btn" onclick="showScreen(0)">&larr; Home</div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <div style="font-size:22px; font-weight:700;">Your Budgets</div>
+      <div style="background:#2563eb; color:white; padding:8px 16px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer;" onclick="showScreen(2)">+ New Budget</div>
+    </div>
+
+    <div class="card" style="cursor:pointer;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="font-size:16px; font-weight:600;">Clothing</div>
+        <div class="under" style="font-size:13px; font-weight:600;">$300.00 left</div>
+      </div>
+      <div class="budget-bar-wrap" style="width:100%; height:10px;">
+        <div class="budget-bar" style="width:0%; background:#22c55e;"></div>
+      </div>
+      <div style="font-size:12px; color:#888; margin-top:6px;">$0.00 of $300.00 spent</div>
+    </div>
+
+    <div class="card" style="cursor:pointer;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="font-size:16px; font-weight:600;">Food</div>
+        <div class="under" style="font-size:13px; font-weight:600;">$400.00 left</div>
+      </div>
+      <div class="budget-bar-wrap" style="width:100%; height:10px;">
+        <div class="budget-bar" style="width:0%; background:#22c55e;"></div>
+      </div>
+      <div style="font-size:12px; color:#888; margin-top:6px;">$0.00 of $400.00 spent</div>
+    </div>
+
+    <div style="text-align:center; padding:20px; color:#999; font-size:13px;">
+      Both budgets are set up and ready to track your spending.
+    </div>
+  </div>
+
+  <!-- Screen 7: Dashboard (Later, with spending data) -->
+  <div class="screen" id="screen6">
+    <div class="greeting">Good Morning,</div>
+    <div class="greeting" style="margin-top:0">Sarah</div>
+    <div class="greeting-sub">Here's your financial snapshot</div>
+
+    <div class="card">
+      <div class="card-title">Upcoming Bills</div>
+      <div class="bill-row">
+        <div>
+          <div class="bill-name">Rent</div>
+          <div class="bill-detail">Due in 3 days</div>
+        </div>
+        <div class="bill-amount">$2,000.00</div>
+      </div>
+      <div class="bill-row">
+        <div>
+          <div class="bill-name">Electric</div>
+          <div class="bill-detail">Due in 8 days</div>
+        </div>
+        <div class="bill-amount">$142.50</div>
+      </div>
+    </div>
+
+    <!-- FIX 3: Budget overview now shows spending pace context -->
+    <div class="card">
+      <div class="card-title">Budget Overview</div>
+      <div style="padding:10px 0; border-bottom:1px solid #eee;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <div class="budget-label">Food</div>
+          <div class="budget-remaining warn" style="font-weight:600;">$47.32 left</div>
+        </div>
+        <div class="budget-bar-wrap" style="width:100%; height:8px; margin-bottom:4px;">
+          <div class="budget-bar" style="width:88%; background:#f59e0b;"></div>
+        </div>
+        <div style="font-size:11px; color:#888;">2 days left &middot; ~$23.66/day</div>
+      </div>
+      <div style="padding:10px 0;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <div class="budget-label">Clothing</div>
+          <div class="budget-remaining over" style="font-weight:600;">$15.33 left</div>
+        </div>
+        <div class="budget-bar-wrap" style="width:100%; height:8px; margin-bottom:4px;">
+          <div class="budget-bar" style="width:95%; background:#ef4444;"></div>
+        </div>
+        <div style="font-size:11px; color:#ef4444;">2 days left &middot; ~$7.67/day &middot; Consider pausing spending</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Quick Actions</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:100px; background:white; border:1px solid #e0e0e0; border-radius:10px; padding:12px; text-align:center; font-size:13px; font-weight:600; cursor:pointer;">View Budgets</div>
+        <div style="flex:1; min-width:100px; background:white; border:1px solid #e0e0e0; border-radius:10px; padding:12px; text-align:center; font-size:13px; font-weight:600; cursor:pointer;" onclick="showScreen(11)">Transactions</div>
+        <div style="flex:1; min-width:100px; background:white; border:1px solid #e0e0e0; border-radius:10px; padding:12px; text-align:center; font-size:13px; font-weight:600; cursor:pointer;">Settings</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 8: Clothing Budget Detail -->
+  <div class="screen" id="screen7">
+    <div class="back-btn" onclick="showScreen(6)">&larr; Home</div>
+    <div class="budget-header">
+      <div class="budget-category">Budget</div>
+      <div class="budget-title">Clothing</div>
+    </div>
+    <div class="donut-container">
+      <div class="donut-wrapper">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e5e5" stroke-width="20"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#ef4444" stroke-width="20"
+            stroke-dasharray="478" stroke-dashoffset="24" stroke-linecap="round"/>
+        </svg>
+        <div class="donut-center">
+          <div class="donut-amount over">$15.33</div>
+          <div class="donut-label">remaining</div>
+        </div>
+      </div>
+    </div>
+    <div class="budget-stats">
+      <div>
+        <div class="stat-value">$284.67</div>
+        <div class="stat-label">Spent</div>
+      </div>
+      <div>
+        <div class="stat-value">$300.00</div>
+        <div class="stat-label">Budget</div>
+      </div>
+    </div>
+    <div class="card" style="background:#fef2f2; border:1px solid #fecaca;">
+      <div style="font-size:13px; color:#991b1b; font-weight:600;">Almost at your limit!</div>
+      <div style="font-size:12px; color:#b91c1c; margin-top:4px;">You only have $15.33 left for clothing this month.</div>
+    </div>
+    <div class="section-title">Recent Transactions</div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">H&amp;M</div>
+        <div class="tx-date">Feb 22</div>
+      </div>
+      <div class="tx-amount">-$45.99</div>
+    </div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Target (Clothing)</div>
+        <div class="tx-date">Feb 18</div>
+      </div>
+      <div class="tx-amount">-$32.50</div>
+    </div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Nike.com</div>
+        <div class="tx-date">Feb 14</div>
+      </div>
+      <div class="tx-amount">-$89.00</div>
+    </div>
+  </div>
+
+  <!-- Screen 9: Food Budget Detail -->
+  <div class="screen" id="screen8">
+    <div class="back-btn" onclick="showScreen(6)">&larr; Home</div>
+    <div class="budget-header">
+      <div class="budget-category">Budget</div>
+      <div class="budget-title">Food</div>
+    </div>
+    <div class="donut-container">
+      <div class="donut-wrapper">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e5e5" stroke-width="20"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#f59e0b" stroke-width="20"
+            stroke-dasharray="503" stroke-dashoffset="60" stroke-linecap="round"/>
+        </svg>
+        <div class="donut-center">
+          <div class="donut-amount warn">$47.32</div>
+          <div class="donut-label">remaining</div>
+        </div>
+      </div>
+    </div>
+    <div class="budget-stats">
+      <div>
+        <div class="stat-value">$352.68</div>
+        <div class="stat-label">Spent</div>
+      </div>
+      <div>
+        <div class="stat-value">$400.00</div>
+        <div class="stat-label">Budget</div>
+      </div>
+    </div>
+    <div class="section-title">Recent Transactions</div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Whole Foods</div>
+        <div class="tx-date">Feb 25</div>
+      </div>
+      <div class="tx-amount">-$67.42</div>
+    </div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Chipotle</div>
+        <div class="tx-date">Feb 23</div>
+      </div>
+      <div class="tx-amount">-$14.25</div>
+    </div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Trader Joe's</div>
+        <div class="tx-date">Feb 20</div>
+      </div>
+      <div class="tx-amount">-$53.18</div>
+    </div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Starbucks</div>
+        <div class="tx-date">Feb 19</div>
+      </div>
+      <div class="tx-amount">-$6.75</div>
+    </div>
+  </div>
+
+  <!-- Screen 10: Push Notification -->
+  <div class="screen" id="screen9" style="padding:0;">
+    <div class="lock-screen">
+      <div class="lock-time">1:03</div>
+      <div class="lock-date">Wednesday, February 26, 2026</div>
+      <div class="notification">
+        <div class="notif-icon">$</div>
+        <div>
+          <div class="notif-app">BUDGETAPP</div>
+          <div class="notif-title">Food Budget Updated</div>
+          <div class="notif-body">Lunch purchase of $20.00 recorded. You have $27.32 left in your food budget for February.</div>
+        </div>
+        <div class="notif-time">now</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 11: Updated Food Budget -->
+  <div class="screen" id="screen10">
+    <div class="back-btn" onclick="showScreen(6)">&larr; Home</div>
+    <div class="budget-header">
+      <div class="budget-category">Budget</div>
+      <div class="budget-title">Food</div>
+    </div>
+    <div class="donut-container">
+      <div class="donut-wrapper">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e5e5" stroke-width="20"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#ef4444" stroke-width="20"
+            stroke-dasharray="503" stroke-dashoffset="36" stroke-linecap="round"/>
+        </svg>
+        <div class="donut-center">
+          <div class="donut-amount over">$27.32</div>
+          <div class="donut-label">remaining</div>
+        </div>
+      </div>
+    </div>
+    <div class="budget-stats">
+      <div>
+        <div class="stat-value">$372.68</div>
+        <div class="stat-label">Spent</div>
+      </div>
+      <div>
+        <div class="stat-value">$400.00</div>
+        <div class="stat-label">Budget</div>
+      </div>
+    </div>
+    <div class="card" style="background:#fef2f2; border:1px solid #fecaca;">
+      <div style="font-size:13px; color:#991b1b; font-weight:600;">Budget running low</div>
+      <div style="font-size:12px; color:#b91c1c; margin-top:4px;">You have $27.32 left for food with 2 days remaining in February.</div>
+    </div>
+    <div class="section-title">Recent Transactions</div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name" style="color:#2563eb;">Lunch</div>
+        <div class="tx-date">Feb 26 &middot; Just now</div>
+      </div>
+      <div class="tx-amount" style="color:#2563eb;">-$20.00</div>
+    </div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Whole Foods</div>
+        <div class="tx-date">Feb 25</div>
+      </div>
+      <div class="tx-amount">-$67.42</div>
+    </div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Chipotle</div>
+        <div class="tx-date">Feb 23</div>
+      </div>
+      <div class="tx-amount">-$14.25</div>
+    </div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Trader Joe's</div>
+        <div class="tx-date">Feb 20</div>
+      </div>
+      <div class="tx-amount">-$53.18</div>
+    </div>
+  </div>
+
+  <!-- Screen 12: All Transactions -->
+  <div class="screen" id="screen11">
+    <div class="back-btn" onclick="showScreen(6)">&larr; Home</div>
+    <div style="font-size:22px; font-weight:700; margin-bottom:4px;">Transactions</div>
+    <div style="font-size:13px; color:#888; margin-bottom:16px;">February 2026</div>
+
+    <div style="display:flex; gap:6px; margin-bottom:16px; overflow-x:auto;">
+      <div style="padding:6px 14px; background:#333; color:white; border-radius:16px; font-size:12px; font-weight:600; white-space:nowrap;">All</div>
+      <div style="padding:6px 14px; background:#f0f0f0; border-radius:16px; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">Food</div>
+      <div style="padding:6px 14px; background:#f0f0f0; border-radius:16px; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">Clothing</div>
+    </div>
+
+    <div class="section-title">Feb 26</div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name" style="color:#2563eb;">Lunch</div>
+        <div class="tx-date">Food &middot; 1:02 PM</div>
+      </div>
+      <div class="tx-amount" style="color:#2563eb;">-$20.00</div>
+    </div>
+
+    <div class="section-title">Feb 25</div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Whole Foods</div>
+        <div class="tx-date">Food &middot; 5:30 PM</div>
+      </div>
+      <div class="tx-amount">-$67.42</div>
+    </div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Amazon</div>
+        <div class="tx-date">Shopping &middot; 2:15 PM</div>
+      </div>
+      <div class="tx-amount">-$34.99</div>
+    </div>
+
+    <div class="section-title">Feb 23</div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Chipotle</div>
+        <div class="tx-date">Food &middot; 12:30 PM</div>
+      </div>
+      <div class="tx-amount">-$14.25</div>
+    </div>
+
+    <div class="section-title">Feb 22</div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">H&amp;M</div>
+        <div class="tx-date">Clothing &middot; 3:20 PM</div>
+      </div>
+      <div class="tx-amount">-$45.99</div>
+    </div>
+
+    <div class="section-title">Feb 20</div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Trader Joe's</div>
+        <div class="tx-date">Food &middot; 6:15 PM</div>
+      </div>
+      <div class="tx-amount">-$53.18</div>
+    </div>
+
+    <div class="section-title">Feb 19</div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Starbucks</div>
+        <div class="tx-date">Food &middot; 8:45 AM</div>
+      </div>
+      <div class="tx-amount">-$6.75</div>
+    </div>
+
+    <div class="section-title">Feb 18</div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Target</div>
+        <div class="tx-date">Clothing &middot; 2:00 PM</div>
+      </div>
+      <div class="tx-amount">-$32.50</div>
+    </div>
+
+    <div class="section-title">Feb 14</div>
+    <div class="transaction-row">
+      <div>
+        <div class="tx-name">Nike.com</div>
+        <div class="tx-date">Clothing &middot; Online</div>
+      </div>
+      <div class="tx-amount">-$89.00</div>
+    </div>
+  </div>
+
+  <!-- Bottom nav (FIX 1: active state applied dynamically) -->
+  <div class="bottom-nav" id="bottomNav">
+    <div class="nav-item" data-nav="home" onclick="showScreen(6)">
+      <div class="nav-icon">&#127968;</div>
+      <span>Home</span>
+    </div>
+    <div class="nav-item" data-nav="budgets" onclick="showScreen(1)">
+      <div class="nav-icon">$</div>
+      <span>Budgets</span>
+    </div>
+    <div class="nav-item" data-nav="transactions" onclick="showScreen(11)">
+      <div class="nav-icon">&#8644;</div>
+      <span>Transactions</span>
+    </div>
+    <div class="nav-item" data-nav="alerts">
+      <div class="nav-icon">&#128276;</div>
+      <span>Alerts</span>
+    </div>
+    <div class="nav-item" data-nav="settings">
+      <div class="nav-icon">&#9881;</div>
+      <span>Settings</span>
+    </div>
+  </div>
+</div>
+
+<div class="screen-label" id="screenLabel">Screen 1 of 12: Home (New User)</div>
+
+<script>
+  const labels = [
+    'Screen 1 of 12: Home (New User)',
+    'Screen 2 of 12: Budgets (Empty)',
+    'Screen 3 of 12: New Budget Form (M8 fixes applied)',
+    'Screen 4 of 12: Review Budget [Fix 2: Confirmation Step]',
+    'Screen 5 of 12: Budget Created [Fix 2: Edit Option]',
+    'Screen 6 of 12: Budgets (Both Set Up)',
+    'Screen 7 of 12: Dashboard [Fix 1: Active Nav, Fix 3: Spending Pace]',
+    'Screen 8 of 12: Clothing Budget [Fix 1: Active Nav]',
+    'Screen 9 of 12: Food Budget [Fix 1: Active Nav]',
+    'Screen 10 of 12: Push Notification',
+    'Screen 11 of 12: Updated Food Budget [Fix 1: Active Nav]',
+    'Screen 12 of 12: All Transactions [Fix 1: Active Nav]'
+  ];
+
+  // FIX 1: Map screen indices to which bottom nav item should be active
+  const navMap = {
+    0: 'home',      // Home (new user)
+    1: 'budgets',   // Budgets (empty)
+    2: 'budgets',   // New budget form
+    3: 'budgets',   // Review budget
+    4: 'budgets',   // Budget created
+    5: 'budgets',   // Budgets (set up)
+    6: 'home',      // Dashboard
+    7: 'budgets',   // Clothing budget detail
+    8: 'budgets',   // Food budget detail
+    9: null,        // Lock screen notification
+    10: 'budgets',  // Updated food budget
+    11: 'transactions' // All transactions
+  };
+
+  function showScreen(index) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-bar button').forEach(b => b.classList.remove('active'));
+    document.getElementById('screen' + index).classList.add('active');
+    document.querySelectorAll('.nav-bar button')[index].classList.add('active');
+    document.getElementById('screenLabel').textContent = labels[index];
+
+    const bottomNav = document.getElementById('bottomNav');
+    const statusBar = document.getElementById('statusBar');
+    if (index === 9) {
+      bottomNav.style.display = 'none';
+      statusBar.style.display = 'none';
+    } else {
+      bottomNav.style.display = 'flex';
+      statusBar.style.display = 'flex';
+    }
+
+    // FIX 1: Update bottom nav active state
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
+      item.classList.remove('active');
+    });
+    const activeNav = navMap[index];
+    if (activeNav) {
+      const activeItem = document.querySelector('.bottom-nav .nav-item[data-nav="' + activeNav + '"]');
+      if (activeItem) activeItem.classList.add('active');
+    }
+  }
+
+  // Initialize with Home active
+  showScreen(0);
+</script>
+</body>
+</html>

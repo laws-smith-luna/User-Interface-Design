@@ -89,12 +89,17 @@ Module 13: Visual Design Critique and Iteration
 ## Repository Structure
 ```
 /modules           - Weekly module work and notes
-/assignments       - Individual assignments
-/group-projects    - Group assignment deliverables (iterative project)
-/discussions       - Discussion post drafts
-/final-project     - Final project materials
-/resources         - Reference materials
+  /module-XX
+    /assignment        - Individual work + submitted files
+    /group-assignment  - Group deliverables (if applicable)
+    /discussion        - Discussion drafts (if applicable)
+    notes.md           - Module notes
+/resources         - Syllabus, reference materials
+homework.md        - Shared homework tracker (both courses)
 ```
+
+### Shared Homework Tracker
+`homework.md` in the repo root tracks assignments and due dates for both SWE 632 (this course) and SWE 637 (Software Testing). The Software Testing repo references this file.
 
 ## Important Policies
 - **No late submissions** - Must submit on Canvas by deadline

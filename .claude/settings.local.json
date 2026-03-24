@@ -5,5 +5,9 @@
       "WebFetch(domain:todomvc.com)",
       "WebFetch(domain:v17.angular.io)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "gmail",
+    "google-sheets"
+  ]
 }
