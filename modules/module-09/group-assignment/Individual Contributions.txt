@@ -1,0 +1,5 @@
+Individual contribution:
+
+Each member took a collection of weakness. For each one the member identified the weaknesses that corresponded to the principles and guidelines, planned out a fix, and then used AI-help to create the updated HTML to view the new wireframes.
+
+Laws took weakness 1-3, Kevin took weaknesses 4-5, and Samana took weakness 6-7.
