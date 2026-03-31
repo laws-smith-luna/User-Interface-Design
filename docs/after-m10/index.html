@@ -19,6 +19,18 @@
   h1 { font-size: 18px; color: #666; margin-bottom: 4px; }
   .task-label { font-size: 13px; color: #999; margin-bottom: 10px; }
 
+/* Styling for category-specific visual signifiers */
+.tx-icon {
+  width: 36px; 
+  height: 36px; 
+  border-radius: 10px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  font-size: 18px; 
+  flex-shrink: 0;
+}
+
   .nav-bar {
     display: flex;
     gap: 6px;
@@ -99,7 +111,6 @@
     cursor: pointer;
     transition: color 0.2s;
   }
-  /* FIX 1: Active state styling for bottom nav */
   .bottom-nav .nav-item.active { color: #2563eb; font-weight: 700; }
   .bottom-nav .nav-item.active .nav-icon { background: #eff6ff; }
   .bottom-nav .nav-icon {
@@ -269,7 +280,7 @@
   .empty-title { font-size: 18px; font-weight: 700; color: #555; margin-bottom: 8px; }
   .empty-sub { font-size: 14px; color: #999; margin-bottom: 24px; line-height: 1.5; }
 
-  /* Alert threshold helper text (from M8 fixes) */
+  /* Alert threshold helper text */
   .alert-helper {
     font-size: 11px; color: #888; text-align: center; margin-top: 8px; line-height: 1.4;
   }
@@ -277,14 +288,14 @@
     font-size: 11px; color: #888; margin-top: 4px;
   }
 
-  /* FIX 7: Transaction category icons */
+  /* Transaction category icons */
   .tx-icon {
     width: 36px; height: 36px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     font-size: 18px; flex-shrink: 0;
   }
 
-  /* FIX 4: Error state for budget input */
+  /* Error state for budget input */
   .form-input.error {
     border-color: #dc2626;
     background: #fef2f2;
@@ -294,13 +305,92 @@
     cursor: not-allowed;
     pointer-events: none;
   }
+
+  /* ── FIX 13: Alert threshold accessible selection state ── */
+  .threshold-btn {
+    flex: 1;
+    padding: 10px 10px 8px;
+    border: 1.5px solid #e5e5e5;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    background: white;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+  }
+  .threshold-btn:hover { border-color: #93c5fd; background: #f8faff; }
+  .threshold-btn.selected { border: 2px solid #2563eb; background: #eff6ff; }
+  .threshold-pct { font-size: 14px; font-weight: 600; color: #333; }
+  .threshold-btn.selected .threshold-pct { color: #2563eb; font-weight: 700; }
+  .threshold-dollar { font-size: 11px; color: #888; margin-top: 2px; }
+  .threshold-btn.selected .threshold-dollar { color: #2563eb; }
+  .threshold-check {
+    display: none;
+    position: absolute;
+    top: 5px; right: 6px;
+    width: 14px; height: 14px;
+  }
+  .threshold-btn.selected .threshold-check { display: block; }
+  .threshold-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    color: #2563eb;
+    margin-top: 3px;
+    text-transform: uppercase;
+    opacity: 0;
+  }
+  .threshold-btn.selected .threshold-label { opacity: 1; }
+
+  /* ── FIX 12: Start Date field affordance ── */
+  .date-field {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border: 1.5px solid #aaa;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    background: white;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+  }
+  .date-field:hover {
+    border-color: #2563eb;
+    background: #eff6ff;
+  }
+  .date-field:hover .date-edit-hint {
+    color: #2563eb;
+  }
+  .date-field-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .date-edit-hint {
+    font-size: 12px;
+    color: #aaa;
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+  .date-helper {
+    font-size: 11px;
+    color: #888;
+    margin-top: 4px;
+  }
 </style>
 </head>
 <body>
 
 <h1>BudgetApp Wireframes (Module 10 Updated)</h1>
 <div class="task-label">M9 Fixes: <span style="color:#7c3aed; font-weight:600;">1: Active Nav</span> &middot; <span style="color:#2563eb; font-weight:600;">2: Confirm Step</span> &middot; <span style="color:#0891b2; font-weight:600;">3: Spending Pace</span> &middot; <span style="color:#dc2626; font-weight:600;">4: Error Checking</span> &middot; <span style="color:#9333ea; font-weight:600;">5: Homepage</span> &middot; <span style="color:#ea580c; font-weight:600;">6: Back Button</span> &middot; <span style="color:#16a34a; font-weight:600;">7: Transaction Icons</span></div>
-<div class="task-label">M10 Fixes: <span style="color:#b91c1c; font-weight:600;">Fix 8: Alerts/Settings Screens</span> &middot; <span style="color:#0369a1; font-weight:600;">Fix 9: Quick Actions</span> &middot; <span style="color:#7e22ce; font-weight:600;">Fix 10: Back Button Labels</span> &middot; <span style="color:#c2410c; font-weight:600;">Fix 11: Duplicate Budget Warning</span></div>
+<div class="task-label">M10 Fixes: <span style="color:#b91c1c; font-weight:600;">Fix 8: Alerts/Settings Screens</span> &middot; <span style="color:#0369a1; font-weight:600;">Fix 9: Quick Actions</span> &middot; <span style="color:#7e22ce; font-weight:600;">Fix 10: Back Button Labels</span> &middot; <span style="color:#c2410c; font-weight:600;">Fix 11: Duplicate Budget Warning</span> &middot; <span style="color:#0f766e; font-weight:600;">Fix 12: Start Date Affordance</span> &middot; <span style="color:#6d28d9; font-weight:600;">Fix 13: Threshold Accessibility</span></div>
+
 <div class="nav-bar">
   <button class="t1 active" onclick="showScreen(0)">1. Home (New)</button>
   <button class="t1" onclick="showScreen(1)">2. Budgets (Empty)</button>
@@ -339,7 +429,6 @@
       <button class="btn-primary" onclick="showScreen(1)">Set Up Budgets</button>
     </div>
 
-    <!-- FIX 5: Removed unnecessary Quick Actions (View Budgets, Transactions, Settings) for new users -->
     <div class="card">
       <div class="card-title">Transaction Tracking</div>
       <div style="font-size:14px; color:#555; margin-bottom:12px;">Connect your accounts to automatically track transactions.</div>
@@ -363,12 +452,12 @@
     </div>
   </div>
 
-  <!-- Screen 3: New Budget Form (matches M8 after version with alert fixes already applied) -->
+  <!-- Screen 3: New Budget Form -->
   <div class="screen" id="screen2">
     <div class="back-btn" onclick="showScreen(1)">&larr; Budgets</div>
     <div style="font-size:22px; font-weight:700; margin-bottom:20px;">Create New Budget</div>
 
-    <!-- FIX 11: Duplicate budget warning when selecting existing category -->
+    <!-- FIX 11: Duplicate budget warning -->
     <div class="form-group">
       <div class="form-label">Category</div>
       <div class="form-select" style="border-color:#f59e0b; background:#fffbeb;">
@@ -385,7 +474,7 @@
       </div>
     </div>
 
-    <!-- FIX 4: Input with error checking for negative values -->
+    <!-- FIX 4: Input with error checking -->
     <div class="form-group">
       <div class="form-label">Monthly Budget Amount</div>
       <div style="position:relative;">
@@ -395,7 +484,7 @@
           <span style="font-size:10px; color:#999; cursor:pointer; line-height:1;" onclick="adjustAmount(-1)">&#9660;</span>
         </div>
       </div>
-      <div id="budgetError" style="display:none; background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:10px 12px; margin-top:8px; display:none;">
+      <div id="budgetError" style="display:none; background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:10px 12px; margin-top:8px;">
         <div style="display:flex; align-items:center; gap:8px;">
           <span style="font-size:18px;">&#9888;</span>
           <span style="font-size:13px; color:#dc2626; font-weight:600;">Budget amount cannot be negative. Please enter a value of $0.00 or more.</span>
@@ -404,36 +493,67 @@
       <div style="font-size:11px; color:#888; margin-top:4px;">Enter the amount you want to spend per month in this category.</div>
     </div>
 
+    <!-- FIX 12: Start Date now has clear affordance signifiers (DOET Ch. 5) -->
     <div class="form-group">
       <div class="form-label">Start Date</div>
-      <div class="form-input">February 1, 2026</div>
+      <div class="date-field" role="button" aria-label="Start date, February 1 2026. Tap to change.">
+        <div class="date-field-inner">
+          <!-- Calendar icon -->
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;">
+            <rect x="1.5" y="2.5" width="13" height="12" rx="2" stroke="#666" stroke-width="1.2"/>
+            <path d="M1.5 6.5h13" stroke="#666" stroke-width="1.2"/>
+            <path d="M5 1.5v2M11 1.5v2" stroke="#666" stroke-width="1.2" stroke-linecap="round"/>
+            <rect x="4" y="9" width="2" height="2" rx="0.5" fill="#666"/>
+            <rect x="7" y="9" width="2" height="2" rx="0.5" fill="#666"/>
+            <rect x="10" y="9" width="2" height="2" rx="0.5" fill="#666"/>
+          </svg>
+          <span>February 1, 2026</span>
+        </div>
+        <span class="date-edit-hint">Tap to change</span>
+      </div>
+      <div class="date-helper">Budget periods start on the 1st by default. You can change this if needed.</div>
     </div>
 
+    <!-- FIX 13: Threshold selection uses checkmark + weight + label, not color alone -->
     <div class="form-group">
       <div class="form-label">Alert me when I've <span style="text-decoration:underline;">spent</span></div>
-      <div style="display:flex; gap:8px;">
-        <div style="flex:1; padding:10px 10px 6px; border:1.5px solid #e5e5e5; border-radius:10px; text-align:center; cursor:pointer;">
-          <div style="font-size:14px; font-weight:600;">50%</div>
-          <div class="alert-dollar">$150.00</div>
+      <div style="display:flex; gap:8px;" role="radiogroup" aria-label="Alert threshold">
+        <div class="threshold-btn" role="radio" aria-checked="false" onclick="selectThreshold(this, '50', '$150.00', '$150.00 remaining')">
+          <svg class="threshold-check" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="6.5" fill="#2563eb"/>
+            <path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="threshold-pct">50%</div>
+          <div class="threshold-dollar">$150.00</div>
+          <span class="threshold-label">Selected</span>
         </div>
-        <div style="flex:1; padding:10px 10px 6px; border:1.5px solid #2563eb; background:#eff6ff; border-radius:10px; text-align:center; cursor:pointer;">
-          <div style="font-size:14px; font-weight:600; color:#2563eb;">75%</div>
-          <div class="alert-dollar" style="color:#2563eb;">$225.00</div>
+        <div class="threshold-btn selected" role="radio" aria-checked="true" onclick="selectThreshold(this, '75', '$225.00', '$75.00 remaining')">
+          <svg class="threshold-check" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="6.5" fill="#2563eb"/>
+            <path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="threshold-pct">75%</div>
+          <div class="threshold-dollar">$225.00</div>
+          <span class="threshold-label">Selected</span>
         </div>
-        <div style="flex:1; padding:10px 10px 6px; border:1.5px solid #e5e5e5; border-radius:10px; text-align:center; cursor:pointer;">
-          <div style="font-size:14px; font-weight:600;">90%</div>
-          <div class="alert-dollar">$270.00</div>
+        <div class="threshold-btn" role="radio" aria-checked="false" onclick="selectThreshold(this, '90', '$270.00', '$30.00 remaining')">
+          <svg class="threshold-check" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="6.5" fill="#2563eb"/>
+            <path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="threshold-pct">90%</div>
+          <div class="threshold-dollar">$270.00</div>
+          <span class="threshold-label">Selected</span>
         </div>
       </div>
-      <div class="alert-helper">You'll get a notification when you've spent <strong>$225.00</strong> of your $300.00 budget, with <strong>$75.00</strong> remaining.</div>
+      <div class="alert-helper" id="alertHelperText">You'll get a notification when you've spent <strong>$225.00</strong> of your $300.00 budget, with <strong>$75.00</strong> remaining.</div>
     </div>
 
-    <!-- FIX 2: Button now says "Review" instead of creating immediately -->
-    <!-- FIX 4: Button disabled when invalid input -->
+    <!-- FIX 2: Button says "Review" not "Create" -->
     <button class="btn-primary" id="reviewBudgetBtn" onclick="showScreen(3)">Review Budget</button>
   </div>
 
-  <!-- Screen 4: NEW - Review/Confirm Budget (FIX 2) -->
+  <!-- Screen 4: Review/Confirm Budget -->
   <div class="screen" id="screen3">
     <div class="back-btn" onclick="showScreen(2)">&larr; Edit</div>
     <div style="font-size:22px; font-weight:700; margin-bottom:6px;">Review Your Budget</div>
@@ -467,7 +587,7 @@
     <button class="btn-secondary" onclick="showScreen(2)">Go Back &amp; Edit</button>
   </div>
 
-  <!-- Screen 5: Budget Created (now with Edit option) -->
+  <!-- Screen 5: Budget Created -->
   <div class="screen" id="screen4">
     <div class="success-icon">&#10003;</div>
     <div class="success-title">Budget Created!</div>
@@ -498,7 +618,6 @@
     </div>
 
     <button class="btn-primary" onclick="showScreen(2)">Create Another Budget</button>
-    <!-- FIX 2: Added Edit option on success screen -->
     <button class="btn-secondary" onclick="showScreen(2)">Edit This Budget</button>
     <button class="btn-secondary" onclick="showScreen(5)" style="margin-top:4px;">View All Budgets</button>
   </div>
@@ -538,9 +657,8 @@
     </div>
   </div>
 
-  <!-- Screen 7: Dashboard (Later, with spending data) -->
+  <!-- Screen 7: Dashboard -->
   <div class="screen" id="screen6">
-    <!-- FIX 6: Consistent back button on Dashboard (was missing before) -->
     <div class="back-btn" onclick="showScreen(0)">&larr; Home</div>
     <div class="greeting">Good Morning,</div>
     <div class="greeting" style="margin-top:0">Sarah</div>
@@ -564,7 +682,7 @@
       </div>
     </div>
 
-    <!-- FIX 3: Budget overview now shows spending pace context -->
+    <!-- FIX 3: Spending pace context -->
     <div class="card">
       <div class="card-title">Budget Overview</div>
       <div style="padding:10px 0; border-bottom:1px solid #eee;">
@@ -589,7 +707,7 @@
       </div>
     </div>
 
-    <!-- FIX 9: Quick Actions now provide contextual shortcuts instead of duplicating bottom nav -->
+    <!-- FIX 9: Contextual quick actions -->
     <div class="card">
       <div class="card-title">Quick Actions</div>
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -602,7 +720,6 @@
 
   <!-- Screen 8: Clothing Budget Detail -->
   <div class="screen" id="screen7">
-    <!-- FIX 10: Back button says "Budgets" and navigates to Budgets list, not Dashboard -->
     <div class="back-btn" onclick="showScreen(5)">&larr; Budgets</div>
     <div class="budget-header">
       <div class="budget-category">Budget</div>
@@ -661,7 +778,6 @@
 
   <!-- Screen 9: Food Budget Detail -->
   <div class="screen" id="screen8">
-    <!-- FIX 10: Back button says "Budgets" and navigates to Budgets list -->
     <div class="back-btn" onclick="showScreen(5)">&larr; Budgets</div>
     <div class="budget-header">
       <div class="budget-category">Budget</div>
@@ -692,33 +808,49 @@
     </div>
     <div class="section-title">Recent Transactions</div>
     <div class="transaction-row">
-      <div>
-        <div class="tx-name">Whole Foods</div>
-        <div class="tx-date">Feb 25</div>
-      </div>
-      <div class="tx-amount">-$67.42</div>
+<div class="transaction-row">
+  <div style="display:flex; align-items:center; gap:10px;">
+    <div class="tx-icon" style="background:#ffedd5;">&#128722;</div>
+    <div>
+      <div class="tx-name">Whole Foods</div>
+      <div class="tx-date">Feb 25</div>
     </div>
-    <div class="transaction-row">
-      <div>
-        <div class="tx-name">Chipotle</div>
-        <div class="tx-date">Feb 23</div>
-      </div>
-      <div class="tx-amount">-$14.25</div>
+  </div>
+  <div class="tx-amount">-$67.42</div>
+</div>
+
+<div class="transaction-row">
+  <div style="display:flex; align-items:center; gap:10px;">
+    <div class="tx-icon" style="background:#ffedd5;">&#127835;</div>
+    <div>
+      <div class="tx-name">Chipotle</div>
+      <div class="tx-date">Feb 23</div>
     </div>
-    <div class="transaction-row">
-      <div>
-        <div class="tx-name">Trader Joe's</div>
-        <div class="tx-date">Feb 20</div>
-      </div>
-      <div class="tx-amount">-$53.18</div>
+  </div>
+  <div class="tx-amount">-$14.25</div>
+</div>
+
+<div class="transaction-row">
+  <div style="display:flex; align-items:center; gap:10px;">
+    <div class="tx-icon" style="background:#ffedd5;">&#128722;</div>
+    <div>
+      <div class="tx-name">Trader Joe's</div>
+      <div class="tx-date">Feb 20</div>
     </div>
-    <div class="transaction-row">
-      <div>
-        <div class="tx-name">Starbucks</div>
-        <div class="tx-date">Feb 19</div>
-      </div>
-      <div class="tx-amount">-$6.75</div>
+  </div>
+  <div class="tx-amount">-$53.18</div>
+</div>
+
+<div class="transaction-row">
+  <div style="display:flex; align-items:center; gap:10px;">
+    <div class="tx-icon" style="background:#ffedd5;">&#9749;</div>
+    <div>
+      <div class="tx-name">Starbucks</div>
+      <div class="tx-date">Feb 19</div>
     </div>
+  </div>
+  <div class="tx-amount">-$6.75</div>
+</div>
   </div>
 
   <!-- Screen 10: Push Notification -->
@@ -740,7 +872,6 @@
 
   <!-- Screen 11: Updated Food Budget -->
   <div class="screen" id="screen10">
-    <!-- FIX 10: Back button says "Budgets" and navigates to Budgets list -->
     <div class="back-btn" onclick="showScreen(5)">&larr; Budgets</div>
     <div class="budget-header">
       <div class="budget-category">Budget</div>
@@ -816,7 +947,7 @@
       <div style="padding:6px 14px; background:#f0f0f0; border-radius:16px; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">Clothing</div>
     </div>
 
-    <!-- FIX 7: Category icons added to each transaction for Recognition over Recall -->
+    <!-- FIX 7: Category icons -->
     <div class="section-title">Feb 26</div>
     <div class="transaction-row">
       <div style="display:flex; align-items:center; gap:10px;">
@@ -924,7 +1055,7 @@
     </div>
   </div>
 
-  <!-- Screen 13: Alerts (FIX 8: Dead-end nav items now have screens) -->
+  <!-- Screen 13: Alerts -->
   <div class="screen" id="screen12">
     <div class="back-btn" onclick="showScreen(6)">&larr; Home</div>
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
@@ -977,7 +1108,7 @@
     </div>
   </div>
 
-  <!-- Screen 14: Settings (FIX 8: Dead-end nav items now have screens) -->
+  <!-- Screen 14: Settings -->
   <div class="screen" id="screen13">
     <div class="back-btn" onclick="showScreen(6)">&larr; Home</div>
     <div style="font-size:22px; font-weight:700; margin-bottom:20px;">Settings</div>
@@ -989,7 +1120,7 @@
           <div style="width:36px; height:36px; background:#eff6ff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px;">&#128100;</div>
           <div>
             <div class="detail-value">Sarah Johnson</div>
-            <div style="font-size:12px; color:#888;">sarah.j@email.com</div>
+            <div style="font-size:12px; color:#888;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fd8e9c8f9c95d397bd98909c9491d39e9290">[email&#160;protected]</a></div>
           </div>
         </div>
         <div style="color:#999; font-size:14px;">&#8250;</div>
@@ -1004,7 +1135,7 @@
           <div class="detail-value" style="font-size:14px;">Notifications</div>
         </div>
         <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-size:12px; color:#888;">Push & Email</span>
+          <span style="font-size:12px; color:#888;">Push &amp; Email</span>
           <span style="color:#999; font-size:14px;">&#8250;</span>
         </div>
       </div>
@@ -1061,7 +1192,7 @@
     <button class="btn-secondary" style="color:#ef4444; border-color:#fecaca; margin-top:4px;">Sign Out</button>
   </div>
 
-  <!-- Bottom nav (FIX 1: active state applied dynamically) -->
+  <!-- Bottom nav -->
   <div class="bottom-nav" id="bottomNav">
     <div class="nav-item" data-nav="home" onclick="showScreen(6)">
       <div class="nav-icon">&#127968;</div>
@@ -1075,7 +1206,6 @@
       <div class="nav-icon">&#8644;</div>
       <span>Transactions</span>
     </div>
-    <!-- FIX 8: Alerts and Settings now have onclick handlers -->
     <div class="nav-item" data-nav="alerts" onclick="showScreen(12)">
       <div class="nav-icon">&#128276;</div>
       <span>Alerts</span>
@@ -1089,11 +1219,11 @@
 
 <div class="screen-label" id="screenLabel">Screen 1 of 14: Home (New User)</div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const labels = [
     'Screen 1 of 14: Home (New User) [Fix 5: Simplified buttons]',
     'Screen 2 of 14: Budgets (Empty)',
-    'Screen 3 of 14: New Budget Form [Fix 4: Error Checking, Fix 11: Duplicate Budget Warning]',
+    'Screen 3 of 14: New Budget Form [Fix 4: Error Checking, Fix 11: Duplicate Budget Warning, Fix 12: Start Date Affordance, Fix 13: Threshold Accessibility]',
     'Screen 4 of 14: Review Budget [Fix 2: Confirmation Step]',
     'Screen 5 of 14: Budget Created [Fix 2: Edit Option]',
     'Screen 6 of 14: Budgets (Both Set Up)',
@@ -1107,22 +1237,21 @@
     'Screen 14 of 14: Settings [Fix 8: New Screen]'
   ];
 
-  // FIX 1: Map screen indices to which bottom nav item should be active
   const navMap = {
-    0: 'home',      // Home (new user)
-    1: 'budgets',   // Budgets (empty)
-    2: 'budgets',   // New budget form
-    3: 'budgets',   // Review budget
-    4: 'budgets',   // Budget created
-    5: 'budgets',   // Budgets (set up)
-    6: 'home',      // Dashboard
-    7: 'budgets',   // Clothing budget detail
-    8: 'budgets',   // Food budget detail
-    9: null,        // Lock screen notification
-    10: 'budgets',  // Updated food budget
-    11: 'transactions', // All transactions
-    12: 'alerts',   // Alerts (FIX 8)
-    13: 'settings'  // Settings (FIX 8)
+    0: 'home',
+    1: 'budgets',
+    2: 'budgets',
+    3: 'budgets',
+    4: 'budgets',
+    5: 'budgets',
+    6: 'home',
+    7: 'budgets',
+    8: 'budgets',
+    9: null,
+    10: 'budgets',
+    11: 'transactions',
+    12: 'alerts',
+    13: 'settings'
   };
 
   function showScreen(index) {
@@ -1142,7 +1271,6 @@
       statusBar.style.display = 'flex';
     }
 
-    // FIX 1: Update bottom nav active state
     document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
       item.classList.remove('active');
     });
@@ -1153,7 +1281,6 @@
     }
   }
 
-  // FIX 4: Budget amount validation
   function validateBudgetAmount() {
     const input = document.getElementById('budgetAmountInput');
     const error = document.getElementById('budgetError');
@@ -1171,6 +1298,7 @@
     }
   }
 
+
   function adjustAmount(delta) {
     const input = document.getElementById('budgetAmountInput');
     let val = parseFloat(input.value) || 0;
@@ -1179,7 +1307,19 @@
     validateBudgetAmount();
   }
 
-  // Initialize with Home active
+  function selectThreshold(el, pct, dollars, remaining) {
+    el.closest('[role="radiogroup"]').querySelectorAll('.threshold-btn').forEach(function(btn) {
+      btn.classList.remove('selected');
+      btn.setAttribute('aria-checked', 'false');
+    });
+    el.classList.add('selected');
+    el.setAttribute('aria-checked', 'true');
+    var helper = document.getElementById('alertHelperText');
+    if (helper) {
+      helper.innerHTML = 'You\'ll get a notification when you\'ve spent <strong>' + dollars + '</strong> of your $300.00 budget, with <strong>' + remaining + '</strong>.';
+    }
+  }
+
   showScreen(0);
 </script>
 </body>
