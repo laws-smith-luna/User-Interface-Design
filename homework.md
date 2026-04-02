@@ -90,3 +90,8 @@ Weekly, open-book. 10 highest of 13 count (3 lowest dropped).
 - [ ] Assignment 5: Testing the 737 MAX MCAS System
 - [ ] Discussion: Active and Inactive Clause Examples (ungraded practice)
 - [ ] Quiz: Module 9 (due Mon 3/30)
+
+**Software Testing (Module 10 - Syntactic Logic Coverage):**
+- [ ] Discussion: Syntactic Logic Examples - DNF, K-maps, coverage criteria (ungraded practice)
+- [ ] Quiz: Module 10 (due Mon 4/6)
+- [ ] Module 11 Assignment (announced soon - start early)
