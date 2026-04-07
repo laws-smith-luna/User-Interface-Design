@@ -18,8 +18,8 @@ Shared tracker for both courses. Verify exact due dates on Canvas.
 | 7 | 3/3 | Design a Course Catalog and Reg System | Done |
 | 8 | 3/10 | Interaction Design Guidelines | Done |
 | 9 | 3/17 | No Code Programming Environments | Submitted |
-| 10 | 3/24 | Visual Design Critique | **DUE 3/30** |
-| 11 | 3/31 | Design a Design Language | Upcoming |
+| 10 | 3/24 | Visual Design Critique | Done |
+| 11 | 3/31 | Design a Design Language | **DUE 4/6** |
 | 12 | 4/7 | Critique an Information Visualization | Upcoming |
 | 13 | 4/14 | Design an Information Visualization | Upcoming |
 | 14 | 4/21 | Fix Twitter | Upcoming |
@@ -33,8 +33,8 @@ Shared tracker for both courses. Verify exact due dates on Canvas.
 | 5 | 2/17 | Interaction Design Iteration | Done |
 | 6 | 2/24 | Usability Study of Project App | Done |
 | 8 | 3/10 | Interaction Design Iteration | Done |
-| 9 | 3/17 | Interaction Design Critique and Iteration | **DUE 3/25** |
-| 10 | 3/24 | Interaction Design Critique and Iteration | **DUE 3/30** |
+| 9 | 3/17 | Interaction Design Critique and Iteration | Done |
+| 10 | 3/24 | Interaction Design Critique and Iteration | Done |
 | 13 | 4/14 | Visual Design Critique and Iteration | Upcoming |
 
 ### Other
@@ -73,25 +73,15 @@ Weekly, open-book. 10 highest of 13 count (3 lowest dropped).
 
 ## Due Now
 
-**UI Design - Due Wed 3/25 at 11:59pm:**
-- [x] Individual: No Code Programming Environments (Module 9) - Submitted
-- [ ] Group: Interaction Design Critique and Iteration (Module 9)
-- [x] Quiz: Module 09 Individual Quiz (100/100)
-
-**UI Design - Due Mon 3/30 at 11:59pm:**
-- [ ] Individual: Visual Design Critique (Module 10)
-- [ ] Group: Interaction Design Critique and Iteration (Module 10)
-- [ ] Quiz: Module 10 Individual Quiz
-
 **UI Design - Due Mon 4/6 at 11:59pm:**
 - [ ] Tech Talk Presentation (Module 11) - 14-min recorded video, 2-3 person team
+- [ ] Individual: Design a Design Language (Module 11)
+- [ ] Quiz: Module 11 Individual Quiz
 
-**Software Testing (Module 9 - Semantic Logic Coverage):**
+**Software Testing - Due Mon 4/6:**
 - [ ] Assignment 5: Testing the 737 MAX MCAS System
-- [ ] Discussion: Active and Inactive Clause Examples (ungraded practice)
-- [ ] Quiz: Module 9 (due Mon 3/30)
+- [ ] Quiz: Module 10
 
-**Software Testing (Module 10 - Syntactic Logic Coverage):**
-- [ ] Discussion: Syntactic Logic Examples - DNF, K-maps, coverage criteria (ungraded practice)
-- [ ] Quiz: Module 10 (due Mon 4/6)
-- [ ] Module 11 Assignment (announced soon - start early)
+**Software Testing - Upcoming:**
+- [ ] Assignment 6: Software Testing Literature Review (Module 14, week of 4/28)
+- [ ] Final Exam (due 5/11)

@@ -1,0 +1,38 @@
+<div class="todo-container">
+  <h1>My To-Do List</h1>
+
+  <div class="input-row">
+    <input
+      [(ngModel)]="newTodo"
+      (keyup.enter)="addTodo()"
+      placeholder="What needs to be done?"
+    />
+    <button (click)="addTodo()" [disabled]="!newTodo.trim()">Add</button>
+  </div>
+
+  @if (todos.length > 0) {
+    <ul>
+      @for (todo of todos; track $index; let i = $index) {
+        <li [class.completed]="todo.done">
+          <input
+            type="checkbox"
+            [checked]="todo.done"
+            (change)="toggleTodo(todo)"
+          />
+          <span class="todo-text">{{ todo.text }}</span>
+          <button class="delete-btn" (click)="deleteTodo(i)">✕</button>
+        </li>
+      }
+    </ul>
+  }
+
+  @if (todos.length === 0) {
+    <p class="empty-state">No tasks yet. Add one above!</p>
+  }
+
+  @if (todos.length > 0) {
+    <p class="status">
+      {{ remaining }} item{{ remaining !== 1 ? 's' : '' }} remaining
+    </p>
+  }
+</div>
