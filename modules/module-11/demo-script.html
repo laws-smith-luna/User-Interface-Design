@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Demo Script - Angular To-Do App</title>
+<style>
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #1e1e2e;
+    color: #ccc;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 24px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: #fff;
+    font-size: 28px;
+    border-bottom: 3px solid #dd0031;
+    padding-bottom: 12px;
+    margin-bottom: 32px;
+  }
+  .action {
+    background: #2a2a40;
+    border-left: 4px solid #dd0031;
+    padding: 12px 16px;
+    margin: 20px 0 8px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: #ff6b81;
+    font-weight: 600;
+  }
+  .say {
+    font-size: 17px;
+    color: #e0e0ee;
+    padding: 4px 0 4px 20px;
+    margin: 0;
+  }
+  .note {
+    font-size: 13px;
+    color: #888;
+    padding-left: 20px;
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .time {
+    display: inline-block;
+    background: #dd0031;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-left: 8px;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 32px 0;
+  }
+  .footer {
+    text-align: center;
+    color: #555;
+    font-size: 13px;
+    margin-top: 40px;
+    padding-bottom: 40px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Demo Script: Angular To-Do App <span class="time">~2 min</span></h1>
+
+<div class="action">Start with browser open to localhost:4200, showing empty to-do list</div>
+<p class="say">"So here's our to-do list app running in Angular. Right now it's empty, and you can see it gives us a friendly message saying 'No tasks yet.' Let me add a few things."</p>
+
+<div class="action">Click into the input field, type "Buy groceries", click Add</div>
+<p class="say">"I'll type 'Buy groceries' and hit Add. And there it is. Notice how the input clears itself automatically. That's two-way data binding at work. The variable resets to empty and the input updates to match."</p>
+
+<div class="action">Type "Study for finals", press Enter key</div>
+<p class="say">"I can also just press Enter instead of clicking the button. Same result."</p>
+
+<div class="action">Type "Walk the dog", press Enter. Type "Do laundry", press Enter.</div>
+<p class="say">"Let me add a couple more. And notice down at the bottom, it's tracking how many items are remaining. Right now it says 4 items remaining."</p>
+
+<div class="action">Check the checkbox on "Buy groceries"</div>
+<p class="say">"Now if I check off 'Buy groceries', a few things happen. The text gets a strikethrough, it grays out, and the counter drops to 3 items remaining. I didn't write any code to update the DOM. Angular sees the data changed and handles all of that."</p>
+
+<div class="action">Check off "Walk the dog"</div>
+<p class="say">"Check off another one. 2 items remaining."</p>
+
+<div class="action">Hover over "Do laundry" to show the X button, then click it to delete</div>
+<p class="say">"And if I hover over an item, this delete button appears. If I click it, the item is gone. Angular re-renders the list automatically."</p>
+
+<div class="action">Click into input, show that the Add button is grayed out while input is empty</div>
+<p class="say">"One more small thing. See how the Add button is grayed out right now? That's because the input is empty. Angular is checking the value in real time and disabling the button. I didn't write an event listener for that. It's just a property binding on the disabled attribute."</p>
+
+<div class="action">Type a space, show button still disabled, then type "Finish presentation", press Enter</div>
+<p class="say">"Even a space won't work, it trims whitespace. But type something real and we're good."</p>
+
+<div class="action">Pause briefly on the final state of the app</div>
+<p class="say">"So that's the whole app. Add, complete, delete, input validation. All built with Angular components, two-way data binding, and template syntax. No direct DOM manipulation anywhere."</p>
+
+<hr>
+<p class="footer">Tip: Do the actions while you're talking, not in silence. Practice once or twice for pacing.</p>
+
+</body>
+</html>
