@@ -1,0 +1,9 @@
+Individual contribution:
+
+Each member took a collection of weaknesses from the 10 identified in our critique. For each one the member identified the weakness and the visual design or information-visualization principle it violated, planned a fix, and used AI-help to implement the updated HTML mockup.
+
+Kevin took weaknesses 1-3 (no budget aggregate overview, donut charts without an alert threshold indicator, no transactions filtering).
+
+Laws took weaknesses 4-5 (transaction amounts encoded only as text with no visual size comparison, alert cards encoding severity only through border color with no text label or legend).
+
+Samana took weaknesses 6-10 (important alerts not visually dominant enough, color contrast issues, cards lacking depth in the flat design, no clear clickable indication on cards, no way of looking at transactions from a previous month).
