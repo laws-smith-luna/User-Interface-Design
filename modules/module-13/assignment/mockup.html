@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Weekly Training Load Visualization - Mockup</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --panel: #1a2028;
+    --border: #2a3340;
+    --text: #e4e8ed;
+    --muted: #8a96a3;
+    --endurance: #4a90e2;
+    --intervals: #e2934a;
+    --race: #e24a4a;
+    --recovery: #6ab04c;
+    --annotation: #f5d76e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 20px;
+  }
+  h1 { margin: 0 0 4px; font-size: 22px; }
+  .subtitle { color: var(--muted); margin-bottom: 16px; font-size: 13px; }
+  .layout { display: grid; grid-template-columns: 1fr 320px; gap: 16px; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    position: relative;
+  }
+
+  /* Annotation mode toggle */
+  .annotation-toggle {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 12px;
+    flex-wrap: wrap;
+  }
+  .annotation-toggle label { color: var(--muted); margin-right: 4px; }
+  .q-btn {
+    padding: 4px 10px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .q-btn.on {
+    background: var(--annotation);
+    color: var(--bg);
+    border-color: var(--annotation);
+    font-weight: 600;
+  }
+
+  /* 4-week summary strip */
+  .strip-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .four-weeks {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .wk-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    position: relative;
+  }
+  .wk-card:hover { border-color: var(--text); }
+  .wk-card.active { border-color: var(--annotation); box-shadow: 0 0 0 1px var(--annotation) inset; }
+  .wk-range { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .wk-totals { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; }
+  .wk-planned { color: var(--muted); }
+  .wk-actual { color: var(--text); }
+  .wk-delta { font-size: 11px; margin-top: 4px; }
+  .wk-delta.under { color: var(--race); }
+  .wk-delta.over { color: var(--recovery); }
+  .wk-delta.on { color: var(--endurance); }
+
+  /* Week chart */
+  .week-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .nav-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .nav-btn:hover { border-color: var(--text); }
+  .week-label { font-size: 15px; font-weight: 600; }
+  .week-wrap {
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    gap: 8px;
+    height: 340px;
+    position: relative;
+  }
+  .y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--muted);
+    padding: 4px 0 22px;
+  }
+  .y-axis.left { align-items: flex-end; text-align: right; }
+  .y-axis.right { align-items: flex-start; }
+  .y-axis-label { font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .day-cols {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    align-items: end;
+    position: relative;
+    padding-bottom: 22px;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .grid-line {
+    position: absolute;
+    left: 0; right: 0;
+    border-top: 1px dashed rgba(255,255,255,0.07);
+    pointer-events: none;
+  }
+  .day-col {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .day-col:hover .planned-bar { border-color: rgba(255,255,255,0.85); }
+  .day-col.today .day-label { color: var(--text); font-weight: 700; }
+  .day-col.today::before {
+    content: "TODAY";
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    color: var(--annotation);
+    letter-spacing: 0.8px;
+    font-weight: 700;
+  }
+  .day-bars {
+    position: relative;
+    width: 38px;
+    height: calc(100% - 30px);
+  }
+  .planned-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    background: transparent;
+    border-radius: 2px 2px 0 0;
+  }
+  .planned-bar.future {
+    border-style: dashed;
+    border-color: rgba(255,255,255,0.3);
+  }
+  .actual-bar {
+    position: absolute;
+    bottom: 0;
+    left: 4px;
+    right: 4px;
+    border-radius: 2px 2px 0 0;
+    opacity: 0.9;
+  }
+  .actual-bar.endurance { background: var(--endurance); }
+  .actual-bar.intervals { background: var(--intervals); }
+  .actual-bar.race { background: var(--race); }
+  .actual-bar.recovery { background: var(--recovery); }
+  .day-label {
+    position: absolute;
+    bottom: -20px;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* Week totals */
+  .week-totals {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .total-tile {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+  .total-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .total-value { font-size: 17px; font-weight: 600; margin-top: 2px; }
+
+  /* Legend inline under chart */
+  .legend-note {
+    margin-top: 14px;
+    padding: 10px;
+    background: var(--bg);
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* Detail panel */
+  .detail-title { font-size: 14px; margin: 0 0 4px; }
+  .detail-date { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+  .ride {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--muted);
+    padding: 8px 10px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+  .ride.endurance { border-left-color: var(--endurance); }
+  .ride.intervals { border-left-color: var(--intervals); }
+  .ride.race      { border-left-color: var(--race); }
+  .ride.recovery  { border-left-color: var(--recovery); }
+  .ride-head { display: flex; justify-content: space-between; font-weight: 600; }
+  .ride-meta { color: var(--muted); margin-top: 2px; }
+  .ride-notes { color: var(--text); margin-top: 4px; font-style: italic; opacity: 0.8; }
+  .empty { color: var(--muted); font-size: 12px; font-style: italic; }
+
+  /* Annotations */
+  .ann-marker {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--annotation);
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    box-shadow: 0 0 0 3px rgba(245,215,110,0.25);
+    pointer-events: none;
+  }
+  .ann-legend {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: rgba(245,215,110,0.08);
+    border: 1px solid var(--annotation);
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .ann-legend-title { font-weight: 700; color: var(--annotation); margin-bottom: 6px; }
+  .ann-legend ol { margin: 0; padding-left: 22px; }
+  .ann-legend li::marker { color: var(--annotation); font-weight: 700; }
+
+  /* Trend curve overlay */
+  .trend-curve {
+    position: absolute;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+</style>
+</head>
+<body>
+
+<h1>Weekly Training Load</h1>
+<div class="subtitle">Planned (outlined) vs. actual (filled) TSS per day, with last four weeks for context. Click a day to drill in.</div>
+
+<div class="annotation-toggle">
+  <label>Show annotations for:</label>
+  <button class="q-btn" data-q="none">None</button>
+  <button class="q-btn on" data-q="q1">Q1: On pace this week?</button>
+  <button class="q-btn" data-q="q2">Q2: Last week vs. plan</button>
+  <button class="q-btn" data-q="q3">Q3: Four-week consistency</button>
+</div>
+
+<div class="layout">
+
+  <div class="panel">
+
+    <!-- 4-week summary strip -->
+    <div class="strip-title">Last 4 Weeks (click to view)</div>
+    <div class="four-weeks" id="four-weeks"></div>
+
+    <!-- Week chart -->
+    <div class="week-head">
+      <button class="nav-btn" id="week-prev">&larr; Prev week</button>
+      <div class="week-label" id="week-label">—</div>
+      <button class="nav-btn" id="week-next">Next week &rarr;</button>
+    </div>
+
+    <div class="week-wrap">
+      <div class="y-axis left" id="y-axis-hours"></div>
+      <div class="day-cols" id="day-cols"></div>
+      <div class="y-axis right" id="y-axis-tss"></div>
+    </div>
+
+    <div class="week-totals" id="week-totals"></div>
+
+    <div class="legend-note">
+      <strong>How to read:</strong>
+      Each day has an <em>outlined</em> bar (planned TSS) and a <em>filled</em> bar inside it (actual TSS).
+      Solid outline = past or present. Dashed outline = future day. Fill color = ride type.
+    </div>
+
+    <!-- Annotation legend (populated by JS) -->
+    <div class="ann-legend" id="ann-legend"></div>
+
+  </div>
+
+  <div class="panel" id="detail">
+    <h3 class="detail-title">Day Detail</h3>
+    <div class="detail-date" id="detail-date">Click a bar to see the workouts for that day.</div>
+    <div id="detail-body">
+      <div class="empty">No day selected.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ---------- fake dataset ----------
+const TYPES = ["endurance", "intervals", "race", "recovery"];
+const NOTES = {
+  endurance: ["Z2 base ride", "long endurance", "tempo cruise", "group ride"],
+  intervals: ["4x8 VO2", "sweet spot 3x15", "threshold 2x20", "30/30s"],
+  race:      ["criterium", "road race", "TT", "gran fondo"],
+  recovery:  ["spin", "easy commute", "active recovery"],
+};
+function rand(min, max) { return Math.random() * (max - min) + min; }
+
+// "Today" = Wednesday, April 15, 2026 (mid-week to showcase the planned/actual split)
+const today = new Date(2026, 3, 15);
+
+// Build a plan for each day of a given week (Monday=0 ... Sunday=6)
+// Returns { type, plannedTss } — deterministic-ish per date
+function planForDay(date) {
+  const dow = date.getDay(); // 0=Sun..6=Sat
+  // Convert to Monday-first index
+  const monIdx = (dow + 6) % 7; // Mon=0..Sun=6
+  // Weekly template: M=recovery, Tu=intervals, W=endurance, Th=intervals, F=recovery, Sa=long endurance, Su=endurance
+  const template = [
+    { type: "recovery",  tss: 35 },
+    { type: "intervals", tss: 110 },
+    { type: "endurance", tss: 120 },
+    { type: "intervals", tss: 100 },
+    { type: "recovery",  tss: 30 },
+    { type: "endurance", tss: 230 },
+    { type: "endurance", tss: 140 },
+  ];
+  return template[monIdx];
+}
+
+// Execution drift: how the actual diverged from the plan (percent of planned)
+// Deterministic per ISO date so the demo is stable.
+function drift(dateStr) {
+  // simple hash
+  let h = 0;
+  for (let i = 0; i < dateStr.length; i++) h = (h * 31 + dateStr.charCodeAt(i)) >>> 0;
+  const r = (h % 1000) / 1000; // 0..1
+  // bias slightly toward under-executing (life happens)
+  return 0.65 + r * 0.55; // 0.65 .. 1.20
+}
+
+function isoDate(d) { return d.toISOString().slice(0, 10); }
+
+function buildDay(date) {
+  const plan = planForDay(date);
+  const isFuture = date > today;
+  const isToday = date.toDateString() === today.toDateString();
+  const plannedTss = plan.tss;
+  let rides = [];
+  if (!isFuture) {
+    const actual = Math.round(plan.tss * drift(isoDate(date)));
+    rides.push({
+      type: plan.type,
+      tss: actual,
+      duration: (actual / 60).toFixed(1) + "h",
+      notes: NOTES[plan.type][Math.floor(rand(0, NOTES[plan.type].length))],
+    });
+  }
+  const actualTss = rides.reduce((s, r) => s + r.tss, 0);
+  return {
+    date, plannedType: plan.type, plannedTss,
+    rides, actualTss,
+    isFuture, isToday,
+  };
+}
+
+// Get Monday of the week containing date+offset*7 days
+function mondayOf(offset) {
+  const ref = new Date(today);
+  ref.setDate(today.getDate() + offset * 7);
+  const dow = ref.getDay();
+  const daysFromMonday = (dow + 6) % 7;
+  const m = new Date(ref);
+  m.setDate(ref.getDate() - daysFromMonday);
+  m.setHours(0, 0, 0, 0);
+  return m;
+}
+function buildWeek(offset) {
+  const monday = mondayOf(offset);
+  const days = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    days.push(buildDay(d));
+  }
+  const plannedTotal = days.reduce((s, d) => s + d.plannedTss, 0);
+  const actualTotal = days.reduce((s, d) => s + d.actualTss, 0);
+  const completedPlanned = days.filter(d => !d.isFuture).reduce((s, d) => s + d.plannedTss, 0);
+  return { offset, monday, days, plannedTotal, actualTotal, completedPlanned };
+}
+
+// ---------- state ----------
+let weekOffset = 0;           // which week to display in the main chart
+let annotationMode = "q1";    // none | q1 | q2 | q3
+
+const MAX_TSS = 300; // y-axis top
+
+// ---------- render helpers ----------
+const fmt = d => d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+const fmtFull = d => d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+
+function renderYAxes() {
+  document.getElementById("y-axis-hours").innerHTML =
+    `<div class="y-axis-label">Hours</div>` +
+    [5, 4, 3, 2, 1, 0].map(h => `<div>${h}h</div>`).join("");
+  document.getElementById("y-axis-tss").innerHTML =
+    `<div class="y-axis-label">TSS</div>` +
+    [300, 250, 200, 150, 100, 50, 0].map(t => `<div>${t}</div>`).join("");
+}
+
+function renderFourWeeks() {
+  const wrap = document.getElementById("four-weeks");
+  wrap.innerHTML = "";
+  // Show current week (offset 0) and the 3 prior weeks
+  const weeks = [-3, -2, -1, 0].map(o => buildWeek(o));
+  weeks.forEach(w => {
+    const sunday = new Date(w.monday); sunday.setDate(w.monday.getDate() + 6);
+    const rangeTxt = `${fmt(w.monday)} – ${fmt(sunday)}`;
+    // Delta category
+    let cat = "on", deltaTxt = "";
+    if (w.offset === 0) {
+      const soFarPct = w.completedPlanned > 0 ? (w.actualTotal / w.completedPlanned) : 0;
+      deltaTxt = `${Math.round(soFarPct * 100)}% of plan so far`;
+      cat = soFarPct >= 0.95 ? "on" : (soFarPct >= 0.8 ? "under" : "under");
+    } else {
+      const pct = w.actualTotal / w.plannedTotal;
+      if (pct >= 0.95 && pct <= 1.1) { cat = "on"; deltaTxt = "On plan"; }
+      else if (pct < 0.95) { cat = "under"; deltaTxt = `${Math.round((1 - pct) * 100)}% under plan`; }
+      else { cat = "over"; deltaTxt = `${Math.round((pct - 1) * 100)}% over plan`; }
+    }
+    const isActive = w.offset === weekOffset;
+    const card = document.createElement("div");
+    card.className = "wk-card" + (isActive ? " active" : "");
+    card.dataset.offset = w.offset;
+    card.innerHTML = `
+      <div class="wk-range">${rangeTxt}${w.offset === 0 ? " · this week" : ""}</div>
+      <div class="wk-totals">
+        <span class="wk-planned">${w.plannedTotal} planned</span>
+        <span class="wk-actual">${w.actualTotal} actual</span>
+      </div>
+      <div class="wk-delta ${cat}">${deltaTxt}</div>
+    `;
+    card.addEventListener("click", () => { weekOffset = w.offset; renderAll(); });
+    wrap.appendChild(card);
+  });
+}
+
+function renderWeek() {
+  const w = buildWeek(weekOffset);
+  const sunday = new Date(w.monday); sunday.setDate(w.monday.getDate() + 6);
+  document.getElementById("week-label").textContent =
+    `Week of ${fmt(w.monday)} – ${fmt(sunday)}, ${sunday.getFullYear()}`;
+
+  const cols = document.getElementById("day-cols");
+  cols.innerHTML = "";
+
+  // grid lines at 50 TSS intervals (chart body height = 340 - 22 padding bottom)
+  const bodyHeight = 340 - 22;
+  for (let v = 50; v <= MAX_TSS; v += 50) {
+    const line = document.createElement("div");
+    line.className = "grid-line";
+    line.style.bottom = `${22 + (v / MAX_TSS) * bodyHeight}px`;
+    cols.appendChild(line);
+  }
+
+  const dayNames = ["M", "T", "W", "T", "F", "S", "S"];
+  w.days.forEach((day, idx) => {
+    const plannedPct = Math.min(100, (day.plannedTss / MAX_TSS) * 100);
+    const actualPct = Math.min(100, (day.actualTss / MAX_TSS) * 100);
+
+    const col = document.createElement("div");
+    col.className = "day-col" + (day.isToday ? " today" : "");
+    col.dataset.dayIdx = idx;
+
+    let bars = '<div class="day-bars">';
+    if (day.plannedTss > 0) {
+      bars += `<div class="planned-bar${day.isFuture ? " future" : ""}" style="height:${plannedPct}%;" title="Planned: ${day.plannedTss} TSS"></div>`;
+    }
+    if (day.actualTss > 0) {
+      bars += `<div class="actual-bar ${day.plannedType}" style="height:${actualPct}%;" title="Actual: ${day.actualTss} TSS"></div>`;
+    }
+    bars += '</div>';
+
+    col.innerHTML = bars + `<div class="day-label">${dayNames[idx]} ${day.date.getDate()}</div>`;
+    col.addEventListener("click", () => showDetail(day));
+    cols.appendChild(col);
+  });
+
+  // Week totals
+  const tiles = document.getElementById("week-totals");
+  const pctTxt = w.plannedTotal > 0 ? `${Math.round((w.actualTotal / w.plannedTotal) * 100)}%` : "—";
+  tiles.innerHTML = `
+    <div class="total-tile"><div class="total-label">Planned</div><div class="total-value">${w.plannedTotal} TSS</div></div>
+    <div class="total-tile"><div class="total-label">Actual</div><div class="total-value">${w.actualTotal} TSS</div></div>
+    <div class="total-tile"><div class="total-label">Execution</div><div class="total-value">${pctTxt}</div></div>
+  `;
+
+  // Trend curve overlay — deferred until layout settles
+  requestAnimationFrame(() => renderTrendCurve(w.days));
+}
+
+function smoothPath(pts) {
+  if (pts.length < 2) return "";
+  let d = `M ${pts[0].x.toFixed(1)},${pts[0].y.toFixed(1)}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[Math.max(0, i - 1)];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[Math.min(pts.length - 1, i + 2)];
+    const c1x = p1.x + (p2.x - p0.x) / 6;
+    const c1y = p1.y + (p2.y - p0.y) / 6;
+    const c2x = p2.x - (p3.x - p1.x) / 6;
+    const c2y = p2.y - (p3.y - p1.y) / 6;
+    d += ` C ${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+  }
+  return d;
+}
+
+function renderTrendCurve(days) {
+  const cols = document.getElementById("day-cols");
+  const existing = cols.querySelector(".trend-curve");
+  if (existing) existing.remove();
+
+  const rect = cols.getBoundingClientRect();
+  const totalH = rect.height;
+  const labelSpace = 22;       // padding-bottom of day-cols (for day labels)
+  const topSpace = 30;         // space at top of each day-col before bars start
+  const barAreaH = totalH - labelSpace - topSpace;
+  if (barAreaH <= 0 || rect.width <= 0) return;
+
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(SVGNS, "svg");
+  svg.setAttribute("class", "trend-curve");
+  svg.setAttribute("width", rect.width);
+  svg.setAttribute("height", totalH);
+  svg.setAttribute("viewBox", `0 0 ${rect.width} ${totalH}`);
+
+  const points = days.map((d, i) => {
+    const x = (i + 0.5) * (rect.width / 7);
+    const tss = d.isFuture ? d.plannedTss : d.actualTss;
+    const y = topSpace + (1 - tss / MAX_TSS) * barAreaH;
+    return { x, y, isFuture: d.isFuture };
+  });
+
+  let lastPastIdx = -1;
+  points.forEach((p, i) => { if (!p.isFuture) lastPastIdx = i; });
+  const firstFutureIdx = points.findIndex(p => p.isFuture);
+
+  // Solid segment through past/present days
+  if (lastPastIdx >= 1) {
+    const pastPts = points.slice(0, lastPastIdx + 1);
+    const path = document.createElementNS(SVGNS, "path");
+    path.setAttribute("d", smoothPath(pastPts));
+    path.setAttribute("stroke", "rgba(245,215,110,0.95)");
+    path.setAttribute("stroke-width", "2.5");
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke-linecap", "round");
+    path.setAttribute("stroke-linejoin", "round");
+    svg.appendChild(path);
+  }
+
+  // Dashed projection through future days (starts at last past point for continuity)
+  if (firstFutureIdx >= 0) {
+    const startIdx = Math.max(0, firstFutureIdx - 1);
+    const futurePts = points.slice(startIdx);
+    const path = document.createElementNS(SVGNS, "path");
+    path.setAttribute("d", smoothPath(futurePts));
+    path.setAttribute("stroke", "rgba(245,215,110,0.7)");
+    path.setAttribute("stroke-width", "2.5");
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke-dasharray", "5 4");
+    path.setAttribute("stroke-linecap", "round");
+    path.setAttribute("stroke-linejoin", "round");
+    svg.appendChild(path);
+  }
+
+  cols.appendChild(svg);
+}
+
+function showDetail(day) {
+  document.getElementById("detail-date").textContent = fmtFull(day.date);
+  const body = document.getElementById("detail-body");
+  if (day.isFuture) {
+    body.innerHTML = `
+      <div class="ride ${day.plannedType}" style="opacity:0.8;">
+        <div class="ride-head"><span>${day.plannedType}</span><span>${day.plannedTss} TSS planned</span></div>
+        <div class="ride-meta">Not yet completed</div>
+      </div>`;
+    return;
+  }
+  if (!day.rides.length) {
+    body.innerHTML = `<div class="empty">Rest day.</div>`;
+    return;
+  }
+  body.innerHTML = day.rides.map(r => `
+    <div class="ride ${r.type}">
+      <div class="ride-head"><span>${r.type}</span><span>${r.tss} TSS (planned ${day.plannedTss})</span></div>
+      <div class="ride-meta">${r.duration}</div>
+      <div class="ride-notes">"${r.notes}"</div>
+    </div>
+  `).join("");
+}
+
+// ---------- annotations ----------
+// Each mode defines a list of {targetSelector, text, position (TL/TR/BL/BR)} markers.
+// Markers render as numbered circles at the center of the target element.
+function clearAnnotations() {
+  document.querySelectorAll(".ann-marker").forEach(m => m.remove());
+  document.getElementById("ann-legend").innerHTML = "";
+  document.getElementById("ann-legend").style.display = "none";
+}
+
+function placeMarker(targetEl, number, container) {
+  if (!targetEl) return;
+  const containerRect = container.getBoundingClientRect();
+  const targetRect = targetEl.getBoundingClientRect();
+  const marker = document.createElement("div");
+  marker.className = "ann-marker";
+  marker.textContent = number;
+  marker.style.left = (targetRect.left - containerRect.left + targetRect.width / 2 - 11) + "px";
+  marker.style.top = (targetRect.top - containerRect.top + targetRect.height / 2 - 11) + "px";
+  container.appendChild(marker);
+}
+
+// Place a marker on the trend curve: at the top of a specific day's bar
+function placeMarkerOnCurve(dayIdx, tssValue, number, container) {
+  const colsEl = document.getElementById("day-cols");
+  const cols = colsEl.querySelectorAll(".day-col");
+  const col = cols[dayIdx];
+  if (!col) return;
+  const colRect = col.getBoundingClientRect();
+  const colsRect = colsEl.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+  const totalH = colsRect.height;
+  const barAreaH = totalH - 22 - 30;
+  const x = colRect.left - containerRect.left + colRect.width / 2;
+  const y = colsRect.top - containerRect.top + 30 + (1 - tssValue / MAX_TSS) * barAreaH;
+  const marker = document.createElement("div");
+  marker.className = "ann-marker";
+  marker.textContent = number;
+  marker.style.left = (x - 11) + "px";
+  marker.style.top = (y - 11) + "px";
+  container.appendChild(marker);
+}
+
+function renderAnnotations() {
+  clearAnnotations();
+  if (annotationMode === "none") return;
+
+  const legend = document.getElementById("ann-legend");
+  legend.style.display = "block";
+
+  let legendItems = [];
+  const leftPanel = document.querySelector(".layout > .panel");
+
+  if (annotationMode === "q1") {
+    // Q1 needs current week shown
+    if (weekOffset !== 0) { weekOffset = 0; renderAll(); return; }
+    legendItems = [
+      "Monday and Tuesday are completed — outline (planned) and fill (actual) both visible. You can read whether each day hit the number.",
+      "Wednesday is today — marked with a TODAY label. Partial session so far.",
+      "Thursday through Sunday show only outlines — dashed means still-to-come.",
+      "Saturday is the long ride. The outline is tall so the user can plan around it.",
+      "Trend curve: solid through past, dashed through future. Shape of the week reads as one line.",
+      "Execution tile reads the running percent for the completed portion of the week.",
+    ];
+    // Place markers
+    const cols = document.querySelectorAll("#day-cols .day-col");
+    placeMarker(cols[0], 1, leftPanel);
+    placeMarker(cols[2], 2, leftPanel);
+    placeMarker(cols[3], 3, leftPanel);
+    placeMarker(cols[5], 4, leftPanel);
+    placeMarkerOnCurve(5, 230, 5, leftPanel); // Saturday peak on curve
+    placeMarker(document.querySelectorAll("#week-totals .total-tile")[2], 6, leftPanel);
+  } else if (annotationMode === "q2") {
+    // Q2 needs last week shown (offset -1)
+    if (weekOffset !== -1) { weekOffset = -1; renderAll(); return; }
+    legendItems = [
+      "Days where the fill matches the outline were executed on plan.",
+      "Days where the fill is shorter than the outline — came up short. Ask why.",
+      "Days where the fill extends past the outline — went over plan.",
+      "Trend curve traces the actual shape of the week — where the hardest day actually landed.",
+      "Planned, Actual, and Execution tiles summarize the week in one number.",
+    ];
+    const cols = document.querySelectorAll("#day-cols .day-col");
+    // Pick canonical examples from the data on this week
+    const w = buildWeek(-1);
+    const onPlan = w.days.findIndex(d => d.plannedTss > 0 && Math.abs(d.actualTss - d.plannedTss) / d.plannedTss < 0.1);
+    const under = w.days.findIndex(d => d.plannedTss > 0 && d.actualTss < d.plannedTss * 0.85);
+    const over = w.days.findIndex(d => d.plannedTss > 0 && d.actualTss > d.plannedTss * 1.1);
+    placeMarker(cols[onPlan >= 0 ? onPlan : 2], 1, leftPanel);
+    placeMarker(cols[under >= 0 ? under : 0], 2, leftPanel);
+    placeMarker(cols[over >= 0 ? over : 3], 3, leftPanel);
+    // Marker 4 on the trend curve at the day with the highest actual
+    const peakIdx = w.days.reduce((best, d, i) => (d.actualTss > w.days[best].actualTss ? i : best), 0);
+    placeMarkerOnCurve(peakIdx, w.days[peakIdx].actualTss, 4, leftPanel);
+    placeMarker(document.querySelectorAll("#week-totals .total-tile")[2], 5, leftPanel);
+  } else if (annotationMode === "q3") {
+    legendItems = [
+      "The 4-week strip is the overview. Each card summarizes one week as planned vs. actual totals plus a delta label.",
+      "Cards colored for under-plan weeks versus on-plan weeks let the user scan consistency at a glance.",
+      "The current week card updates in real time as days are completed — running execution percentage.",
+      "Click any card to load that week into the main chart below — overview-to-detail.",
+    ];
+    const cards = document.querySelectorAll(".wk-card");
+    placeMarker(cards[0], 1, leftPanel);
+    placeMarker(cards[1], 2, leftPanel);
+    placeMarker(cards[3], 3, leftPanel);
+    placeMarker(cards[2], 4, leftPanel);
+  }
+
+  legend.innerHTML = `<div class="ann-legend-title">Annotations for ${annotationMode.toUpperCase()}</div>` +
+    `<ol>${legendItems.map(t => `<li>${t}</li>`).join("")}</ol>`;
+}
+
+// ---------- orchestration ----------
+function renderAll() {
+  renderYAxes();
+  renderFourWeeks();
+  renderWeek();
+  // Delay annotation placement until layout settles
+  requestAnimationFrame(() => requestAnimationFrame(renderAnnotations));
+}
+
+document.querySelectorAll(".q-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".q-btn").forEach(b => b.classList.remove("on"));
+    btn.classList.add("on");
+    annotationMode = btn.dataset.q;
+    renderAll();
+  });
+});
+
+document.getElementById("week-prev").addEventListener("click", () => { weekOffset--; renderAll(); });
+document.getElementById("week-next").addEventListener("click", () => { weekOffset++; renderAll(); });
+
+window.addEventListener("resize", renderAnnotations);
+
+renderAll();
+</script>
+</body>
+</html>
