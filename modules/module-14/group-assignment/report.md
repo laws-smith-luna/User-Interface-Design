@@ -1,168 +1,212 @@
-# Final Project Report — [PROJECT NAME]
+# Budget Buddy: Final Project Report
 
-**Course:** SWE 632 — User Interface Design and Development
-**Team:** Laws Smith, Kevin Le, Samana Hussain
-**Semester:** Spring 2026
-
-> **Note for the team:** Each top-level section is tagged with an `[OWNER]`. This is a starting proposal — adjust to taste. Keep prose public-audience-friendly; this should read like a portfolio piece, not a class submission. Pull from prior module PDFs but rewrite voice as needed.
+Course: SWE 632, User Interface Design and Development
+Team: Laws Smith, Kevin Le, Samana Hussain
+Semester: Spring 2026
 
 ---
 
-## 1. Project Name & Value Proposition `[OWNER: Laws]`
+## 1. Project Name & Value Proposition
 
-- Project name:
-- One-line value proposition (who it's for + what it does + why they care):
+Project name: Budget Buddy
 
-## 2. Team Members and Roles `[OWNER: Laws]`
+Value proposition: a mobile budgeting app that helps people stay on track with monthly category budgets by surfacing not just *how much they have left* but *whether their pace is sustainable*, with real-time alerts when spending drifts off course.
 
-| Name | Role / Areas of Focus |
+## 2. Team Members and Roles
+
+All three of us contributed to every phase of the project. There was no single lead on any phase. The table below summarizes the specific work each person did across the semester.
+
+| Name | Project contributions |
 |---|---|
-| Laws Smith | |
-| Kevin Le | |
-| Samana Hussain | |
+| Laws Smith | M2 filter feature and GitHub Pages deployment; M4 heuristic eval (GitHub); two of four M6 usability interviews and post-task summaries; M8 budget-creation-flow fix and integration/hosting of the combined deliverable; M9 weaknesses 1–3; M10 weaknesses 1–4; M13 weaknesses 4–5 |
+| Kevin Le | M2 initial code, repo setup, and use cases 1–4; M4 heuristic eval (booking.com); co-developed M6 usability tasks and ran interview A with post-task summary; M8 Plan-a-Purchase preview; M9 weaknesses 4–5; M10 weaknesses 5–6; M13 weaknesses 1–3 |
+| Samana Hussain | M2 clear-completed button; M4 heuristic eval (Canva); M6 interview D with post-task summary; M8 transaction-label fix; M9 weaknesses 6–7; M10 weakness 7; M13 weaknesses 6–10 |
 
-## 3. Problem / Solution Overview `[OWNER: Laws]`
+## 3. Problem / Solution Overview
+People would like to be better at budgeting either to cut costs or save up for life, but most apps either (a) drown them in transaction-level detail or (b) reduce a month of spending to a single dashboard number that's already too late to act on. The window where a budget can actually be saved — Wednesday night, when there's still time to skip the takeout order — is the window most apps don't address. Budget Buddy targets that window. It tracks per-category monthly budgets, translates remaining dollars into a daily spending pace, and surfaces alerts when a category drifts off course early enough to course-correct rather than after the damage is done.
 
-*(2–4 sentences. The problem the app solves and the high-level approach. Plain language, no jargon.)*
 
----
+## 3. Problem / Solution Overview
 
-## 4. Needfinding `[OWNER: Kevin]`
+People know they should budget but most apps either (a) drown them in transaction-level detail or (b) reduce a month of spending to a single dashboard number that's already too late to act on. The window where a budget can actually be saved, Wednesday night when there's still time to skip the takeout order, is the window most apps don't address. Budget Buddy targets that window. It tracks per-category monthly budgets, translates remaining dollars into a daily spending pace, and surfaces alerts when a category drifts off course early enough to course-correct rather than after the damage is done.
 
-### 4a. Interviews
-- **Who we interviewed:**
-- **Recruitment & compensation:**
-- **How we interacted with participants** (in-person, remote, length, format):
+## 4. Needfinding
 
-### 4b. Synthesis
-- **Method** (affinity mapping, themes, etc.):
-- **Key findings:**
-  -
-  -
-  -
+Budget Buddy started not from a formal needfinding study but from a personal need that Laws articulated in his Module 3 individual assignment, *Design a New Consumer Software Product*. He had tried Quicken, Mint, YNAB, Rocket Money, and a rotation of bank apps over the years and found that none of them were both real-time and all-inclusive in the way he wanted. The M3 writeup framed the gap directly: existing tools force users to maintain too many disconnected spaces, require too much manual categorization, and only update users *after* money has been spent. Kevin and Samana joined the concept as a group project from there.
 
-> Source material: M3 individual (Design a New Consumer Software Product), M4 individual (Contextual Inquiry). Pull what's relevant.
+### 4a. Sources of user insight
 
----
+- Personal experience with existing tools. Laws had used Quicken, Mint, YNAB, Rocket Money, and several bank apps and could speak directly to the gaps between them. None of them combined real-time spending feedback, automatic categorization that the user actually trusted, and a single consolidated view of money in one place. That gap is the founding insight of the product.
+- Prior informal conversations. Laws's framing in M3 drew on prior conversations with friends and family over the years about budgeting and which trackers worked or fell short. We did not run new interviews for the project, so we treated this prior context as background rather than as primary research data.
+- Scenario formalization. Laws's Module 5 individual wireframes formalized the M3 concept into the Sarah scenario, a 28-year-old saving for a vacation who needs to make in-the-moment spending decisions before a purchase rather than after. The scenario gave the team a single, testable user story to design and evaluate against from M6 onward.
+
+### 4b. Themes that drove the design
+
+- Budgets are most useful before a purchase, not after. Existing tools mostly surface spending after the fact, but the moment when a user can actually change behavior is the moment of decision. This shaped the Dashboard-as-home-base structure and the later Plan-a-Purchase preview added in M8.
+- Raw remaining dollars aren't actionable on their own. "$47 left" doesn't tell you whether to skip lunch. Pace context (days remaining, daily allowance) is what makes the number useful. This drove the M9 changes to budget cards.
+- Trust depends on accurate categorization. If transactions land in the wrong bucket, per-category budgets are silently wrong, and the whole tool stops being useful. This drove the merchant-specific labels in M8 and the re-categorize task included in the M6 study.
+
+### 4c. Limitations of this approach
+
+The M3 writeup itself flagged that "the key assumption is that people want proactive, real-time feedback, but this needs to be confirmed with needfinding." We did not run that confirmatory study within the scope of the course. The course's iterative critique structure (M4 heuristic eval, M6 usability study, M9 and M10 interaction critiques, M13 visual critique) gave us several rounds of structured feedback on the design itself but did not substitute for primary user research on the problem space. A future version of this project would benefit from a dedicated needfinding phase before scaling up the design.
 
 ## 5. Design Evolution
 
-### 5a. Final Solution `[OWNER: Laws]`
+### 5a. Final Solution
 
-**Description.** *(What the product is in its final form — screens, key flows, distinctive features.)*
+Budget Buddy is a mobile-first personal budget tracker organized around five sections: a Dashboard summarizing the month, a Budgets list, a Transactions feed, an Alerts inbox, and Settings. The Dashboard is the home base. It shows each category's progress as a donut chart with a clear alert threshold, the daily spending allowance for the rest of the month, a feed of recent transactions, and a prioritized list of alerts when categories are at risk.
 
-**Rationale, grounded in evidence.** *(Why this solution. Reference specific findings from needfinding and iteration cycles.)*
+Key flows:
 
-### 5b. Tasks `[OWNER: Samana — but Laws drafts the final-state task list first to align everyone]`
+- See the month at a glance from the Dashboard.
+- Drill into a category to see transactions and adjust the budget.
+- Add a transaction quickly via the Quick Actions card.
+- Get alerted when a category is trending over budget early enough to act.
 
-For each of the 2–3 core user tasks:
+The final design is the result of seven evaluation cycles and reflects three load-bearing decisions:
 
-#### Task 1: [name]
-- **Description:**
-- **Why it matters to the user base:**
-- **Annotated task flow:** *(insert images of final interface with callouts)*
+1. Pace, not just balance. Module 9's review revealed that showing "$47.32 left" is useless without knowing whether that has to last 2 days or 15. The Dashboard now shows a daily allowance alongside each remaining balance, addressing the *visibility of system status* principle directly.
 
-#### Task 2: [name]
-- **Description:**
-- **Why it matters:**
-- **Annotated task flow:**
+2. Confirmation for committed actions. Module 9 also surfaced that creating a budget was a one-tap commit with no review. We added a confirmation step modeled on Norman's argument that meaningful actions warrant a deliberate confirmation (Ch. 5, *The Design of Everyday Things*).
 
-#### Task 3: [name]
-- **Description:**
-- **Why it matters:**
-- **Annotated task flow:**
+3. Visual hierarchy that matches importance. Module 13's visual-design critique identified that severity in alerts was encoded only by border color, that donut charts had no threshold indicator, and that there was no top-level budget aggregate on the Dashboard. The final design layers explicit text labels onto color cues, surfaces a budget aggregate at the top, and adds threshold indicators on each donut, driven by Mullet & Sano's principle that contrasts should be conscious, strong, and few.
 
-### 5c. Design Evolution Visualizations `[SPLIT: Kevin = early 1–3, Samana = middle 4–5, Laws = late 6–8]`
+### 5b. Tasks
 
-For each iteration: image(s), evaluation technique, what was learned, how the design changed.
+The three core tasks tested in our Module 6 usability study, and which the final prototype is built around, are:
 
-#### Iteration 1 — Initial Prototype (M2) `[Kevin]`
-- **Image(s):** *(needs M2 PDF — currently missing from repo)*
-- **Evaluation technique:** N/A — initial concept
-- **What was learned:**
-- **Design change:** baseline
+#### Task 1: Check your budget before a purchase
 
-#### Iteration 2 — Heuristic Evaluation (M4) `[Kevin]`
-- Source: `modules/module-04/group-assignment/Module 4 - Heuristic Evaluation - ...pdf`
-- **Evaluation technique:** Nielsen heuristics, expert review
-- **What was learned:**
-- **Design change:**
+- Description: Sarah is out shopping and considering a $36 shirt. She uses the app to check whether the purchase fits within her clothing budget for the month, then later checks her food budget before grabbing lunch.
+- Why it matters to the user base: most existing budget tools only show spending *after* the fact. The whole premise of Budget Buddy is to make the budget useful in the moment of decision, when the user can still choose not to buy. This task represents the app's primary value proposition.
+- Annotated task flow: *(Dashboard → Clothing Budget detail → back → Food Budget detail → updated balance after purchase + push notification)*
 
-#### Iteration 3 — Interaction Design Iteration (M5) `[Kevin]`
-- Source: *(needs M5 PDF — currently missing from repo)*
-- **Evaluation technique:**
-- **What was learned:**
-- **Design change:**
+#### Task 2: Create a new budget with an alert
 
-#### Iteration 4 — Usability Study (M6) `[Samana]`
-- Source: `modules/module-06/group-assignment/Module 6 - Usability Study - ...pdf`
-- **Evaluation technique:** Think-aloud usability study
-- **What was learned:**
-- **Design change:**
+- Description: the user starts a new monthly savings budget ($500/month) for an upcoming vacation, sets an alert threshold, and confirms the budget is created.
+- Why it matters: users will create and adjust budgets regularly as their goals change. The flow needs to be quick enough for casual use but careful enough to prevent setup mistakes (wrong category, wrong amount, wrong threshold) that would silently break the alerting system.
+- Annotated task flow: *(Budgets list → "+ New Budget" → New Budget form → review/confirm step → Budget Created success → back to Budgets list)*
 
-#### Iteration 5 — Interaction Design Iteration (M8) `[Samana]`
-- Source: `modules/module-08/group-assignment/Interaction Design Iteration.pdf`
-- **Evaluation technique:**
-- **What was learned:**
-- **Design change:**
+#### Task 3: Review and re-categorize a transaction
 
-#### Iteration 6 — Interaction Design Critique & Iteration (M9) `[Laws]`
-- Source: `modules/module-09/group-assignment/Module09 – Interaction Design Critique and Iteration.pdf`
-- **Evaluation technique:** Self-critique against principles + AI-assisted iteration
-- **What was learned:**
-- **Design change:**
+- Description: the user notices an Amazon transaction that was auto-categorized incorrectly, finds it in the transactions feed, and reassigns it to the right category.
+- Why it matters: auto-categorization is never perfect. If users can't quickly fix a miscategorized transaction, their per-category budgets become unreliable, and the whole tool loses trust. This task represents the app's self-healing maintenance loop.
+- Annotated task flow: *(Dashboard → Transactions → Amazon transaction (Uncategorized) → Transaction Detail → Re-categorize → Save → back to Transactions)*
 
-#### Iteration 7 — Interaction Design Critique & Iteration (M10) `[Laws]`
-- Source: `modules/module-10/group-assignment/Module10 – Interaction Design Critique and Iteration.pdf`
-- **Evaluation technique:** Visual design critique
-- **What was learned:**
-- **Design change:**
+### 5c. Design Evolution Visualizations
 
-#### Iteration 8 — Visual Design Critique & Iteration (M13) `[Laws]`
-- Source: `modules/module-13/group-assignment/Visual Design Critique and Iteration.pdf`
-- **Evaluation technique:** Visual + info-viz principles critique
-- **What was learned:**
-- **Design change:**
+#### Iteration 1: Module 2 Initial Prototype
 
----
+Our M2 group prototype was a simple task-list app (add, edit, complete, delete, filter, clear-completed), built primarily to learn the deployment toolchain we'd use for the rest of the semester. Budget Buddy as a concept did not yet exist. We were establishing the shared workflow of HTML/CSS/JS prototypes published to GitHub Pages so we could iterate together later.
 
-## 6. Final Prototype Implementation `[OWNER: Laws]`
+- Image: *(see `modules/module-02/group-assignment/Prototype Use Cases.pdf`, todo-list prototype screen)*
+- Evaluation technique: none. Initial concept and tooling exercise.
+- What was learned: the team established a shared GitHub-Pages workflow that every later iteration would build on.
+- Design change: baseline.
+
+#### Iteration 2: Module 4 Heuristic Evaluation (training exercise)
+
+The M4 group assignment was a heuristic evaluation of three external web apps (GitHub, Booking.com, and Canva) against Nielsen's 10 heuristics. Each member led the critique of one app and the team co-authored the combined writeup. This wasn't an iteration on Budget Buddy, but it was the first time we used Nielsen's heuristics as a structured lens, which directly shaped how we would later evaluate our own design in M9, M10, and M13.
+
+- Image: *(see `modules/module-04/group-assignment/Module 4 - Heuristic Evaluation - Laws Smith, Kevin Le, Samana Hussain.pdf`)*
+- Evaluation technique: Nielsen's 10 heuristics applied to external apps.
+- What was learned: heuristics give us a vocabulary to talk about UI weaknesses (Consistency & Standards, Recognition over Recall, Match Between System and Real World, etc.). This was vocabulary we'd reuse against our own product in later iterations.
+- Design change: none directly to Budget Buddy. Methodology carried forward.
+
+#### Iteration 3: Module 5 Wireframes (project genesis)
+
+Budget Buddy as we know it began here. As Laws's individual M5 assignment, he sketched out the original concept, a personal-finance app organized around per-category monthly budgets, with a Sarah scenario showing the in-the-moment-of-decision use case the product is built around. The hand-drawn wireframes covered the Dashboard, individual budget detail screens (Clothing, Food) with donut charts and remaining balances, a push-notification flow after a purchase, and the post-purchase updated budget view. After M5, the group adopted these wireframes as the project artifact and developed them collaboratively from M6 onward.
+
+- Image: *(see `modules/module-05/assignment/Module 5 - Wireframes.pdf`. Pull at minimum the Dashboard, Clothing Budget, and Food Budget hand-drawn screens for the report.)*
+- Evaluation technique: scenario-driven design (Sarah, end-of-month errands, vacation savings).
+- What was learned: a scenario-grounded approach helped concretize the value proposition. Budgeting is most useful *before* a purchase, not after.
+- Design change: project pivoted from the generic todo-list M2 prototype to Budget Buddy. The Sarah scenario, donut charts, push notifications, and per-category budget structure all originated here and survived to the final design.
+
+#### Iteration 4: Module 6 Usability Study
+
+The first group iteration on Budget Buddy. We converted Laws's M5 hand-drawn wireframes into interactive HTML wireframes (with facilitator-operated Wizard of Oz navigation between 11 screens) and ran a four-participant think-aloud usability study covering three tasks: check budget before a purchase, create a new budget with an alert, and re-categorize a transaction. Each member ran at least one of the four sessions, took critical-incident notes, and contributed to the synthesis of five usability issues.
+
+- Image: *(insert before-state screenshot, clothing budget screen from the M6 wireframes)*
+- Evaluation technique: think-aloud usability study with 4 participants (A, B, C, D), facilitator-operated Wizard of Oz wireframes, post-task interview.
+- What was learned (top issues):
+  - Users had no way to *preview* how a purchase would affect a budget. They could only see the impact after the fact.
+  - Transaction labels were too vague to verify against real-world activity ("Lunch" instead of "Chipotle").
+  - The budget-creation flow had several confusing moments: alert-threshold percentages without dollar context, an inconsistently-styled "+ New Budget" button, and pre-filled values that looked like system suggestions.
+- Design change: issues fed directly into the M8 interaction iteration (next).
+
+#### Iteration 5: Module 8 Interaction Iteration
+
+> TO DO (Kevin)
+>
+> Cover the M8 interaction iteration. The deliverable is at `modules/module-08/group-assignment/Interaction Design Iteration.pdf`. Address the three usability fixes we made (Plan-a-Purchase preview, merchant-specific transaction labels, budget-creation-flow clarity). Brief writeup: evaluation technique, what was learned, design change in response. Reference the before/after pairs from the PDF.
+
+#### Iteration 6: Module 9 Interaction Design Critique & Iteration
+
+> TO DO (Kevin)
+>
+> Cover the M9 interaction critique. The deliverable is at `modules/module-09/group-assignment/Module09 – Interaction Design Critique and Iteration.pdf`. We identified 7 weaknesses against Site Design, Interaction Techniques, and Preventing Error principles. Pick a few representative weaknesses to summarize (yours were 4–5; Laws's were 1–3; Samana's were 6–7). Brief writeup: evaluation technique, what was learned, design change in response. Reference the before/after pairs from the PDF.
+
+#### Iteration 7: Module 10 Interaction Design Critique & Iteration
+
+> TO DO (Samana)
+>
+> Cover the M10 interaction critique. The deliverable is at `modules/module-10/group-assignment/Module10 – Interaction Design Critique and Iteration.pdf`. We identified 7 weaknesses, this round emphasizing Consistency & Standards, error prevention, and information scent. Pick a few representative weaknesses to summarize (yours was 7; Laws's were 1–4; Kevin's were 5–6). Brief writeup: evaluation technique, what was learned, design change in response. Reference the before/after pairs from the PDF.
+
+#### Iteration 8: Module 13 Visual Design Critique & Iteration
+
+> TO DO (Samana)
+>
+> Cover the M13 visual-design iteration. This is the iteration you contributed the most to (5 of 10 weaknesses). The deliverable is at `modules/module-13/group-assignment/Visual Design Critique and Iteration.pdf`. We critiqued against Mullet & Sano (visual hierarchy, contrast, layering, Gestalt) and Tufte (data-ink, encoding-to-data-type matching). Walk through the 10 weaknesses at a high level and call out a few representative fixes. Yours were 6–10 (alerts not visually dominant enough, color contrast, depth in flat cards, no clickable indication, no previous-month transactions). Kevin's were 1–3 (no budget aggregate, no donut threshold indicator, no transactions filter). Laws's were 4–5 (transaction magnitude bars, alert severity tags). Reference the before/after pairs from the PDF.
+
+## 6. Final Prototype Implementation
 
 ### 6a. Tools Used
-| Tool | What we used it for | Pros | Cons |
+
+| Tool | Purpose | Pros | Cons |
 |---|---|---|---|
-|  |  |  |  |
+| HTML / CSS / JavaScript | High-fidelity interactive mockup | No platform install; fast iteration; demonstrable in any browser; easy version control | Not a real mobile app; interactions are simulated, no persistence between sessions |
+| AI-assisted code generation (Claude) | Translating design changes from sketch and spec into working markup | Fast turnaround on visual revisions; freed time for design thinking | Required careful review; generated code occasionally introduced unintended visual changes outside the requested fix |
+| Git + GitHub | Source control for iterations and team coordination | Auditable history of every design change; easy rollback | Binary screenshots and PDFs grow the repo size |
 
 ### 6b. Wizard of Oz Techniques
-*(Anything simulated by hand vs. real?)*
+
+The mockup simulates several behaviors that would require real backend infrastructure:
+
+- Transaction data is hard-coded in the HTML. Adding a new transaction in the prototype does not persist between sessions.
+- Alerts are pre-populated from a fixed dataset rather than generated from real spending behavior.
+- The daily-allowance calculation uses a static "today's date" baked into the page rather than the real current date.
 
 ### 6c. Hard-Coded Techniques
-*(Static data, fake state, mock responses, etc.)*
 
----
+- All budget categories, amounts, and thresholds are static in the HTML.
+- Navigation between screens is implemented by toggling CSS visibility, not real routing.
+- The before and after mockups are separate files rather than a single app with a versioned UI.
 
-## 7. Reflection & Next Steps `[OWNER: All — each person contributes one paragraph]`
+## 7. Reflection & Next Steps
 
 ### 7a. Main Learnings
-- **From the design thinking process:**
-- **From our specific project:**
+
+From the design thinking process:
+
+- The biggest gains came from cycles where we evaluated against an outside framework (Nielsen heuristics, Krug, Norman, Mullet & Sano) rather than relying on team intuition. Every iteration that started with "what principle is this violating?" produced clearer fixes than ones that started with "what should we change?"
+- Iteration is not free. By M10 we were re-discovering issues we had already caught, a sign that we needed to consolidate fixes between rounds rather than treat each module's critique as fresh ground.
+
+From our specific project:
+
+- Budget tracking sits in a crowded space (Mint, YNAB, Rocket Money, every bank app). Our differentiator emerged through iteration: spending pace, not just spending balance. That was not obvious in the M2 prototype or even the M5 wireframes.
+- Visual design was where the biggest perceived-quality gains happened. M9 and M10 fixed real interaction bugs, but M13's visual changes are what made the app feel like something we would want to use.
+
+> TO DO (Kevin)
+>
+> 1–2 sentences on what stood out to you across the project.
+
+> TO DO (Samana)
+>
+> 1–2 sentences on what stood out to you across the project.
 
 ### 7b. If We Had More Time
--
--
--
 
----
-
-## Appendix: Prior-Module Source Material
-
-| Stage | Module | File |
-|---|---|---|
-| Initial Prototype | M2 | *(missing — ask team)* |
-| Heuristic Evaluation | M4 | `modules/module-04/group-assignment/` |
-| Interaction Design Iteration | M5 | *(missing — ask team)* |
-| Usability Study | M6 | `modules/module-06/group-assignment/` |
-| Interaction Design Iteration | M8 | `modules/module-08/group-assignment/` |
-| Interaction Design Critique & Iteration | M9 | `modules/module-09/group-assignment/` |
-| Interaction Design Critique & Iteration | M10 | `modules/module-10/group-assignment/` |
-| Visual Design Critique & Iteration | M13 | `modules/module-13/group-assignment/` |
+- Real data integration. Plaid or a CSV import so the budget pace calculations work on actual spending rather than canned data.
+- Predictive alerts. Instead of alerting after a threshold is crossed, surface "at this pace you'll be over by the 25th" warnings earlier.
+- Customizable categories and rollover. Users with non-standard spending patterns (variable income, irregular categories) need flexibility we didn't get to.
+- Accessibility audit. We addressed color-blindness in the alert cards in M13, but a full screen-reader pass and tap-target-size review would close gaps we know exist.

@@ -1,0 +1,6 @@
+Name: Laws Smith
+Group Members: Kevin Le, Samana Hussain, Laws Smith
+
+Each group member individually analyzed the usability issues from our Module 6 study and selected one to address. Kevin focused on the lack of a purchase preview feature, Samana worked on the vague transaction labels, and I took on the budget creation flow's lack of clarity and guidance. Each person wrote their own issue description and proposed how to fix it based on the participant feedback from our usability study.
+
+I consolidated everyone's analyses into a single document and used AI (Claude) to update the previously built wireframes to address all three issues in the updated version of the app as approved. After the wireframes were generated, I reviewed each screen to verify the UI changes matched what we intended, hosted the before and after versions on GitHub Pages so the graders could interact with them, and assembled the final deliverable for submission.
