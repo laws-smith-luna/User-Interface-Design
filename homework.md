@@ -71,6 +71,16 @@ Weekly, open-book. 10 highest of 13 count (3 lowest dropped).
 
 ---
 
+## MAE Seminar Series (separate grad-school requirement)
+
+Not part of SWE 637 but stored in the Software Testing repo under `seminars/mae/`. Notes from each attended seminar feed an end-of-semester writeup.
+
+| Type | Due | Details | Status |
+|------|-----|---------|--------|
+| Seminars Report | **5/1** | Writeup based on attended MAE seminars | Upcoming |
+
+---
+
 ## Due Now
 
 **UI Design - Due Mon 4/6 at 11:59pm:**
@@ -83,5 +93,8 @@ Weekly, open-book. 10 highest of 13 count (3 lowest dropped).
 - [ ] Quiz: Module 10
 
 **Software Testing - Upcoming:**
-- [ ] Assignment 6: Software Testing Literature Review (Module 14, week of 4/28)
+- [ ] Assignment 6: Software Testing Literature Review (Module 14, week of 4/28, due 5/4)
 - [ ] Final Exam (due 5/11)
+
+**MAE Seminar - Due Fri 5/1:**
+- [ ] Seminars Report (writeup based on attended MAE seminars, notes in `Software Testing/seminars/mae/`)

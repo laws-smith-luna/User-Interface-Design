@@ -3,11 +3,15 @@
     "allow": [
       "Bash(git:*)",
       "WebFetch(domain:todomvc.com)",
-      "WebFetch(domain:v17.angular.io)"
+      "WebFetch(domain:v17.angular.io)",
+      "Bash(start \"\" \"C:\\\\Users\\\\lawss\\\\.claude\\\\temp\\\\copy.html\")",
+      "Bash(rm -f \"C:\\\\Users\\\\lawss\\\\.claude\\\\temp\\\\copy.html\")"
     ]
   },
   "enabledMcpjsonServers": [
     "gmail",
-    "google-sheets"
-  ]
+    "google-sheets",
+    "trainingpeaks"
+  ],
+  "enableAllProjectMcpServers": true
 }

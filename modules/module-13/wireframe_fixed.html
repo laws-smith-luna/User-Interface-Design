@@ -19,7 +19,6 @@
   h1 { font-size: 18px; color: #666; margin-bottom: 4px; }
   .task-label { font-size: 13px; color: #999; margin-bottom: 10px; }
 
-/* Styling for category-specific visual signifiers */
 .tx-icon {
   width: 36px; 
   height: 36px; 
@@ -60,7 +59,6 @@
   .nav-bar button.t4 { border-color: #16a34a; }
   .nav-bar button.t4.active { background: #16a34a; }
 
-  /* Phone frame */
   .phone {
     width: 375px;
     height: 812px;
@@ -119,7 +117,6 @@
     transition: background 0.2s;
   }
 
-  /* Shared */
   .greeting { font-size: 26px; font-weight: 700; margin: 16px 0 4px; }
   .greeting-sub { font-size: 15px; color: #888; margin-bottom: 20px; }
 
@@ -195,7 +192,6 @@
   .tx-date { font-size: 11px; color: #999; margin-top: 2px; }
   .tx-amount { font-weight: 700; font-size: 14px; }
 
-  /* Lock screen */
   .lock-screen {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     color: white; height: 100%;
@@ -227,7 +223,6 @@
     text-align: center; margin-top: 12px; font-size: 13px; color: #888; font-style: italic;
   }
 
-  /* Form elements */
   .form-group { margin-bottom: 16px; }
   .form-label {
     font-size: 12px; font-weight: 600; color: #666;
@@ -270,53 +265,20 @@
   .detail-key { font-size: 14px; color: #888; }
   .detail-value { font-size: 14px; font-weight: 600; }
 
-  /* Empty state */
-  .empty-state {
-    text-align: center; padding: 60px 20px;
-  }
-  .empty-icon {
-    font-size: 48px; margin-bottom: 16px; opacity: 0.4;
-  }
+  .empty-state { text-align: center; padding: 60px 20px; }
+  .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.4; }
   .empty-title { font-size: 18px; font-weight: 700; color: #555; margin-bottom: 8px; }
   .empty-sub { font-size: 14px; color: #999; margin-bottom: 24px; line-height: 1.5; }
 
-  /* Alert threshold helper text */
-  .alert-helper {
-    font-size: 11px; color: #888; text-align: center; margin-top: 8px; line-height: 1.4;
-  }
-  .alert-dollar {
-    font-size: 11px; color: #888; margin-top: 4px;
-  }
+  .alert-helper { font-size: 11px; color: #888; text-align: center; margin-top: 8px; line-height: 1.4; }
 
-  /* Transaction category icons */
-  .tx-icon {
-    width: 36px; height: 36px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-  }
+  .form-input.error { border-color: #dc2626; background: #fef2f2; }
+  .btn-primary.disabled { background: #bfdbfe; cursor: not-allowed; pointer-events: none; }
 
-  /* Error state for budget input */
-  .form-input.error {
-    border-color: #dc2626;
-    background: #fef2f2;
-  }
-  .btn-primary.disabled {
-    background: #bfdbfe;
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-
-  /* ── FIX 13: Alert threshold accessible selection state ── */
   .threshold-btn {
-    flex: 1;
-    padding: 10px 10px 8px;
-    border: 1.5px solid #e5e5e5;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
-    background: white;
-    transition: border-color 0.15s, background 0.15s;
-    position: relative;
+    flex: 1; padding: 10px 10px 8px; border: 1.5px solid #e5e5e5;
+    border-radius: 10px; text-align: center; cursor: pointer; background: white;
+    transition: border-color 0.15s, background 0.15s; position: relative;
   }
   .threshold-btn:hover { border-color: #93c5fd; background: #f8faff; }
   .threshold-btn.selected { border: 2px solid #2563eb; background: #eff6ff; }
@@ -324,65 +286,25 @@
   .threshold-btn.selected .threshold-pct { color: #2563eb; font-weight: 700; }
   .threshold-dollar { font-size: 11px; color: #888; margin-top: 2px; }
   .threshold-btn.selected .threshold-dollar { color: #2563eb; }
-  .threshold-check {
-    display: none;
-    position: absolute;
-    top: 5px; right: 6px;
-    width: 14px; height: 14px;
-  }
+  .threshold-check { display: none; position: absolute; top: 5px; right: 6px; width: 14px; height: 14px; }
   .threshold-btn.selected .threshold-check { display: block; }
   .threshold-label {
-    display: block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.4px;
-    color: #2563eb;
-    margin-top: 3px;
-    text-transform: uppercase;
-    opacity: 0;
+    display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.4px;
+    color: #2563eb; margin-top: 3px; text-transform: uppercase; opacity: 0;
   }
   .threshold-btn.selected .threshold-label { opacity: 1; }
 
-  /* ── FIX 12: Start Date field affordance ── */
   .date-field {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 12px;
-    border: 1.5px solid #aaa;
-    border-radius: 10px;
-    font-size: 15px;
-    font-family: inherit;
-    background: white;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: border-color 0.15s, background 0.15s;
-    user-select: none;
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 12px; border: 1.5px solid #aaa; border-radius: 10px;
+    font-size: 15px; font-family: inherit; background: white; cursor: pointer;
+    box-sizing: border-box; transition: border-color 0.15s, background 0.15s; user-select: none;
   }
-  .date-field:hover {
-    border-color: #2563eb;
-    background: #eff6ff;
-  }
-  .date-field:hover .date-edit-hint {
-    color: #2563eb;
-  }
-  .date-field-inner {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .date-edit-hint {
-    font-size: 12px;
-    color: #aaa;
-    transition: color 0.15s;
-    white-space: nowrap;
-  }
-  .date-helper {
-    font-size: 11px;
-    color: #888;
-    margin-top: 4px;
-  }
+  .date-field:hover { border-color: #2563eb; background: #eff6ff; }
+  .date-field:hover .date-edit-hint { color: #2563eb; }
+  .date-field-inner { display: flex; align-items: center; gap: 8px; }
+  .date-edit-hint { font-size: 12px; color: #aaa; transition: color 0.15s; white-space: nowrap; }
+  .date-helper { font-size: 11px; color: #888; margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -390,6 +312,7 @@
 <h1>BudgetApp Wireframes (Module 10 Updated)</h1>
 <div class="task-label">M9 Fixes: <span style="color:#7c3aed; font-weight:600;">1: Active Nav</span> &middot; <span style="color:#2563eb; font-weight:600;">2: Confirm Step</span> &middot; <span style="color:#0891b2; font-weight:600;">3: Spending Pace</span> &middot; <span style="color:#dc2626; font-weight:600;">4: Error Checking</span> &middot; <span style="color:#9333ea; font-weight:600;">5: Homepage</span> &middot; <span style="color:#ea580c; font-weight:600;">6: Back Button</span> &middot; <span style="color:#16a34a; font-weight:600;">7: Transaction Icons</span></div>
 <div class="task-label">M10 Fixes: <span style="color:#b91c1c; font-weight:600;">Fix 8: Alerts/Settings Screens</span> &middot; <span style="color:#0369a1; font-weight:600;">Fix 9: Quick Actions</span> &middot; <span style="color:#7e22ce; font-weight:600;">Fix 10: Back Button Labels</span> &middot; <span style="color:#c2410c; font-weight:600;">Fix 11: Duplicate Budget Warning</span> &middot; <span style="color:#0f766e; font-weight:600;">Fix 12: Start Date Affordance</span> &middot; <span style="color:#6d28d9; font-weight:600;">Fix 13: Threshold Accessibility</span></div>
+<div class="task-label">M13 Fixes: <span style="color:#1d4ed8; font-weight:600;">Fix 14: Aggregate Budget Overview</span> &middot; <span style="color:#d97706; font-weight:600;">Fix 15: Donut Threshold Marker</span> &middot; <span style="color:#dc2626; font-weight:600;">Fix 15: Search bar for transactions</span> &middot; <span style="color:#c2410c; font-weight:600;"></span>
 
 <div class="nav-bar">
   <button class="t1 active" onclick="showScreen(0)">1. Home (New)</button>
@@ -422,13 +345,11 @@
     <div class="greeting">Welcome to</div>
     <div class="greeting" style="margin-top:0; color:#2563eb;">BudgetApp</div>
     <div class="greeting-sub">Let's get your finances organized</div>
-
     <div class="card">
       <div class="card-title">Get Started</div>
       <div style="font-size:14px; color:#555; margin-bottom:12px;">Set up your first budget to start tracking your spending.</div>
       <button class="btn-primary" onclick="showScreen(1)">Set Up Budgets</button>
     </div>
-
     <div class="card">
       <div class="card-title">Transaction Tracking</div>
       <div style="font-size:14px; color:#555; margin-bottom:12px;">Connect your accounts to automatically track transactions.</div>
@@ -443,7 +364,6 @@
       <div style="font-size:22px; font-weight:700;">Your Budgets</div>
       <div style="background:#2563eb; color:white; padding:8px 16px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer;" onclick="showScreen(2)">+ New Budget</div>
     </div>
-
     <div class="empty-state">
       <div class="empty-icon">&#128176;</div>
       <div class="empty-title">No budgets yet</div>
@@ -456,13 +376,9 @@
   <div class="screen" id="screen2">
     <div class="back-btn" onclick="showScreen(1)">&larr; Budgets</div>
     <div style="font-size:22px; font-weight:700; margin-bottom:20px;">Create New Budget</div>
-
-    <!-- FIX 11: Duplicate budget warning -->
     <div class="form-group">
       <div class="form-label">Category</div>
-      <div class="form-select" style="border-color:#f59e0b; background:#fffbeb;">
-        Clothing &nbsp; &#9662;
-      </div>
+      <div class="form-select" style="border-color:#f59e0b; background:#fffbeb;">Clothing &nbsp; &#9662;</div>
       <div id="duplicateBudgetWarning" style="background:#fffbeb; border:1px solid #fcd34d; border-radius:8px; padding:10px 12px; margin-top:8px;">
         <div style="display:flex; align-items:flex-start; gap:8px;">
           <span style="font-size:18px; flex-shrink:0;">&#9888;&#65039;</span>
@@ -473,8 +389,6 @@
         </div>
       </div>
     </div>
-
-    <!-- FIX 4: Input with error checking -->
     <div class="form-group">
       <div class="form-label">Monthly Budget Amount</div>
       <div style="position:relative;">
@@ -492,13 +406,10 @@
       </div>
       <div style="font-size:11px; color:#888; margin-top:4px;">Enter the amount you want to spend per month in this category.</div>
     </div>
-
-    <!-- FIX 12: Start Date now has clear affordance signifiers (DOET Ch. 5) -->
     <div class="form-group">
       <div class="form-label">Start Date</div>
       <div class="date-field" role="button" aria-label="Start date, February 1 2026. Tap to change.">
         <div class="date-field-inner">
-          <!-- Calendar icon -->
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;">
             <rect x="1.5" y="2.5" width="13" height="12" rx="2" stroke="#666" stroke-width="1.2"/>
             <path d="M1.5 6.5h13" stroke="#666" stroke-width="1.2"/>
@@ -513,43 +424,24 @@
       </div>
       <div class="date-helper">Budget periods start on the 1st by default. You can change this if needed.</div>
     </div>
-
-    <!-- FIX 13: Threshold selection uses checkmark + weight + label, not color alone -->
     <div class="form-group">
       <div class="form-label">Alert me when I've <span style="text-decoration:underline;">spent</span></div>
       <div style="display:flex; gap:8px;" role="radiogroup" aria-label="Alert threshold">
         <div class="threshold-btn" role="radio" aria-checked="false" onclick="selectThreshold(this, '50', '$150.00', '$150.00 remaining')">
-          <svg class="threshold-check" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <circle cx="7" cy="7" r="6.5" fill="#2563eb"/>
-            <path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <div class="threshold-pct">50%</div>
-          <div class="threshold-dollar">$150.00</div>
-          <span class="threshold-label">Selected</span>
+          <svg class="threshold-check" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="6.5" fill="#2563eb"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="threshold-pct">50%</div><div class="threshold-dollar">$150.00</div><span class="threshold-label">Selected</span>
         </div>
         <div class="threshold-btn selected" role="radio" aria-checked="true" onclick="selectThreshold(this, '75', '$225.00', '$75.00 remaining')">
-          <svg class="threshold-check" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <circle cx="7" cy="7" r="6.5" fill="#2563eb"/>
-            <path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <div class="threshold-pct">75%</div>
-          <div class="threshold-dollar">$225.00</div>
-          <span class="threshold-label">Selected</span>
+          <svg class="threshold-check" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="6.5" fill="#2563eb"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="threshold-pct">75%</div><div class="threshold-dollar">$225.00</div><span class="threshold-label">Selected</span>
         </div>
         <div class="threshold-btn" role="radio" aria-checked="false" onclick="selectThreshold(this, '90', '$270.00', '$30.00 remaining')">
-          <svg class="threshold-check" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <circle cx="7" cy="7" r="6.5" fill="#2563eb"/>
-            <path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <div class="threshold-pct">90%</div>
-          <div class="threshold-dollar">$270.00</div>
-          <span class="threshold-label">Selected</span>
+          <svg class="threshold-check" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="6.5" fill="#2563eb"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="threshold-pct">90%</div><div class="threshold-dollar">$270.00</div><span class="threshold-label">Selected</span>
         </div>
       </div>
       <div class="alert-helper" id="alertHelperText">You'll get a notification when you've spent <strong>$225.00</strong> of your $300.00 budget, with <strong>$75.00</strong> remaining.</div>
     </div>
-
-    <!-- FIX 2: Button says "Review" not "Create" -->
     <button class="btn-primary" id="reviewBudgetBtn" onclick="showScreen(3)">Review Budget</button>
   </div>
 
@@ -558,31 +450,14 @@
     <div class="back-btn" onclick="showScreen(2)">&larr; Edit</div>
     <div style="font-size:22px; font-weight:700; margin-bottom:6px;">Review Your Budget</div>
     <div style="font-size:14px; color:#888; margin-bottom:20px;">Please confirm the details below are correct.</div>
-
     <div class="card">
       <div class="card-title">Budget Summary</div>
-      <div class="detail-row">
-        <div class="detail-key">Category</div>
-        <div class="detail-value">Clothing</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-key">Monthly Amount</div>
-        <div class="detail-value">$300.00</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-key">Start Date</div>
-        <div class="detail-value">February 1, 2026</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-key">Alert Threshold</div>
-        <div class="detail-value">75% ($225.00)</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-key">Alert Type</div>
-        <div class="detail-value">Push notification</div>
-      </div>
+      <div class="detail-row"><div class="detail-key">Category</div><div class="detail-value">Clothing</div></div>
+      <div class="detail-row"><div class="detail-key">Monthly Amount</div><div class="detail-value">$300.00</div></div>
+      <div class="detail-row"><div class="detail-key">Start Date</div><div class="detail-value">February 1, 2026</div></div>
+      <div class="detail-row"><div class="detail-key">Alert Threshold</div><div class="detail-value">75% ($225.00)</div></div>
+      <div class="detail-row"><div class="detail-key">Alert Type</div><div class="detail-value">Push notification</div></div>
     </div>
-
     <button class="btn-primary" onclick="showScreen(4)">Confirm &amp; Create Budget</button>
     <button class="btn-secondary" onclick="showScreen(2)">Go Back &amp; Edit</button>
   </div>
@@ -591,32 +466,14 @@
   <div class="screen" id="screen4">
     <div class="success-icon">&#10003;</div>
     <div class="success-title">Budget Created!</div>
-    <div class="success-sub">
-      Your "Clothing" budget is set up.<br>
-      $300.00 per month starting February 1.<br>
-      You'll be alerted at 75% usage ($225.00).
-    </div>
-
+    <div class="success-sub">Your "Clothing" budget is set up.<br>$300.00 per month starting February 1.<br>You'll be alerted at 75% usage ($225.00).</div>
     <div class="card">
       <div class="card-title">Budget Summary</div>
-      <div class="detail-row">
-        <div class="detail-key">Category</div>
-        <div class="detail-value">Clothing</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-key">Monthly Amount</div>
-        <div class="detail-value">$300.00</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-key">Alert Threshold</div>
-        <div class="detail-value">75% ($225.00)</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-key">Starts</div>
-        <div class="detail-value">February 1, 2026</div>
-      </div>
+      <div class="detail-row"><div class="detail-key">Category</div><div class="detail-value">Clothing</div></div>
+      <div class="detail-row"><div class="detail-key">Monthly Amount</div><div class="detail-value">$300.00</div></div>
+      <div class="detail-row"><div class="detail-key">Alert Threshold</div><div class="detail-value">75% ($225.00)</div></div>
+      <div class="detail-row"><div class="detail-key">Starts</div><div class="detail-value">February 1, 2026</div></div>
     </div>
-
     <button class="btn-primary" onclick="showScreen(2)">Create Another Budget</button>
     <button class="btn-secondary" onclick="showScreen(2)">Edit This Budget</button>
     <button class="btn-secondary" onclick="showScreen(5)" style="margin-top:4px;">View All Budgets</button>
@@ -629,32 +486,23 @@
       <div style="font-size:22px; font-weight:700;">Your Budgets</div>
       <div style="background:#2563eb; color:white; padding:8px 16px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer;" onclick="showScreen(2)">+ New Budget</div>
     </div>
-
     <div class="card" style="cursor:pointer;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
         <div style="font-size:16px; font-weight:600;">Clothing</div>
         <div class="under" style="font-size:13px; font-weight:600;">$300.00 left</div>
       </div>
-      <div class="budget-bar-wrap" style="width:100%; height:10px;">
-        <div class="budget-bar" style="width:0%; background:#22c55e;"></div>
-      </div>
+      <div class="budget-bar-wrap" style="width:100%; height:10px;"><div class="budget-bar" style="width:0%; background:#22c55e;"></div></div>
       <div style="font-size:12px; color:#888; margin-top:6px;">$0.00 of $300.00 spent</div>
     </div>
-
     <div class="card" style="cursor:pointer;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
         <div style="font-size:16px; font-weight:600;">Food</div>
         <div class="under" style="font-size:13px; font-weight:600;">$400.00 left</div>
       </div>
-      <div class="budget-bar-wrap" style="width:100%; height:10px;">
-        <div class="budget-bar" style="width:0%; background:#22c55e;"></div>
-      </div>
+      <div class="budget-bar-wrap" style="width:100%; height:10px;"><div class="budget-bar" style="width:0%; background:#22c55e;"></div></div>
       <div style="font-size:12px; color:#888; margin-top:6px;">$0.00 of $400.00 spent</div>
     </div>
-
-    <div style="text-align:center; padding:20px; color:#999; font-size:13px;">
-      Both budgets are set up and ready to track your spending.
-    </div>
+    <div style="text-align:center; padding:20px; color:#999; font-size:13px;">Both budgets are set up and ready to track your spending.</div>
   </div>
 
   <!-- Screen 7: Dashboard -->
@@ -663,51 +511,33 @@
     <div class="greeting">Good Morning,</div>
     <div class="greeting" style="margin-top:0">Sarah</div>
     <div class="greeting-sub">Here's your financial snapshot</div>
-
     <div class="card">
       <div class="card-title">Upcoming Bills</div>
-      <div class="bill-row">
-        <div>
-          <div class="bill-name">Rent</div>
-          <div class="bill-detail">Due in 3 days</div>
-        </div>
-        <div class="bill-amount">$2,000.00</div>
-      </div>
-      <div class="bill-row">
-        <div>
-          <div class="bill-name">Electric</div>
-          <div class="bill-detail">Due in 8 days</div>
-        </div>
-        <div class="bill-amount">$142.50</div>
-      </div>
+      <div class="bill-row"><div><div class="bill-name">Rent</div><div class="bill-detail">Due in 3 days</div></div><div class="bill-amount">$2,000.00</div></div>
+      <div class="bill-row"><div><div class="bill-name">Electric</div><div class="bill-detail">Due in 8 days</div></div><div class="bill-amount">$142.50</div></div>
     </div>
-
-    <!-- FIX 3: Spending pace context -->
     <div class="card">
       <div class="card-title">Budget Overview</div>
+      <div style="background:#f0f7ff; border-radius:10px; padding:12px 14px; margin-bottom:12px; border:1px solid #dbeafe;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+          <div style="text-align:center;"><div style="font-size:18px; font-weight:700; color:#1e40af;">$700.00</div><div style="font-size:10px; color:#888; text-transform:uppercase; letter-spacing:0.4px; margin-top:1px;">Budgeted</div></div>
+          <div style="text-align:center;"><div style="font-size:18px; font-weight:700; color:#111;">$657.35</div><div style="font-size:10px; color:#888; text-transform:uppercase; letter-spacing:0.4px; margin-top:1px;">Spent</div></div>
+          <div style="text-align:center;"><div style="font-size:18px; font-weight:700; color:#ef4444;">$42.65</div><div style="font-size:10px; color:#888; text-transform:uppercase; letter-spacing:0.4px; margin-top:1px;">Remaining</div></div>
+        </div>
+        <div style="width:100%; height:8px; background:#dbeafe; border-radius:4px; overflow:hidden;"><div style="width:94%; height:100%; background:#ef4444; border-radius:4px;"></div></div>
+        <div style="font-size:11px; color:#6b7280; margin-top:5px; text-align:center;">94% of total monthly budget used &middot; 2 days left</div>
+      </div>
       <div style="padding:10px 0; border-bottom:1px solid #eee;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-          <div class="budget-label">Food</div>
-          <div class="budget-remaining warn" style="font-weight:600;">$47.32 left</div>
-        </div>
-        <div class="budget-bar-wrap" style="width:100%; height:8px; margin-bottom:4px;">
-          <div class="budget-bar" style="width:88%; background:#f59e0b;"></div>
-        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;"><div class="budget-label">Food</div><div class="budget-remaining warn" style="font-weight:600;">$47.32 left</div></div>
+        <div class="budget-bar-wrap" style="width:100%; height:8px; margin-bottom:4px;"><div class="budget-bar" style="width:88%; background:#f59e0b;"></div></div>
         <div style="font-size:11px; color:#888;">2 days left &middot; ~$23.66/day</div>
       </div>
       <div style="padding:10px 0;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-          <div class="budget-label">Clothing</div>
-          <div class="budget-remaining over" style="font-weight:600;">$15.33 left</div>
-        </div>
-        <div class="budget-bar-wrap" style="width:100%; height:8px; margin-bottom:4px;">
-          <div class="budget-bar" style="width:95%; background:#ef4444;"></div>
-        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;"><div class="budget-label">Clothing</div><div class="budget-remaining over" style="font-weight:600;">$15.33 left</div></div>
+        <div class="budget-bar-wrap" style="width:100%; height:8px; margin-bottom:4px;"><div class="budget-bar" style="width:95%; background:#ef4444;"></div></div>
         <div style="font-size:11px; color:#ef4444;">2 days left &middot; ~$7.67/day &middot; Consider pausing spending</div>
       </div>
     </div>
-
-    <!-- FIX 9: Contextual quick actions -->
     <div class="card">
       <div class="card-title">Quick Actions</div>
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -719,6 +549,15 @@
   </div>
 
   <!-- Screen 8: Clothing Budget Detail -->
+  <!--
+    DONUT COORDINATE EXPLANATION (applies to all 3 budget detail screens):
+    The SVG has CSS transform: rotate(-90deg), remapping visual positions as:
+      SVG 0°   → right  (x=180,y=100) → appears at visual TOP    = 0%  (progress start)
+      SVG 90°  → bottom (x=100,y=180) → appears at visual RIGHT  = 25%
+      SVG 180° → left   (x= 20,y=100) → appears at visual BOTTOM = 50%  ← OLD wrong position
+      SVG 270° → top    (x=100,y= 20) → appears at visual LEFT   = 75%  ← CORRECTED position
+    The threshold tick is now at SVG top (100,20), pointing upward (outward from center).
+  -->
   <div class="screen" id="screen7">
     <div class="back-btn" onclick="showScreen(5)">&larr; Budgets</div>
     <div class="budget-header">
@@ -731,6 +570,11 @@
           <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e5e5" stroke-width="20"/>
           <circle cx="100" cy="100" r="80" fill="none" stroke="#ef4444" stroke-width="20"
             stroke-dasharray="478" stroke-dashoffset="24" stroke-linecap="round"/>
+          <!-- 75% marker: SVG top (100,20) = visual LEFT after CSS -90deg rotation -->
+          <line x1="100" y1="18" x2="100" y2="3" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="96,3 104,3 100,0" fill="#f59e0b"/>
+          <text x="114" y="16" text-anchor="start" font-size="9" fill="#f59e0b" font-weight="700"
+            font-family="-apple-system, BlinkMacSystemFont, sans-serif">75%</text>
         </svg>
         <div class="donut-center">
           <div class="donut-amount over">$15.33</div>
@@ -739,41 +583,17 @@
       </div>
     </div>
     <div class="budget-stats">
-      <div>
-        <div class="stat-value">$284.67</div>
-        <div class="stat-label">Spent</div>
-      </div>
-      <div>
-        <div class="stat-value">$300.00</div>
-        <div class="stat-label">Budget</div>
-      </div>
+      <div><div class="stat-value">$284.67</div><div class="stat-label">Spent</div></div>
+      <div><div class="stat-value">$300.00</div><div class="stat-label">Budget</div></div>
     </div>
     <div class="card" style="background:#fef2f2; border:1px solid #fecaca;">
       <div style="font-size:13px; color:#991b1b; font-weight:600;">Almost at your limit!</div>
       <div style="font-size:12px; color:#b91c1c; margin-top:4px;">You only have $15.33 left for clothing this month.</div>
     </div>
     <div class="section-title">Recent Transactions</div>
-    <div class="transaction-row">
-      <div>
-        <div class="tx-name">H&amp;M</div>
-        <div class="tx-date">Feb 22</div>
-      </div>
-      <div class="tx-amount">-$45.99</div>
-    </div>
-    <div class="transaction-row">
-      <div>
-        <div class="tx-name">Target (Clothing)</div>
-        <div class="tx-date">Feb 18</div>
-      </div>
-      <div class="tx-amount">-$32.50</div>
-    </div>
-    <div class="transaction-row">
-      <div>
-        <div class="tx-name">Nike.com</div>
-        <div class="tx-date">Feb 14</div>
-      </div>
-      <div class="tx-amount">-$89.00</div>
-    </div>
+    <div class="transaction-row"><div><div class="tx-name">H&amp;M</div><div class="tx-date">Feb 22</div></div><div class="tx-amount">-$45.99</div></div>
+    <div class="transaction-row"><div><div class="tx-name">Target (Clothing)</div><div class="tx-date">Feb 18</div></div><div class="tx-amount">-$32.50</div></div>
+    <div class="transaction-row"><div><div class="tx-name">Nike.com</div><div class="tx-date">Feb 14</div></div><div class="tx-amount">-$89.00</div></div>
   </div>
 
   <!-- Screen 9: Food Budget Detail -->
@@ -789,6 +609,11 @@
           <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e5e5" stroke-width="20"/>
           <circle cx="100" cy="100" r="80" fill="none" stroke="#f59e0b" stroke-width="20"
             stroke-dasharray="503" stroke-dashoffset="60" stroke-linecap="round"/>
+          <!-- 75% marker: SVG top (100,20) = visual LEFT after CSS -90deg rotation -->
+          <line x1="100" y1="18" x2="100" y2="3" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="96,3 104,3 100,0" fill="#f59e0b"/>
+          <text x="114" y="16" text-anchor="start" font-size="9" fill="#f59e0b" font-weight="700"
+            font-family="-apple-system, BlinkMacSystemFont, sans-serif">75%</text>
         </svg>
         <div class="donut-center">
           <div class="donut-amount warn">$47.32</div>
@@ -797,59 +622,26 @@
       </div>
     </div>
     <div class="budget-stats">
-      <div>
-        <div class="stat-value">$352.68</div>
-        <div class="stat-label">Spent</div>
-      </div>
-      <div>
-        <div class="stat-value">$400.00</div>
-        <div class="stat-label">Budget</div>
-      </div>
+      <div><div class="stat-value">$352.68</div><div class="stat-label">Spent</div></div>
+      <div><div class="stat-value">$400.00</div><div class="stat-label">Budget</div></div>
     </div>
     <div class="section-title">Recent Transactions</div>
-<div class="transaction-row">
-  <div style="display:flex; align-items:center; gap:10px;">
-    <div class="tx-icon" style="background:#ffedd5;">&#128722;</div>
-    <div>
-      <div class="tx-name">Whole Foods</div>
-      <div class="tx-date">Feb 25</div>
+    <div class="transaction-row">
+      <div style="display:flex; align-items:center; gap:10px;"><div class="tx-icon" style="background:#ffedd5;">&#128722;</div><div><div class="tx-name">Whole Foods</div><div class="tx-date">Feb 25</div></div></div>
+      <div class="tx-amount">-$67.42</div>
     </div>
-  </div>
-  <div class="tx-amount">-$67.42</div>
-</div>
-
-<div class="transaction-row">
-  <div style="display:flex; align-items:center; gap:10px;">
-    <div class="tx-icon" style="background:#ffedd5;">&#127835;</div>
-    <div>
-      <div class="tx-name">Chipotle</div>
-      <div class="tx-date">Feb 23</div>
+    <div class="transaction-row">
+      <div style="display:flex; align-items:center; gap:10px;"><div class="tx-icon" style="background:#ffedd5;">&#127835;</div><div><div class="tx-name">Chipotle</div><div class="tx-date">Feb 23</div></div></div>
+      <div class="tx-amount">-$14.25</div>
     </div>
-  </div>
-  <div class="tx-amount">-$14.25</div>
-</div>
-
-<div class="transaction-row">
-  <div style="display:flex; align-items:center; gap:10px;">
-    <div class="tx-icon" style="background:#ffedd5;">&#128722;</div>
-    <div>
-      <div class="tx-name">Trader Joe's</div>
-      <div class="tx-date">Feb 20</div>
+    <div class="transaction-row">
+      <div style="display:flex; align-items:center; gap:10px;"><div class="tx-icon" style="background:#ffedd5;">&#128722;</div><div><div class="tx-name">Trader Joe's</div><div class="tx-date">Feb 20</div></div></div>
+      <div class="tx-amount">-$53.18</div>
     </div>
-  </div>
-  <div class="tx-amount">-$53.18</div>
-</div>
-
-<div class="transaction-row">
-  <div style="display:flex; align-items:center; gap:10px;">
-    <div class="tx-icon" style="background:#ffedd5;">&#9749;</div>
-    <div>
-      <div class="tx-name">Starbucks</div>
-      <div class="tx-date">Feb 19</div>
+    <div class="transaction-row">
+      <div style="display:flex; align-items:center; gap:10px;"><div class="tx-icon" style="background:#ffedd5;">&#9749;</div><div><div class="tx-name">Starbucks</div><div class="tx-date">Feb 19</div></div></div>
+      <div class="tx-amount">-$6.75</div>
     </div>
-  </div>
-  <div class="tx-amount">-$6.75</div>
-</div>
   </div>
 
   <!-- Screen 10: Push Notification -->
@@ -882,6 +674,11 @@
           <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e5e5" stroke-width="20"/>
           <circle cx="100" cy="100" r="80" fill="none" stroke="#ef4444" stroke-width="20"
             stroke-dasharray="503" stroke-dashoffset="36" stroke-linecap="round"/>
+          <!-- 75% marker: SVG top (100,20) = visual LEFT after CSS -90deg rotation -->
+          <line x1="100" y1="18" x2="100" y2="3" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="96,3 104,3 100,0" fill="#f59e0b"/>
+          <text x="114" y="16" text-anchor="start" font-size="9" fill="#f59e0b" font-weight="700"
+            font-family="-apple-system, BlinkMacSystemFont, sans-serif">75%</text>
         </svg>
         <div class="donut-center">
           <div class="donut-amount over">$27.32</div>
@@ -890,169 +687,105 @@
       </div>
     </div>
     <div class="budget-stats">
-      <div>
-        <div class="stat-value">$372.68</div>
-        <div class="stat-label">Spent</div>
-      </div>
-      <div>
-        <div class="stat-value">$400.00</div>
-        <div class="stat-label">Budget</div>
-      </div>
+      <div><div class="stat-value">$372.68</div><div class="stat-label">Spent</div></div>
+      <div><div class="stat-value">$400.00</div><div class="stat-label">Budget</div></div>
     </div>
     <div class="card" style="background:#fef2f2; border:1px solid #fecaca;">
       <div style="font-size:13px; color:#991b1b; font-weight:600;">Budget running low</div>
       <div style="font-size:12px; color:#b91c1c; margin-top:4px;">You have $27.32 left for food with 2 days remaining in February.</div>
     </div>
     <div class="section-title">Recent Transactions</div>
-    <div class="transaction-row">
-      <div>
-        <div class="tx-name" style="color:#2563eb;">Chipotle</div>
-        <div class="tx-date">Feb 26 &middot; Just now</div>
+    <div class="transaction-row"><div><div class="tx-name" style="color:#2563eb;">Chipotle</div><div class="tx-date">Feb 26 &middot; Just now</div></div><div class="tx-amount" style="color:#2563eb;">-$20.00</div></div>
+    <div class="transaction-row"><div><div class="tx-name">Whole Foods</div><div class="tx-date">Feb 25</div></div><div class="tx-amount">-$67.42</div></div>
+    <div class="transaction-row"><div><div class="tx-name">Chipotle</div><div class="tx-date">Feb 23</div></div><div class="tx-amount">-$14.25</div></div>
+    <div class="transaction-row"><div><div class="tx-name">Trader Joe's</div><div class="tx-date">Feb 20</div></div><div class="tx-amount">-$53.18</div></div>
+  </div>
+
+<div class="screen" id="screen11">
+  <div class="back-btn" onclick="showScreen(6)">&larr; Home</div>
+  <div style="font-size:22px; font-weight:700; margin-bottom:4px;">Transactions</div>
+  <div style="font-size:13px; color:#888; margin-bottom:12px;">February 2026</div>
+
+  <!-- SEARCH BAR ADDED -->
+  <input id="txSearch" type="text" placeholder="Search transactions..."
+    style="width:100%; padding:10px 12px; border:1.5px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:12px;"
+    oninput="filterTransactions()" />
+
+  <div style="display:flex; gap:6px; margin-bottom:16px; overflow-x:auto;">
+    <div class="tx-filter" style="padding:6px 14px; background:#333; color:white; border-radius:16px; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">All</div>
+    <div class="tx-filter" style="padding:6px 14px; background:#f0f0f0; border-radius:16px; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">Food</div>
+    <div class="tx-filter" style="padding:6px 14px; background:#f0f0f0; border-radius:16px; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">Clothing</div>
+  </div>
+
+    <div id="transactionsList">
+
+      <div class="section-title">Feb 26</div>
+      <div class="transaction-row">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="tx-icon" style="background:#ffedd5;">🍴</div>
+          <div>
+            <div class="tx-name">Chipotle</div>
+            <div class="tx-date">Food · 1:02 PM</div>
+          </div>
+        </div>
+        <div class="tx-amount">-$20.00</div>
       </div>
-      <div class="tx-amount" style="color:#2563eb;">-$20.00</div>
-    </div>
-    <div class="transaction-row">
-      <div>
-        <div class="tx-name">Whole Foods</div>
-        <div class="tx-date">Feb 25</div>
+
+      <div class="section-title">Feb 25</div>
+      <div class="transaction-row">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="tx-icon" style="background:#ffedd5;">🛒</div>
+          <div>
+            <div class="tx-name">Whole Foods</div>
+            <div class="tx-date">Food · 5:30 PM</div>
+          </div>
+        </div>
+        <div class="tx-amount">-$67.42</div>
       </div>
-      <div class="tx-amount">-$67.42</div>
-    </div>
-    <div class="transaction-row">
-      <div>
-        <div class="tx-name">Chipotle</div>
-        <div class="tx-date">Feb 23</div>
+
+      <div class="transaction-row">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="tx-icon" style="background:#dcfce7;">📦</div>
+          <div>
+            <div class="tx-name">Amazon</div>
+            <div class="tx-date">Shopping · 2:15 PM</div>
+          </div>
+        </div>
+        <div class="tx-amount">-$34.99</div>
       </div>
-      <div class="tx-amount">-$14.25</div>
-    </div>
-    <div class="transaction-row">
-      <div>
-        <div class="tx-name">Trader Joe's</div>
-        <div class="tx-date">Feb 20</div>
+
+      <div class="section-title">Feb 23</div>
+      <div class="transaction-row">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="tx-icon" style="background:#ffedd5;">🍴</div>
+          <div>
+            <div class="tx-name">Chipotle</div>
+            <div class="tx-date">Food · 12:30 PM</div>
+          </div>
+        </div>
+        <div class="tx-amount">-$14.25</div>
       </div>
-      <div class="tx-amount">-$53.18</div>
+
+      <div class="section-title">Feb 22</div>
+      <div class="transaction-row">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="tx-icon" style="background:#ede9fe;">👕</div>
+          <div>
+            <div class="tx-name">H&M</div>
+            <div class="tx-date">Clothing · 3:20 PM</div>
+          </div>
+        </div>
+        <div class="tx-amount">-$45.99</div>
+      </div>
+
     </div>
   </div>
 
-  <!-- Screen 12: All Transactions -->
-  <div class="screen" id="screen11">
-    <div class="back-btn" onclick="showScreen(6)">&larr; Home</div>
-    <div style="font-size:22px; font-weight:700; margin-bottom:4px;">Transactions</div>
-    <div style="font-size:13px; color:#888; margin-bottom:16px;">February 2026</div>
-
-    <div style="display:flex; gap:6px; margin-bottom:16px; overflow-x:auto;">
-      <div style="padding:6px 14px; background:#333; color:white; border-radius:16px; font-size:12px; font-weight:600; white-space:nowrap;">All</div>
-      <div style="padding:6px 14px; background:#f0f0f0; border-radius:16px; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">Food</div>
-      <div style="padding:6px 14px; background:#f0f0f0; border-radius:16px; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">Clothing</div>
-    </div>
-
-    <!-- FIX 7: Category icons -->
-    <div class="section-title">Feb 26</div>
-    <div class="transaction-row">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="tx-icon" style="background:#ffedd5;">&#127835;</div>
-        <div>
-          <div class="tx-name" style="color:#2563eb;">Chipotle</div>
-          <div class="tx-date">Food &middot; 1:02 PM</div>
-        </div>
-      </div>
-      <div class="tx-amount" style="color:#2563eb;">-$20.00</div>
-    </div>
-
-    <div class="section-title">Feb 25</div>
-    <div class="transaction-row">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="tx-icon" style="background:#ffedd5;">&#128722;</div>
-        <div>
-          <div class="tx-name">Whole Foods</div>
-          <div class="tx-date">Food &middot; 5:30 PM</div>
-        </div>
-      </div>
-      <div class="tx-amount">-$67.42</div>
-    </div>
-    <div class="transaction-row">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="tx-icon" style="background:#dcfce7;">&#128230;</div>
-        <div>
-          <div class="tx-name">Amazon</div>
-          <div class="tx-date">Shopping &middot; 2:15 PM</div>
-        </div>
-      </div>
-      <div class="tx-amount">-$34.99</div>
-    </div>
-
-    <div class="section-title">Feb 23</div>
-    <div class="transaction-row">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="tx-icon" style="background:#ffedd5;">&#127835;</div>
-        <div>
-          <div class="tx-name">Chipotle</div>
-          <div class="tx-date">Food &middot; 12:30 PM</div>
-        </div>
-      </div>
-      <div class="tx-amount">-$14.25</div>
-    </div>
-
-    <div class="section-title">Feb 22</div>
-    <div class="transaction-row">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="tx-icon" style="background:#ede9fe;">&#128085;</div>
-        <div>
-          <div class="tx-name">H&amp;M</div>
-          <div class="tx-date">Clothing &middot; 3:20 PM</div>
-        </div>
-      </div>
-      <div class="tx-amount">-$45.99</div>
-    </div>
-
-    <div class="section-title">Feb 20</div>
-    <div class="transaction-row">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="tx-icon" style="background:#ffedd5;">&#128722;</div>
-        <div>
-          <div class="tx-name">Trader Joe's</div>
-          <div class="tx-date">Food &middot; 6:15 PM</div>
-        </div>
-      </div>
-      <div class="tx-amount">-$53.18</div>
-    </div>
-
-    <div class="section-title">Feb 19</div>
-    <div class="transaction-row">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="tx-icon" style="background:#ffedd5;">&#9749;</div>
-        <div>
-          <div class="tx-name">Starbucks</div>
-          <div class="tx-date">Food &middot; 8:45 AM</div>
-        </div>
-      </div>
-      <div class="tx-amount">-$6.75</div>
-    </div>
-
-    <div class="section-title">Feb 18</div>
-    <div class="transaction-row">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="tx-icon" style="background:#ede9fe;">&#128085;</div>
-        <div>
-          <div class="tx-name">Target</div>
-          <div class="tx-date">Clothing &middot; 2:00 PM</div>
-        </div>
-      </div>
-      <div class="tx-amount">-$32.50</div>
-    </div>
-
-    <div class="section-title">Feb 14</div>
-    <div class="transaction-row">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="tx-icon" style="background:#ede9fe;">&#128095;</div>
-        <div>
-          <div class="tx-name">Nike.com</div>
-          <div class="tx-date">Clothing &middot; Online</div>
-        </div>
-      </div>
-      <div class="tx-amount">-$89.00</div>
-    </div>
-  </div>
+  <script>
+  function filterTransactions() {
+    const query = document.getElementById('txSearch').value.toLowerCase();
+    const rows = document.querySelectorAll('#transactionsList .transaction-row');
+  </script>
 
   <!-- Screen 13: Alerts -->
   <div class="screen" id="screen12">
@@ -1061,164 +794,67 @@
       <div style="font-size:22px; font-weight:700;">Alerts</div>
       <div style="font-size:12px; color:#999;">3 new</div>
     </div>
-
     <div class="card" style="border-left:3px solid #ef4444;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-        <div>
-          <div style="font-size:14px; font-weight:600; color:#991b1b;">Clothing budget almost exceeded</div>
-          <div style="font-size:13px; color:#666; margin-top:4px;">You've spent $284.67 of your $300.00 clothing budget. Only $15.33 remaining.</div>
-        </div>
-      </div>
+      <div><div style="font-size:14px; font-weight:600; color:#991b1b;">Clothing budget almost exceeded</div><div style="font-size:13px; color:#666; margin-top:4px;">You've spent $284.67 of your $300.00 clothing budget. Only $15.33 remaining.</div></div>
       <div style="font-size:11px; color:#999; margin-top:8px;">Today, 1:03 PM</div>
     </div>
-
     <div class="card" style="border-left:3px solid #f59e0b;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-        <div>
-          <div style="font-size:14px; font-weight:600; color:#92400e;">Food budget at 75%</div>
-          <div style="font-size:13px; color:#666; margin-top:4px;">You've hit your 75% alert threshold for Food. $100.00 remaining of $400.00.</div>
-        </div>
-      </div>
+      <div><div style="font-size:14px; font-weight:600; color:#92400e;">Food budget at 75%</div><div style="font-size:13px; color:#666; margin-top:4px;">You've hit your 75% alert threshold for Food. $100.00 remaining of $400.00.</div></div>
       <div style="font-size:11px; color:#999; margin-top:8px;">Yesterday, 5:30 PM</div>
     </div>
-
     <div class="card" style="border-left:3px solid #2563eb;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-        <div>
-          <div style="font-size:14px; font-weight:600; color:#1e40af;">New transaction recorded</div>
-          <div style="font-size:13px; color:#666; margin-top:4px;">Chipotle purchase of $20.00 was categorized under Food.</div>
-        </div>
-      </div>
+      <div><div style="font-size:14px; font-weight:600; color:#1e40af;">New transaction recorded</div><div style="font-size:13px; color:#666; margin-top:4px;">Chipotle purchase of $20.00 was categorized under Food.</div></div>
       <div style="font-size:11px; color:#999; margin-top:8px;">Today, 1:02 PM</div>
     </div>
-
     <div class="card" style="border-left:3px solid #d1d5db;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-        <div>
-          <div style="font-size:14px; font-weight:600; color:#555;">Monthly summary available</div>
-          <div style="font-size:13px; color:#666; margin-top:4px;">Your January 2026 spending summary is ready to review.</div>
-        </div>
-      </div>
+      <div><div style="font-size:14px; font-weight:600; color:#555;">Monthly summary available</div><div style="font-size:13px; color:#666; margin-top:4px;">Your January 2026 spending summary is ready to review.</div></div>
       <div style="font-size:11px; color:#999; margin-top:8px;">Feb 1, 9:00 AM</div>
     </div>
-
-    <div style="text-align:center; padding:20px; color:#999; font-size:13px;">
-      You're all caught up!
-    </div>
+    <div style="text-align:center; padding:20px; color:#999; font-size:13px;">You're all caught up!</div>
   </div>
 
   <!-- Screen 14: Settings -->
   <div class="screen" id="screen13">
     <div class="back-btn" onclick="showScreen(6)">&larr; Home</div>
     <div style="font-size:22px; font-weight:700; margin-bottom:20px;">Settings</div>
-
     <div class="card">
       <div class="card-title">Account</div>
       <div class="detail-row" style="cursor:pointer;">
         <div style="display:flex; align-items:center; gap:10px;">
           <div style="width:36px; height:36px; background:#eff6ff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px;">&#128100;</div>
-          <div>
-            <div class="detail-value">Sarah Johnson</div>
-            <div style="font-size:12px; color:#888;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fd8e9c8f9c95d397bd98909c9491d39e9290">[email&#160;protected]</a></div>
-          </div>
+          <div><div class="detail-value">Sarah Johnson</div><div style="font-size:12px; color:#888;">sarah@example.com</div></div>
         </div>
         <div style="color:#999; font-size:14px;">&#8250;</div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">Preferences</div>
-      <div class="detail-row" style="cursor:pointer;">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:18px;">&#128276;</span>
-          <div class="detail-value" style="font-size:14px;">Notifications</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-size:12px; color:#888;">Push &amp; Email</span>
-          <span style="color:#999; font-size:14px;">&#8250;</span>
-        </div>
-      </div>
-      <div class="detail-row" style="cursor:pointer;">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:18px;">&#128178;</span>
-          <div class="detail-value" style="font-size:14px;">Currency</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-size:12px; color:#888;">USD ($)</span>
-          <span style="color:#999; font-size:14px;">&#8250;</span>
-        </div>
-      </div>
-      <div class="detail-row" style="cursor:pointer;">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:18px;">&#128197;</span>
-          <div class="detail-value" style="font-size:14px;">Budget Period</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-size:12px; color:#888;">Monthly</span>
-          <span style="color:#999; font-size:14px;">&#8250;</span>
-        </div>
-      </div>
-      <div class="detail-row" style="cursor:pointer;">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:18px;">&#127760;</span>
-          <div class="detail-value" style="font-size:14px;">Appearance</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-size:12px; color:#888;">Light</span>
-          <span style="color:#999; font-size:14px;">&#8250;</span>
-        </div>
-      </div>
+      <div class="detail-row" style="cursor:pointer;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:18px;">&#128276;</span><div class="detail-value" style="font-size:14px;">Notifications</div></div><div style="display:flex; align-items:center; gap:8px;"><span style="font-size:12px; color:#888;">Push &amp; Email</span><span style="color:#999; font-size:14px;">&#8250;</span></div></div>
+      <div class="detail-row" style="cursor:pointer;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:18px;">&#128178;</span><div class="detail-value" style="font-size:14px;">Currency</div></div><div style="display:flex; align-items:center; gap:8px;"><span style="font-size:12px; color:#888;">USD ($)</span><span style="color:#999; font-size:14px;">&#8250;</span></div></div>
+      <div class="detail-row" style="cursor:pointer;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:18px;">&#128197;</span><div class="detail-value" style="font-size:14px;">Budget Period</div></div><div style="display:flex; align-items:center; gap:8px;"><span style="font-size:12px; color:#888;">Monthly</span><span style="color:#999; font-size:14px;">&#8250;</span></div></div>
+      <div class="detail-row" style="cursor:pointer;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:18px;">&#127760;</span><div class="detail-value" style="font-size:14px;">Appearance</div></div><div style="display:flex; align-items:center; gap:8px;"><span style="font-size:12px; color:#888;">Light</span><span style="color:#999; font-size:14px;">&#8250;</span></div></div>
     </div>
-
     <div class="card">
       <div class="card-title">Data</div>
-      <div class="detail-row" style="cursor:pointer;">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:18px;">&#128229;</span>
-          <div class="detail-value" style="font-size:14px;">Export Data</div>
-        </div>
-        <span style="color:#999; font-size:14px;">&#8250;</span>
-      </div>
-      <div class="detail-row" style="cursor:pointer;">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:18px;">&#128279;</span>
-          <div class="detail-value" style="font-size:14px;">Connected Accounts</div>
-        </div>
-        <span style="color:#999; font-size:14px;">&#8250;</span>
-      </div>
+      <div class="detail-row" style="cursor:pointer;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:18px;">&#128229;</span><div class="detail-value" style="font-size:14px;">Export Data</div></div><span style="color:#999; font-size:14px;">&#8250;</span></div>
+      <div class="detail-row" style="cursor:pointer;"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:18px;">&#128279;</span><div class="detail-value" style="font-size:14px;">Connected Accounts</div></div><span style="color:#999; font-size:14px;">&#8250;</span></div>
     </div>
-
     <button class="btn-secondary" style="color:#ef4444; border-color:#fecaca; margin-top:4px;">Sign Out</button>
   </div>
 
   <!-- Bottom nav -->
   <div class="bottom-nav" id="bottomNav">
-    <div class="nav-item" data-nav="home" onclick="showScreen(6)">
-      <div class="nav-icon">&#127968;</div>
-      <span>Home</span>
-    </div>
-    <div class="nav-item" data-nav="budgets" onclick="showScreen(1)">
-      <div class="nav-icon">$</div>
-      <span>Budgets</span>
-    </div>
-    <div class="nav-item" data-nav="transactions" onclick="showScreen(11)">
-      <div class="nav-icon">&#8644;</div>
-      <span>Transactions</span>
-    </div>
-    <div class="nav-item" data-nav="alerts" onclick="showScreen(12)">
-      <div class="nav-icon">&#128276;</div>
-      <span>Alerts</span>
-    </div>
-    <div class="nav-item" data-nav="settings" onclick="showScreen(13)">
-      <div class="nav-icon">&#9881;</div>
-      <span>Settings</span>
-    </div>
+    <div class="nav-item" data-nav="home" onclick="showScreen(6)"><div class="nav-icon">&#127968;</div><span>Home</span></div>
+    <div class="nav-item" data-nav="budgets" onclick="showScreen(1)"><div class="nav-icon">$</div><span>Budgets</span></div>
+    <div class="nav-item" data-nav="transactions" onclick="showScreen(11)"><div class="nav-icon">&#8644;</div><span>Transactions</span></div>
+    <div class="nav-item" data-nav="alerts" onclick="showScreen(12)"><div class="nav-icon">&#128276;</div><span>Alerts</span></div>
+    <div class="nav-item" data-nav="settings" onclick="showScreen(13)"><div class="nav-icon">&#9881;</div><span>Settings</span></div>
   </div>
 </div>
 
 <div class="screen-label" id="screenLabel">Screen 1 of 14: Home (New User)</div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const labels = [
     'Screen 1 of 14: Home (New User) [Fix 5: Simplified buttons]',
     'Screen 2 of 14: Budgets (Empty)',
@@ -1226,31 +862,20 @@
     'Screen 4 of 14: Review Budget [Fix 2: Confirmation Step]',
     'Screen 5 of 14: Budget Created [Fix 2: Edit Option]',
     'Screen 6 of 14: Budgets (Both Set Up)',
-    'Screen 7 of 14: Dashboard [Fix 1: Active Nav, Fix 3: Spending Pace, Fix 9: Quick Actions]',
+    'Screen 7 of 14: Dashboard [Fix 1: Active Nav, Fix 3: Spending Pace, Fix 9: Quick Actions, Fix 14: Aggregate Budget Overview]',
     'Screen 8 of 14: Clothing Budget [Fix 1: Active Nav, Fix 10: Back Button Label]',
     'Screen 9 of 14: Food Budget [Fix 1: Active Nav, Fix 10: Back Button Label]',
     'Screen 10 of 14: Push Notification',
     'Screen 11 of 14: Updated Food Budget [Fix 1: Active Nav, Fix 10: Back Button Label]',
-    'Screen 12 of 14: All Transactions [Fix 1: Active Nav, Fix 7: Category Icons]',
+    'Screen 12 of 14: All Transactions [Fix 1: Active Nav, Fix 7: Category Icons, Fix 15: Search bar]',
     'Screen 13 of 14: Alerts [Fix 8: New Screen]',
     'Screen 14 of 14: Settings [Fix 8: New Screen]'
   ];
 
   const navMap = {
-    0: 'home',
-    1: 'budgets',
-    2: 'budgets',
-    3: 'budgets',
-    4: 'budgets',
-    5: 'budgets',
-    6: 'home',
-    7: 'budgets',
-    8: 'budgets',
-    9: null,
-    10: 'budgets',
-    11: 'transactions',
-    12: 'alerts',
-    13: 'settings'
+    0:'home', 1:'budgets', 2:'budgets', 3:'budgets', 4:'budgets', 5:'budgets',
+    6:'home', 7:'budgets', 8:'budgets', 9:null, 10:'budgets',
+    11:'transactions', 12:'alerts', 13:'settings'
   };
 
   function showScreen(index) {
@@ -1259,20 +884,11 @@
     document.getElementById('screen' + index).classList.add('active');
     document.querySelectorAll('.nav-bar button')[index].classList.add('active');
     document.getElementById('screenLabel').textContent = labels[index];
-
     const bottomNav = document.getElementById('bottomNav');
     const statusBar = document.getElementById('statusBar');
-    if (index === 9) {
-      bottomNav.style.display = 'none';
-      statusBar.style.display = 'none';
-    } else {
-      bottomNav.style.display = 'flex';
-      statusBar.style.display = 'flex';
-    }
-
-    document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
-      item.classList.remove('active');
-    });
+    if (index === 9) { bottomNav.style.display = 'none'; statusBar.style.display = 'none'; }
+    else { bottomNav.style.display = 'flex'; statusBar.style.display = 'flex'; }
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(item => item.classList.remove('active'));
     const activeNav = navMap[index];
     if (activeNav) {
       const activeItem = document.querySelector('.bottom-nav .nav-item[data-nav="' + activeNav + '"]');
@@ -1285,18 +901,9 @@
     const error = document.getElementById('budgetError');
     const btn = document.getElementById('reviewBudgetBtn');
     const val = parseFloat(input.value);
-
-    if (isNaN(val) || val < 0) {
-      input.classList.add('error');
-      error.style.display = 'block';
-      btn.classList.add('disabled');
-    } else {
-      input.classList.remove('error');
-      error.style.display = 'none';
-      btn.classList.remove('disabled');
-    }
+    if (isNaN(val) || val < 0) { input.classList.add('error'); error.style.display = 'block'; btn.classList.add('disabled'); }
+    else { input.classList.remove('error'); error.style.display = 'none'; btn.classList.remove('disabled'); }
   }
-
 
   function adjustAmount(delta) {
     const input = document.getElementById('budgetAmountInput');
@@ -1308,15 +915,11 @@
 
   function selectThreshold(el, pct, dollars, remaining) {
     el.closest('[role="radiogroup"]').querySelectorAll('.threshold-btn').forEach(function(btn) {
-      btn.classList.remove('selected');
-      btn.setAttribute('aria-checked', 'false');
+      btn.classList.remove('selected'); btn.setAttribute('aria-checked', 'false');
     });
-    el.classList.add('selected');
-    el.setAttribute('aria-checked', 'true');
+    el.classList.add('selected'); el.setAttribute('aria-checked', 'true');
     var helper = document.getElementById('alertHelperText');
-    if (helper) {
-      helper.innerHTML = 'You\'ll get a notification when you\'ve spent <strong>' + dollars + '</strong> of your $300.00 budget, with <strong>' + remaining + '</strong>.';
-    }
+    if (helper) helper.innerHTML = 'You\'ll get a notification when you\'ve spent <strong>' + dollars + '</strong> of your $300.00 budget, with <strong>' + remaining + '</strong>.';
   }
 
   showScreen(0);

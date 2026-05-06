@@ -1,0 +1,3 @@
+Individual contributions:
+
+For this project, Kevin started the code, set up the GitHub repo and developed all the code for cases 1-4. He had a head start because of the confusion in the groups and established a good base. Laws (myself) added the filter items and buttons to apply the filter case. Laws also set up the code to publish the angular prototype on a url so anyone can use it using Githup pages. Finally Samana created a button to clear all the completed items with a single click.
