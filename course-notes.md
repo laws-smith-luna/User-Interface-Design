@@ -4,7 +4,7 @@
 **Instructor:** Prof. Zhicong Lu
 **Student:** Laws Smith
 
-This is the consolidated study document for the whole semester. Module-by-module notes still live in `modules/module-XX/notes.md`. This file is the single place to read across the course or to grep for a concept.
+This is the consolidated study document for the whole semester — everything needed for the final lives here. Per-module `modules/module-XX/notes.md` files are the original sources this was built from; they're not needed during study.
 
 ---
 
@@ -65,6 +65,20 @@ Action breaks into **execution** and **evaluation**.
 | Feedback | What happened? | Immediate, informative |
 | Constraints | What can't I do? | Limit incorrect actions |
 | Conceptual model | How does this work? | Clear system image |
+
+## Discoverability — the 7th Principle
+
+Norman's Ch. 2 reframes the six into a list of **seven design principles** derived from the stages of action. Discoverability is the meta-principle that emerges when the others succeed:
+
+1. **Discoverability** — possible to determine what actions are available and the current state
+2. **Feedback** — full, continuous info on action results
+3. **Conceptual model** — design projects all info needed to understand the system
+4. **Affordances** — proper affordances exist for desired actions
+5. **Signifiers** — effective signifiers ensure discoverability and intelligible feedback
+6. **Mappings** — controls/actions follow good mapping
+7. **Constraints** — physical, logical, semantic, cultural constraints guide actions
+
+For exam purposes: the *six* in Ch. 1 are the fundamentals; the *seven* in Ch. 2 add Discoverability as the unifying outcome.
 
 ---
 
@@ -731,6 +745,33 @@ Buttons in **primary / secondary / tertiary** treatments:
 
 Same hierarchy works on light and dark backgrounds — adjust contrast, keep the relative weight relationship.
 
+## Emphasis (IxDF)
+
+Emphasis directs viewer attention to specific elements by creating a **focal point** — an eye-catching area distinct from surrounding components.
+
+### Techniques for Creating Emphasis
+
+- **Lines** — breaking established linear flow draws the eye to the disruption
+- **Shapes** — a different shape among similar ones captures attention
+- **Colors** — color shifts create focal points; stronger contrasts demand more attention
+- **Textures** — embossing, drop shadows, surface variation highlight areas
+- **Mass** — dark elements against bright (or vice versa) emphasize through perceived "heaviness"
+
+### Principles That Facilitate Emphasis
+
+By **breaking established patterns**, designers emphasize elements:
+
+- **Balance / symmetry** — asymmetric arrangements highlight imbalance
+- **Proximity** — isolating an element from a grouped set makes it stand out
+- **Alignment** — breaking alignment patterns captures attention to misaligned items
+- **Repetition** — varying a repeated element draws focus to the deviation
+- **Contrast** — stark differences direct eye movement
+- **White space** — increasing surrounding space breaks visual flow and highlights content
+
+### Key Rule
+
+**Emphasis is relative.** Elements only stand out *against something else.* Multiple emphasized areas saturate a design and confuse users. Commit to emphasizing key focal points (especially calls to action) without overwhelming the visual hierarchy.
+
 ---
 
 # Module 11 — Icons and Design Languages
@@ -1278,4 +1319,32 @@ The goal: user needs above all, business goals balanced. Hard to achieve, but ne
 
 # Final Exam — Module 15
 
-Closed book, one attempt, no AI. Don't even open this file during it.
+**Closed book, one attempt, no AI.** Don't open this file during it. Use this section as a last-pass checklist the night before.
+
+## Things Most Likely to Be Tested
+
+- **Norman's seven stages of action** + the two gulfs (execution / evaluation) and how each is bridged
+- **Six (or seven) fundamental principles** — affordance vs. signifier especially; the four constraint types
+- **Double Diamond** — discover/define/develop/deliver; right problem before right solution
+- **Contextual inquiry** — four principles (context/partnership/interpretation/focus); CI vs. interviews/surveys; novice mistakes
+- **Sketches vs. prototypes** (Buxton); horizontal/vertical/T/local; Wizard of Oz
+- **Think-aloud studies** — 4–5 participants for ~80% of issues; critical-incident reporting structure (problem statement, user goal, immediate intention, possible cause); usability vs. CI
+- **Information foraging** — patches, links, cues, scent, diet; rate of gain = value/cost; metaphor vs. idiom
+- **Effective site design questions** (the six "what site / what page / where am I…")
+- **Fitts's Law** — bigger and closer is faster; edge of screen as infinite target
+- **Universal design** — 7 principles; assistive vs. universal (curb cut)
+- **Error taxonomy** — slip vs. lapse vs. mistake (rule-/knowledge-based) vs. violation; novice mistakes vs. expert slips
+- **Norman's error guidance** — constraints, forcing functions, undo, swiss-cheese model; tone of feedback
+- **Visual design** — visual variables, scale/contrast/proportion, gestalt principles, layers, hierarchy, primary/secondary/tertiary buttons, emphasis as focal point
+- **Icons** — four principles (immediacy, generality, cohesiveness, characterization); similar/example/symbolic/arbitrary
+- **Design languages** — elements vs. syntax; idioms; consistency-and-standards heuristic
+- **InfoViz pipeline** — data → tables → structures → views; data types (N/O/Q) and which graphical properties fit each
+- **Tufte** — data-ink ratio, chartjunk, graphical excellence
+- **Shneiderman's mantra** — overview → zoom & filter → details on demand
+- **Common ways viz mislead** — truncated axes, area-vs-length, dual axes, cherry-picked time, Simpson's paradox
+- **Community design** — four dimensions (structure / content / feedback / roles & rules); four challenges (start / contribute / commit / regulate); affective (identity vs. bonds) / normative / need-based commitment; intrinsic vs. extrinsic and the perverse-incentive trap
+- **Dark patterns** — the six (sneaking, urgency, misdirection, scarcity, obstruction, forced action)
+
+## Cross-Cutting Themes (Re-read These First)
+
+The themes at the top of this document — gulfs, mental models, watch-don't-listen, iterate, constraints, signifiers, cognitive vs. social, designer ethics — are the spine of the course. If you can rephrase a question in those terms, you can almost always answer it.
