@@ -40,6 +40,29 @@ Laws Smith
 
 ---
 
+## 4. (May 2026) Follow-up to Prof. Griffiths — August Graduation Submissions
+
+**To:** Prof. Griffiths
+**Subject:** August 2026 Graduation — Quick Items Before Your Leave
+**Status:** DRAFT — not sent
+
+Hi Professor Griffiths,
+
+Quick follow-up on the graduation items as I prep my August submissions. I want to get everything in before your paternal leave so you're not stuck answering UVA emails while you're out.
+
+**Technical Writing Assessment:** Confirming the MAE 8100 seminar report (final version attached / `seminar-report.pdf`) is what you'll evaluate. If you'd like changes before I submit the form, let me know — otherwise I'll submit it within the next week.
+
+**Plan of Study Assessment:** I'm still finalizing my summer class. Would you be able to pre-approve a short list of candidates so I can submit the form without waiting until the choice is locked? I'd update the worksheet once it's final, but having your sign-off on a candidate list would let me get the form in before your leave starts. If that's not workable, I'll submit when you're back and lean on a deadline extension if needed.
+
+**Analysis Assessment:** Already underway with Prof. Russell (he confirmed in April).
+
+Hard deadline on my end is July 11 for the August graduation forms. Anything you can sign off on now is a real help.
+
+Thanks,
+Laws
+
+---
+
 ## 3. Email to David Brown - MAE Seminar Recordings + Report
 
 **To:** David Brown (CC: Chen Cui, Toni Tang)
